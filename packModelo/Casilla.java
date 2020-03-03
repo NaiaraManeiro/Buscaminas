@@ -4,7 +4,16 @@ public abstract class Casilla {
     private boolean casillaClicada;
     private boolean banderita;
 
-    public Casilla(){}
+    public Casilla(boolean pCasillaClicada, boolean pBanderita){
+        this.casillaClicada = pCasillaClicada;
+        this.banderita = pBanderita;
+    }
 
-    abstract public 
+    public void marcarCasilla() {
+        this.banderita = true;
+    }
+
+    public void setCasillaClicada(boolean cambiar){
+        this.casillaClicada = cambiar;
+    }
 }
