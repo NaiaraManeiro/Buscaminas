@@ -6,4 +6,8 @@ public class CasillaMina extends Casilla {
         super(false, false);
     }
 
+    public void bloquearCasilla() {
+        setCasillaClicada(true);
+        // Hacer que se acabe la partida
+    }
 }

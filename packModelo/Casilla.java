@@ -13,6 +13,8 @@ public abstract class Casilla {
         this.banderita = true;
     }
 
+    abstract public void bloquearCasilla();
+
     public void setCasillaClicada(boolean cambiar){
         this.casillaClicada = cambiar;
     }

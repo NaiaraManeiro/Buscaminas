@@ -2,22 +2,17 @@ package packModelo;
 
 public class Nivel1 extends Modo {
 
-    public Nivel1(int pAltura, int pAnchura){
-        super(7,10);
-    }
+    public Nivel1() {}
 
     public void definirAltura() {
-        Tablero.getmTablero().setAltura(getAltura());
+        Tablero.getmTablero().setAltura(7);
     }
 
     public void definirAnchura() {
-        Tablero.getmTablero().setAnchura(getAnchura());
+        Tablero.getmTablero().setAnchura(10);
     }
 
     public void definirMinas() {
-        int altura = getAltura();
-        int anchura = getAnchura();
-        int minas = altura * anchura;
-        Tablero.getmTablero().setMinas(minas);
+        Tablero.getmTablero().setMinas(10);
     }
 }

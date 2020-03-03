@@ -10,6 +10,12 @@ public class Tablero {
 
     private Tablero(){}
 
+    public Tablero generarTablero(){
+        Tablero tablero = null; //Lo he puesto así para que no salga error
+
+        return tablero;
+    }
+
     public static Tablero getmTablero(){
         return mTablero;
     }
