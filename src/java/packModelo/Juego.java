@@ -1,10 +1,13 @@
 package packModelo;
 
-public class Juego {
+import java.util.Observable;
+
+public class Juego extends Observable {
     private static Juego mJuego;
     private Tablero tablero;
     private Modo nivel;
     private Usuario usuario;
+    private Cronometro crono;
     private boolean derrota;
 
     private Juego(){}
@@ -28,5 +31,13 @@ public class Juego {
 
     public void crearUsuario(String pNombre, int pNivel) {
         this.usuario = new Usuario(pNombre, pNivel);
+    }
+
+    public Tablero getTablero() {
+        return tablero;
+    }
+
+    public Cronometro getCrono() {
+        return crono;
     }
 }

@@ -16,10 +16,6 @@ public class Tablero {
         return tablero;
     }
 
-    public static Tablero getmTablero(){
-        return mTablero;
-    }
-
     public void setAltura(int pAltura){
         this.altura = pAltura;
     }
@@ -31,4 +27,17 @@ public class Tablero {
     public void setMinas(int pMinas){
         this.minas = pMinas;
     }
+
+    public static Tablero getmTablero(){
+        return mTablero;
+    }
+
+    public int getFilas() {
+        return altura;
+    }
+
+    public int getColumnas(){
+        return anchura;
+    }
+
 }
