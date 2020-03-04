@@ -1,6 +1,7 @@
 package packVista;
 
 import packModelo.Juego;
+import packControlador.cCasilla;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -14,10 +15,10 @@ public class buscaminas extends JFrame implements Observer {
     private JButton reiniciar;
     private JButton cancelar;
     private JButton[][] tablero;
+    private JButton casilla;
     private JTextField cronometro;
     private JTextField puntuacion;
     private int filas, columnas;
-
 
     private boolean mostrado;
 
@@ -44,32 +45,28 @@ public class buscaminas extends JFrame implements Observer {
         });
     }
 
-    public void crearTablero(int filas, int columnas){
-        if (panel != null)
-            contentPane.remove(panel);
-        panel = new JPanel();
-        panel.setLayout(new GridLayout(filas, columnas, 0, 0));
-        contentPane.add(panel, BorderLayout.CENTER);
+    public void crearTablero(int filas, int columnas) {
+        if (panelTablero != null)
+            contentPane.remove(panelTablero);
+        panelTablero = new JPanel();
+        panelTablero.setLayout(new GridLayout(filas, columnas, 0, 0));
+        contentPane.add(panelTablero, BorderLayout.CENTER);
         int ancho = filas * columnas + 250;
-        int alto = ancho - filas * columnas/2;
+        int alto = ancho - filas * columnas / 2;
         Dimension d = new Dimension(ancho, alto);
         this.setMinimumSize(d);
         this.setSize(d);
-        botones = new JButton[filas][columnas];
+        tablero = new JButton[filas][columnas];
         cCasilla cCasilla = new cCasilla();
 
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
-                Coordenada c = new Coordenada(i, j);
-                btn = new JButton();
-                btn.setName(c.toString());
-                botones[c.getFila()][c.getColumna()] = btn;
-                btn.addMouseListener(cCasilla);
-                panel.add(btn);
+                casilla = new JButton();
+                tablero[i][j] = casilla;
+                casilla.addMouseListener(cCasilla);
+                panelTablero.add(casilla);
             }
         }
-        getTxtNumMinas().setText(Buscaminas.getElBuscaminas().getNMinasRestantes());
-        repintar();
     }
 
     public void jugar() {

@@ -8,6 +8,7 @@ public class Juego extends Observable {
     private Modo nivel;
     private Usuario usuario;
     private Cronometro crono;
+    private int nMinasRestantes;
     private boolean derrota;
 
     private Juego(){}
@@ -21,8 +22,7 @@ public class Juego extends Observable {
 
     public void jugar(){
         setModo(this.usuario.getNivel());
-        this.tablero = Tablero.getmTablero().generarTablero();
-        this.derrota = false;
+        this.tablero = this.nivel.generarTablero();
     }
 
     public void setModo(Modo pModo){

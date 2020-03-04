@@ -8,16 +8,7 @@ public class Tablero {
     private int anchura;
     private int minas;
 
-    private Tablero(){}
 
-    public void generarTablero(){
-        matriz = new Casilla[altura-1][anchura-1];
-        for (int i = 0; i<altura;i++){
-            for(int j = 0; j<anchura;j++){
-                matriz[i][j] = new CasillaVacia(false,false);
-            }
-        }
-    }
     public static Tablero getmTablero(){
         if(mTablero == null) mTablero = new Tablero();
         return mTablero;
@@ -45,4 +36,8 @@ public class Tablero {
     public void setMinas(int pMinas){ this.minas = pMinas; }
 
     public int getFilas(){ return altura; }
+
+    public int getColumnas() { return anchura; }
+
+    public void setCasillas(Casilla[][] casillas) { this.matriz = casillas; }
 }
