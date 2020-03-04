@@ -28,7 +28,6 @@ public class buscaminas extends JFrame implements Observer {
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setLayout(new BorderLayout(0, 0));
         setContentPane(contentPane);
-
         jugar();
     }
 
@@ -46,7 +45,31 @@ public class buscaminas extends JFrame implements Observer {
     }
 
     public void crearTablero(int filas, int columnas){
+        if (panel != null)
+            contentPane.remove(panel);
+        panel = new JPanel();
+        panel.setLayout(new GridLayout(filas, columnas, 0, 0));
+        contentPane.add(panel, BorderLayout.CENTER);
+        int ancho = filas * columnas + 250;
+        int alto = ancho - filas * columnas/2;
+        Dimension d = new Dimension(ancho, alto);
+        this.setMinimumSize(d);
+        this.setSize(d);
+        botones = new JButton[filas][columnas];
+        cCasilla cCasilla = new cCasilla();
 
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                Coordenada c = new Coordenada(i, j);
+                btn = new JButton();
+                btn.setName(c.toString());
+                botones[c.getFila()][c.getColumna()] = btn;
+                btn.addMouseListener(cCasilla);
+                panel.add(btn);
+            }
+        }
+        getTxtNumMinas().setText(Buscaminas.getElBuscaminas().getNMinasRestantes());
+        repintar();
     }
 
     public void jugar() {

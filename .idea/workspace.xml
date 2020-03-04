@@ -37,8 +37,8 @@
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="137" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1583325988541" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/buscaminas-master" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1583326061057" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -97,7 +97,7 @@
       <updated>1583252388706</updated>
       <workItem from="1583252393449" duration="4589000" />
       <workItem from="1583259883223" duration="3581000" />
-      <workItem from="1583322420748" duration="3529000" />
+      <workItem from="1583322420748" duration="3883000" />
     </task>
     <servers />
   </component>
