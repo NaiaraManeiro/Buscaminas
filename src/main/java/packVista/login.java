@@ -1,7 +1,6 @@
 package packVista;
 
-        import packModelo.Juego;
-        import packModelo.Tablero;
+import packModelo.*;
 
         import javax.swing.*;
         import java.awt.event.ActionEvent;
@@ -34,23 +33,23 @@ public class login extends JDialog{
         comboBoxNivel.addItem(3);
 
         aceptarButton.addActionListener(new ActionListener() {
-            @Override
+
             public void actionPerformed(ActionEvent actionEvent) {
                 String usuario = textusuario.getText();
-                int nivel = (int)comboBoxNivel.getSelectedItem();
+                Object nivel = comboBoxNivel.getSelectedItem();
                 if (validarDatos(usuario)){
-                    if (nivel == 1){
-                        Juego.getmJuego().crearUsuario(usuario,nivel);
+                    if (nivel instanceof Nivel1){
+                        Juego.getmJuego().crearUsuario(usuario,1);
                         dispose(); //Cerramos la ventana actual
                         new buscaminas(); //Abrimos la pantalla del juego (Nivel 1)
                     }
-                    else if (nivel == 2) {
-                        Juego.getmJuego().crearUsuario(usuario,nivel);
+                    else if (nivel instanceof Nivel2) {
+                        Juego.getmJuego().crearUsuario(usuario, 2);
                         dispose(); //Cerramos la ventana actual
                         new buscaminas(); //Abrimos la pantalla del juego (Nivel 2)
                     }
-                    else if (nivel == 3) {
-                        Juego.getmJuego().crearUsuario(usuario, nivel);
+                    else if (nivel instanceof Nivel3) {
+                        Juego.getmJuego().crearUsuario(usuario, 3);
                         dispose(); //Cerramos la ventana actual
                         new buscaminas(); //Abrimos la pantalla del juego (Nivel 3)
                     }
