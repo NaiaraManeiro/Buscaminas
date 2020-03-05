@@ -9,5 +9,6 @@ public class CasillaMina extends Casilla {
     public void bloquearCasilla() {
         setCasillaClicada(true);
         // Hacer que se acabe la partida
+        Juego.getmJuego().terminarPartida();
     }
 }

@@ -40,4 +40,8 @@ public class Juego extends Observable {
     public Cronometro getCrono() {
         return crono;
     }
+
+    public void terminarPartida(){
+        derrota = true;
+    }
 }
