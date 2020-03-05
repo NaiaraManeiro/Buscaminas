@@ -1,4 +1,4 @@
-/*package packControlador;
+package packControlador;
 
 import packVista.buscaminas;
 
@@ -44,4 +44,4 @@ public class cCasilla implements MouseListener {
     public void mouseExited(MouseEvent e) {
 
     }
-}*/
+}

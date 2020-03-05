@@ -26,7 +26,7 @@ public abstract class Modo {
 
         for (int i = 0; i<altura;i++){
             for(int j = 0; j<anchura;j++){
-                matriz[i][j] = new CasillaVacia(false,false);
+                matriz[i][j] = new CasillaNormal(false,false);
             }
         }
         tablero.setCasillas(matriz);
@@ -62,13 +62,7 @@ public abstract class Modo {
         // si las coordenadas están dentro del tablero, entonces
         if ((pFila >= 0 && pColumna >= 0)&&(pFila < tablero.getFilas() && pColumna < tablero.getColumnas())){
             //si es una instancia de CasillaVacia, entonces se le cambia el tipo de casilla, y le incrementamos el número
-            if (Tablero.getmTablero().devolverCasilla(pFila,pColumna)instanceof CasillaVacia){
-                CasillaNumero a = (CasillaNumero)Tablero.getmTablero().devolverCasilla(pFila,pColumna);
-                a = new CasillaNumero(false,false);
-                a.incrementarNumero();
-            }
-            // si la casilla ya fuese de tipo CasillaNumero, simplemente se le aumenta el número
-            else if (Tablero.getmTablero().devolverCasilla(pFila,pColumna) instanceof CasillaNumero) ((CasillaNumero) Tablero.getmTablero().devolverCasilla(pFila,pColumna)).incrementarNumero();
+            if (Tablero.getmTablero().devolverCasilla(pFila,pColumna) instanceof CasillaNormal) ((CasillaNormal) Tablero.getmTablero().devolverCasilla(pFila,pColumna)).incrementarNumero();
         }
     }
     // incrementamos o ponemos numero a la coordenada seleccionada (los parámetros son las coordenadas donde se encuentra la mina)

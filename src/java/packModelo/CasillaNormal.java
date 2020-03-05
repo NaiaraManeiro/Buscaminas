@@ -1,8 +1,8 @@
 package packModelo;
 
-public class CasillaNumero extends Casilla {
+public class CasillaNormal extends Casilla{
     private int numero;
-    public CasillaNumero(boolean pCasillaClicada, boolean pBanderita){
+    public CasillaNormal(boolean pCasillaClicada, boolean pBanderita){
         super(false, false);
         numero = 0;
     }
