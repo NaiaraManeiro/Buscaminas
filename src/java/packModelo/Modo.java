@@ -41,6 +41,7 @@ public abstract class Modo {
             do {
                 fila = r.nextInt(tablero.getFilas());
                 columna = r.nextInt(tablero.getColumnas());
+                incrementarAdyacentes(fila,columna);
                 if(Tablero.getmTablero().devolverCasilla(fila,columna) instanceof CasillaMina) hayMina = true;
                 else hayMina = false;
             } while (hayMina);
