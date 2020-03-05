@@ -13,8 +13,8 @@ public class cCasilla implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         JButton btn = (JButton)e.getSource();
 
-
-        if (!buscaminas.getElBuscaminas().hasPerdido()
+            /*
+        if (!Buscaminas.getElBuscaminas().hasPerdido()
                 && !Buscaminas.getElBuscaminas().hasGanado()) {
             if (e.getButton() == MouseEvent.BUTTON1) {
                 Buscaminas.getElBuscaminas().desplegarCasilla(c);
@@ -22,7 +22,7 @@ public class cCasilla implements MouseListener {
             } else if (e.getButton() == MouseEvent.BUTTON3) {
                 if (btn.isEnabled() == true) Buscaminas.getElBuscaminas().marcarDesmarcarCasilla(c);
             }
-        }
+        }*/
     }
 
     @Override
