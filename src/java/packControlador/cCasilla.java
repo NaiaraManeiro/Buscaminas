@@ -1,4 +1,6 @@
-package packControlador;
+/*package packControlador;
+
+import packVista.buscaminas;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
@@ -12,7 +14,7 @@ public class cCasilla implements MouseListener {
         JButton btn = (JButton)e.getSource();
 
 
-        if (!Buscaminas.getElBuscaminas().hasPerdido()
+        if (!buscaminas.getElBuscaminas().hasPerdido()
                 && !Buscaminas.getElBuscaminas().hasGanado()) {
             if (e.getButton() == MouseEvent.BUTTON1) {
                 Buscaminas.getElBuscaminas().desplegarCasilla(c);
@@ -42,4 +44,4 @@ public class cCasilla implements MouseListener {
     public void mouseExited(MouseEvent e) {
 
     }
-}
+}*/

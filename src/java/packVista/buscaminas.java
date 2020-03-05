@@ -1,7 +1,7 @@
 package packVista;
 
 import packModelo.Juego;
-import packControlador.cCasilla;
+//import packControlador.cCasilla;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -57,16 +57,16 @@ public class buscaminas extends JFrame implements Observer {
         this.setMinimumSize(d);
         this.setSize(d);
         tablero = new JButton[filas][columnas];
-        cCasilla cCasilla = new cCasilla();
+        //cCasilla cCasilla = new cCasilla();
 
-        for (int i = 0; i < filas; i++) {
+        /*for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
                 casilla = new JButton();
                 tablero[i][j] = casilla;
                 casilla.addMouseListener(cCasilla);
                 panelTablero.add(casilla);
             }
-        }
+        }*/
     }
 
     public void jugar() {
