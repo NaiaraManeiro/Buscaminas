@@ -23,7 +23,7 @@ public class cCasilla implements MouseListener {
                 } else if (c instanceof CasillaNormal) {
                     if (((CasillaNormal) c).getNumero() == 0) {
                         c.bloquearCasilla();
-                        Tablero.getmTablero().desplegarAdyacentes(c); //Todavía no tengo claro que poner de atributo
+                        Tablero.getmTablero().desplegarAdyacentes(x,y); //Todavía no tengo claro que poner de atributo
                     } else {
                         c.bloquearCasilla();
                     }

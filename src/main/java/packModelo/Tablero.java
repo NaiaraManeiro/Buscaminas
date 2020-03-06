@@ -1,5 +1,10 @@
 package packModelo;
 
+import javafx.util.Pair;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class Tablero {
 
     private static Tablero mTablero;
@@ -63,7 +68,30 @@ public class Tablero {
         return ganar;
     }
 
-    public void desplegarAdyacentes(Casilla pCasilla){
+    public void desplegarAdyacentes(int x, int y){
+        Casilla act = this.devolverCasilla(x,y);
+        ArrayList<Casilla> mirar = new ArrayList<>();
+        mirar.add(act);
+        Iterator<Casilla> itr = mirar.iterator();
+        while (itr.hasNext()){
+            Casilla c = itr.next();
+            if (c instanceof CasillaNormal && ((CasillaNormal) c).getNumero() == 0 && !c.getCasillaClicada()){
+                c.marcarCasilla();
+                Coordenada coord = c.getCoordenada();
+                x = coord.getColumna();
+                y = coord.getFila();
+                Casilla arriba = this.devolverCasilla(x,y+1); mirar.add(arriba);
+                Casilla abajo = this.devolverCasilla(x,y-1); mirar.add(abajo);
+                Casilla derecha = this.devolverCasilla(x+1,y); mirar.add(derecha);
+                Casilla izquierda = this.devolverCasilla(x-1,y); mirar.add(izquierda);
+                Casilla diagArribDer = this.devolverCasilla(x+1,y+1); mirar.add(diagArribDer);
+                Casilla diagArribIzq = this.devolverCasilla(x-1,y+1); mirar.add(diagArribIzq);
+                Casilla diagAbajDer = this.devolverCasilla(x+1,y-1); mirar.add(diagAbajDer);
+                Casilla diagAbajIzq = this.devolverCasilla(x-1,y-1); mirar.add(diagAbajIzq);
+            }
+            else if (c instanceof CasillaNormal && ((CasillaNormal) c).getNumero() != 0){
+                c.marcarCasilla();
+            }
 
-    }
+        }
 }
