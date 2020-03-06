@@ -40,17 +40,6 @@ public class cCasilla implements MouseListener {
 
             }
         }
-
-            /*
-        if (!Buscaminas.getElBuscaminas().hasPerdido()
-                && !Buscaminas.getElBuscaminas().hasGanado()) {
-            if (e.getButton() == MouseEvent.BUTTON1) {
-                Buscaminas.getElBuscaminas().desplegarCasilla(c);
-
-            } else if (e.getButton() == MouseEvent.BUTTON3) {
-                if (btn.isEnabled() == true) Buscaminas.getElBuscaminas().marcarDesmarcarCasilla(c);
-            }
-        }*/
     }
 
     @Override
