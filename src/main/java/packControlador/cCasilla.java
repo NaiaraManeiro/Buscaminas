@@ -1,5 +1,6 @@
 package packControlador;
 
+import packModelo.*;
 import packVista.buscaminas;
 
 import javax.swing.*;
@@ -11,7 +12,34 @@ public class cCasilla implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        JButton btn = (JButton)e.getSource();
+        int x = e.getXOnScreen();
+        int y = e.getYOnScreen();
+        Casilla c = Tablero.getmTablero().devolverCasilla(x, y);
+
+        if (!Juego.getmJuego().haPerdido() && !Tablero.getmTablero().haGanado()) { //Mirar también en caso de que no haya ganado
+            if (e.getButton() == MouseEvent.BUTTON1) { //Mira a ver si se ha clicado con el botón izquierdo del ratón
+                if (c instanceof CasillaMina) {
+                    Juego.getmJuego().terminarPartida();
+                } else if (c instanceof CasillaNormal) {
+                    if (((CasillaNormal) c).getNumero() == 0) {
+                        c.bloquearCasilla();
+                        Tablero.getmTablero().desplegarAdyacentes(c); //Todavía no tengo claro que poner de atributo
+                    } else {
+                        c.bloquearCasilla();
+                    }
+                }
+            } else if (e.getButton() == MouseEvent.BUTTON3) { //Mira a ver si se ha clicado con el botón derecho del ratón
+                boolean pulsada = c.estaPulsada();
+                if (!pulsada){
+                    c.marcarCasilla();
+                    c.setCasillaClicada(true);
+                }
+                else {
+                    c.desmarcarCasilla();
+                }
+
+            }
+        }
 
             /*
         if (!Buscaminas.getElBuscaminas().hasPerdido()

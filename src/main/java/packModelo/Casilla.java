@@ -10,7 +10,11 @@ public abstract class Casilla {
     }
 
     public void marcarCasilla() {
-        this.banderita = true;
+            this.banderita = true;
+    }
+
+    public void desmarcarCasilla(){
+        this.banderita = false;
     }
 
     abstract public void bloquearCasilla();

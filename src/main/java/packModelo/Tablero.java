@@ -1,7 +1,5 @@
 package packModelo;
 
-import java.util.Random;
-
 public class Tablero {
 
     private static Tablero mTablero;
@@ -15,14 +13,19 @@ public class Tablero {
         if(mTablero == null) mTablero = new Tablero();
         return mTablero;
     }
+
     public Casilla devolverCasilla(int x, int y) {
         return matriz[x][y];
     }
+
     public void marcarDesmarcarCasilla(int x, int y){
         matriz[x][y].marcarCasilla();
     }
+
     public void incrementarMinas(){minas++;}
+
     public void decrementarMinas(){minas--;}
+
     public void marcarCasilla(int x, int y){
         matriz[x][y].marcarCasilla();
     }
@@ -45,6 +48,7 @@ public class Tablero {
     public int getColumnas() { return anchura; }
 
     public void setCasillas(Casilla[][] casillas) { this.matriz = casillas; }
+
     public boolean haGanado(){
         boolean ganar = false;
         if(matriz != null){
@@ -57,5 +61,9 @@ public class Tablero {
             }
         }
         return ganar;
+    }
+
+    public void desplegarAdyacentes(Casilla pCasilla){
+
     }
 }

@@ -3,15 +3,11 @@ package packModelo;
 import java.util.Random;
 
 public abstract class Modo {
-    private Tablero tablero;
+    protected Tablero tablero;
 
-    public Modo(){}
-
-    abstract public void definirAltura();
-
-    abstract public void definirAnchura();
-
-    abstract public void definirMinas();
+    protected abstract void definirAltura();
+    protected abstract void definirAnchura();
+    protected abstract void definirMinas();
 
     public Tablero generarTablero() {
         this.tablero = new Tablero();
@@ -24,8 +20,8 @@ public abstract class Modo {
         int anchura = this.tablero.getColumnas();
         Casilla[][] matriz = new Casilla[altura-1][anchura-1];
 
-        for (int i = 0; i<altura;i++){
-            for(int j = 0; j<anchura;j++){
+        for (int i = 0; i<altura-1;i++){
+            for(int j = 0; j<anchura-1;j++){
                 matriz[i][j] = new CasillaNormal(false,false);
             }
         }
