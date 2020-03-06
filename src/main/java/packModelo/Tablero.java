@@ -45,4 +45,17 @@ public class Tablero {
     public int getColumnas() { return anchura; }
 
     public void setCasillas(Casilla[][] casillas) { this.matriz = casillas; }
+    public boolean haGanado(){
+        boolean ganar = false;
+        if(matriz != null){
+            for (int i = 0; i< getFilas();i++){
+                for (int j = 0; j< getColumnas();j++){
+                    Casilla cc = matriz[i][j];
+                    if(cc instanceof CasillaNormal && cc.estaPulsada()) ganar = true;
+                    else return false;
+                }
+            }
+        }
+        return ganar;
+    }
 }

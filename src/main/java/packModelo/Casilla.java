@@ -18,4 +18,5 @@ public abstract class Casilla {
     public void setCasillaClicada(boolean cambiar){
         this.casillaClicada = cambiar;
     }
+    public boolean estaPulsada(){return casillaClicada;}
 }
