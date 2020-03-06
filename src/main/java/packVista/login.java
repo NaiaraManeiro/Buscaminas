@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class login extends JFrame {
+public class login extends JDialog {
     private JPanel rootpanel;
     private JButton aceptarButton;
     private JTextField textusuario;
@@ -33,6 +33,10 @@ public class login extends JFrame {
     }
 
     public login() {
+
+        setTitle("Login");
+        setResizable(false);
+        setContentPane(rootpanel);
 
         comboBoxNivel.addItem(1);
         comboBoxNivel.addItem(2);
