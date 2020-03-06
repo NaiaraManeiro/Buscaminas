@@ -1,5 +1,7 @@
 package packControlador;
 
+import packVista.buscaminas;
+
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -11,7 +13,7 @@ public class cCasilla implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         JButton btn = (JButton)e.getSource();
 
-
+            /*
         if (!Buscaminas.getElBuscaminas().hasPerdido()
                 && !Buscaminas.getElBuscaminas().hasGanado()) {
             if (e.getButton() == MouseEvent.BUTTON1) {
@@ -20,7 +22,7 @@ public class cCasilla implements MouseListener {
             } else if (e.getButton() == MouseEvent.BUTTON3) {
                 if (btn.isEnabled() == true) Buscaminas.getElBuscaminas().marcarDesmarcarCasilla(c);
             }
-        }
+        }*/
     }
 
     @Override

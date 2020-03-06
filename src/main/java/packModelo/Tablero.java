@@ -21,7 +21,8 @@ public class Tablero {
     public void marcarDesmarcarCasilla(int x, int y){
         matriz[x][y].marcarCasilla();
     }
-
+    public void incrementarMinas(){minas++;}
+    public void decrementarMinas(){minas--;}
     public void marcarCasilla(int x, int y){
         matriz[x][y].marcarCasilla();
     }
