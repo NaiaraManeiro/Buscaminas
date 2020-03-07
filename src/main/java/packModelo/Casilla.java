@@ -32,4 +32,6 @@ public abstract class Casilla {
     public boolean estaPulsada(){return casillaClicada;}
 
     public Coordenada getCoordenada() { return this.coordenada; }
+
+    public boolean estamarcada(){ return this.banderita;}
 }
