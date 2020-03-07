@@ -5,9 +5,10 @@ public abstract class Casilla {
     private boolean banderita;
     private Coordenada coordenada;
 
-    public Casilla(boolean pCasillaClicada, boolean pBanderita){
+    public Casilla(boolean pCasillaClicada, boolean pBanderita, Coordenada pCoordenada){
         this.casillaClicada = pCasillaClicada;
         this.banderita = pBanderita;
+        this.coordenada = pCoordenada;
     }
 
     public void marcarCasilla() {

@@ -2,8 +2,8 @@ package packModelo;
 
 public class CasillaMina extends Casilla {
 
-    public CasillaMina(boolean pCasillaClicada, boolean pBanderita){
-        super(false, false);
+    public CasillaMina(boolean pCasillaClicada, boolean pBanderita, Coordenada pCoordenada){
+        super(false, false, null);
     }
 
     public void bloquearCasilla() {

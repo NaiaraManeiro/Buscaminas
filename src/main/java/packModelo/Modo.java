@@ -22,7 +22,7 @@ public abstract class Modo {
 
         for (int i = 0; i<altura-1;i++){
             for(int j = 0; j<anchura-1;j++){
-                matriz[i][j] = new CasillaNormal(false,false);
+                matriz[i][j] = new CasillaNormal(false,false, new Coordenada(i, j));
             }
         }
         tablero.setCasillas(matriz);

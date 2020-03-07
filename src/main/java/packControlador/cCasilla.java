@@ -12,8 +12,11 @@ public class cCasilla implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int x = e.getXOnScreen();
-        int y = e.getYOnScreen();
+        JButton casilla = (JButton) e.getSource();
+        String coordenada[] = casilla.getName().split(",");
+        Coordenada coord = new Coordenada(Integer.parseInt(coordenada[0]), Integer.parseInt(coordenada[1]));
+        int x = coord.getColumna();
+        int y = coord.getFila();
         Casilla c = Tablero.getmTablero().devolverCasilla(x, y);
 
         if (!Juego.getmJuego().haPerdido() && !Tablero.getmTablero().haGanado()) {
