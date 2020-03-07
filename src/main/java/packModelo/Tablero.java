@@ -53,7 +53,7 @@ public class Tablero {
     public int getColumnas() { return anchura; }
 
     public void setCasillas(Casilla[][] casillas) { this.matriz = casillas; }
-
+    public void setCasilla(Casilla pCasilla, int x, int y){ matriz[x][y] = pCasilla;}
     public boolean haGanado(){
         boolean ganar = false;
         if(matriz != null){

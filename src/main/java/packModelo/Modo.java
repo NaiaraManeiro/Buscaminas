@@ -41,8 +41,7 @@ public abstract class Modo {
                 if(Tablero.getmTablero().devolverCasilla(fila,columna) instanceof CasillaMina) hayMina = true;
                 else hayMina = false;
             } while (hayMina);
-            Casilla a = Tablero.getmTablero().devolverCasilla(fila,columna);
-            a = new CasillaMina(false,false);
+            Tablero.getmTablero().setCasilla(new CasillaMina(false,false),fila,columna);
         }
     }
     private void ponerNumeros(){
