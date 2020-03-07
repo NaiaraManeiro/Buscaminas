@@ -68,7 +68,7 @@ public class buscaminas extends JFrame implements Observer {
             for (int j = 0; j < filas; j++) {
                 casilla = new JButton();
                 tablero[i][j] = casilla;
-                Coordenada coord = new Coordenada(j, i);
+                Coordenada coord = new Coordenada(i, j);
                 casilla.addMouseListener(new cCasilla(coord));
                 panelTablero.add(casilla);
             }

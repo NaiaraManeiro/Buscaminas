@@ -18,10 +18,10 @@ public abstract class Modo {
 
         int altura = this.tablero.getFilas();
         int anchura = this.tablero.getColumnas();
-        Casilla[][] matriz = new Casilla[anchura-1][altura-1];
+        Casilla[][] matriz = new Casilla[anchura][altura];
 
-        for (int i = 0; i<anchura-1;i++){
-            for(int j = 0; j<altura-1;j++){
+        for (int i = 0; i<anchura;i++){
+            for(int j = 0; j<altura;j++){
                 matriz[i][j] = new CasillaNormal(false,false, new Coordenada(i, j));
             }
         }

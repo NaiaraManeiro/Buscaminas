@@ -3,7 +3,7 @@ package packModelo;
 public class CasillaMina extends Casilla {
 
     public CasillaMina(boolean pCasillaClicada, boolean pBanderita, Coordenada pCoordenada){
-        super(false, false, null);
+        super(false, false, pCoordenada);
     }
 
     public void bloquearCasilla() {
