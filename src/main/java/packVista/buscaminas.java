@@ -2,6 +2,7 @@ package packVista;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
+import packModelo.Coordenada;
 import packModelo.Juego;
 import packControlador.cCasilla;
 
@@ -61,14 +62,14 @@ public class buscaminas extends JFrame implements Observer {
         Dimension d = new Dimension(ancho, alto);
         this.setMinimumSize(d);
         this.setSize(d);
-        tablero = new JButton[filas][columnas];
-        cCasilla cCasilla = new cCasilla();
+        tablero = new JButton[columnas][filas];
 
-        for (int i = 0; i < filas; i++) {
-            for (int j = 0; j < columnas; j++) {
+        for (int i = 0; i < columnas; i++) {
+            for (int j = 0; j < filas; j++) {
                 casilla = new JButton();
                 tablero[i][j] = casilla;
-                casilla.addMouseListener(cCasilla);
+                Coordenada coord = new Coordenada(j, i);
+                casilla.addMouseListener(new cCasilla(coord));
                 panelTablero.add(casilla);
             }
         }

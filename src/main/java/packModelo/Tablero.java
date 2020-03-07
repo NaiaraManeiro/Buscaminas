@@ -18,7 +18,7 @@ public class Tablero {
     }
 
     public Casilla devolverCasilla(int x, int y) {
-        return matriz[x][y];
+        return this.matriz[x][y];
     }
 
     public void marcarDesmarcarCasilla(int x, int y){
@@ -51,12 +51,19 @@ public class Tablero {
     public int getColumnas() { return anchura; }
 
     public void setCasillas(Casilla[][] casillas) { this.matriz = casillas; }
-    public void setCasilla(Casilla pCasilla, int x, int y){ matriz[x][y] = pCasilla;}
+
+    public void setCasilla(Casilla pCasilla){
+        Coordenada coord = pCasilla.getCoordenada();
+        int x = coord.getColumna();
+        int y = coord.getFila();
+        this.matriz[x][y] = pCasilla;
+    }
+
     public boolean haGanado(){
         boolean ganar = false;
         if(matriz != null){
-            for (int i = 0; i< getFilas();i++){
-                for (int j = 0; j< getColumnas();j++){
+            for (int i = 0; i< getColumnas(); i++){
+                for (int j = 0; j<getFilas(); j++){
                     Casilla cc = matriz[i][j];
                     if(cc instanceof CasillaNormal && cc.estaPulsada()) ganar = true;
                     else return false;

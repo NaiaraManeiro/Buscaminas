@@ -8,15 +8,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class cCasilla implements MouseListener {
+    private Coordenada coordenada;
 
+    public cCasilla(Coordenada pCoordenada){
+        this.coordenada = pCoordenada;
+    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        JButton casilla = (JButton) e.getSource();
-        String coordenada[] = casilla.getName().split(",");
-        Coordenada coord = new Coordenada(Integer.parseInt(coordenada[0]), Integer.parseInt(coordenada[1]));
-        int x = coord.getColumna();
-        int y = coord.getFila();
+        int x = coordenada.getColumna();
+        int y = coordenada.getFila();
         Casilla c = Tablero.getmTablero().devolverCasilla(x, y);
 
         if (!Juego.getmJuego().haPerdido() && !Tablero.getmTablero().haGanado()) {
