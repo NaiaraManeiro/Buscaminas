@@ -40,7 +40,7 @@ public abstract class Modo {
             do {
                 fila = r.nextInt(tablero.getFilas());
                 columna = r.nextInt(tablero.getColumnas());
-                //incrementarAdyacentes(fila,columna);
+                incrementarAdyacentes(fila,columna);
                 if(tablero.devolverCasilla(columna, fila) instanceof CasillaMina) hayMina = true;
                 else hayMina = false;
             } while (hayMina);
@@ -49,8 +49,8 @@ public abstract class Modo {
     }
 
     private void ponerNumeros(){
-        for (int i = 0; i < tablero.getFilas(); i++) {
-            for (int j = 0; j < tablero.getColumnas(); j++) {
+        for (int i = 0; i < tablero.getColumnas(); i++) {
+            for (int j = 0; j < tablero.getFilas(); j++) {
                 if(tablero.devolverCasilla(i,j) instanceof CasillaMina) {
                     incrementarAdyacentes(i,j);
                 }
@@ -62,7 +62,7 @@ public abstract class Modo {
         // si las coordenadas están dentro del tablero, entonces
         if ((pFila >= 0 && pColumna >= 0)&&(pFila < tablero.getFilas() && pColumna < tablero.getColumnas())){
             //si es una instancia de CasillaVacia, entonces se le cambia el tipo de casilla, y le incrementamos el número
-            if (Tablero.getmTablero().devolverCasilla(pColumna, pFila) instanceof CasillaNormal) ((CasillaNormal) Tablero.getmTablero().devolverCasilla(pColumna, pFila)).incrementarNumero();
+            if (tablero.devolverCasilla(pColumna, pFila) instanceof CasillaNormal) ((CasillaNormal) tablero.devolverCasilla(pColumna, pFila)).incrementarNumero();
         }
     }
     // incrementamos o ponemos numero a la coordenada seleccionada (los parámetros son las coordenadas donde se encuentra la mina)
