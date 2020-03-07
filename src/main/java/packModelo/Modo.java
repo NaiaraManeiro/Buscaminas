@@ -27,6 +27,7 @@ public abstract class Modo {
         }
         tablero.setCasillas(matriz);
         ponerMinas();
+        ponerNumeros();
         return tablero;
     }
 
