@@ -21,8 +21,8 @@ public class Juego extends Observable {
     }
 
     public void jugar(){
-        //setModo(this.usuario.getNivel()); //Hasta que no se ancle con el menú esto se queda comentado
-        setModo(new Nivel1());
+        setModo(this.usuario.getNivel()); //Hasta que no se ancle con el menú esto se queda comentado
+        //setModo(new Nivel1());
         this.tablero = this.nivel.generarTablero();
         derrota = false;
     }

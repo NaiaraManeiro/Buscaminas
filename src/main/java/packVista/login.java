@@ -49,19 +49,17 @@ public class login extends JDialog {
                 String usuario = textusuario.getText();
                 Object nivel = comboBoxNivel.getSelectedItem();
                 if (validarDatos(usuario)) {
-                    if (nivel instanceof Nivel1) {
+                    if (nivel.equals(1)) {
                         Juego.getmJuego().crearUsuario(usuario, 1);
-                        dispose(); //Cerramos la ventana actual
-                        new buscaminas(); //Abrimos la pantalla del juego (Nivel 1)
-                    } else if (nivel instanceof Nivel2) {
+                    } else if (nivel.equals(2)) {
                         Juego.getmJuego().crearUsuario(usuario, 2);
-                        dispose(); //Cerramos la ventana actual
-                        new buscaminas(); //Abrimos la pantalla del juego (Nivel 2)
-                    } else if (nivel instanceof Nivel3) {
+                    } else if (nivel.equals(3)) {
                         Juego.getmJuego().crearUsuario(usuario, 3);
-                        dispose(); //Cerramos la ventana actual
-                        new buscaminas(); //Abrimos la pantalla del juego (Nivel 3)
                     }
+                    dispose(); //Cerramos la ventana actual
+                    buscaminas bus = new buscaminas(); //Abrimos la pantalla del juego con el nivel marcado
+                    bus.setLocationRelativeTo(null);
+                    bus.setVisible(true);
                 }
             }
         });

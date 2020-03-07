@@ -16,14 +16,14 @@ public class cCasilla implements MouseListener {
         int y = e.getYOnScreen();
         Casilla c = Tablero.getmTablero().devolverCasilla(x, y);
 
-        if (!Juego.getmJuego().haPerdido() && !Tablero.getmTablero().haGanado()) { //Mirar también en caso de que no haya ganado
+        if (!Juego.getmJuego().haPerdido() && !Tablero.getmTablero().haGanado()) {
             if (e.getButton() == MouseEvent.BUTTON1) { //Mira a ver si se ha clicado con el botón izquierdo del ratón
                 if (c instanceof CasillaMina) {
                     Juego.getmJuego().terminarPartida();
-                } else if (c instanceof CasillaNormal) {
+                } else {
                     if (((CasillaNormal) c).getNumero() == 0) {
                         c.bloquearCasilla();
-                        Tablero.getmTablero().desplegarAdyacentes(x,y); //Todavía no tengo claro que poner de atributo
+                        Tablero.getmTablero().desplegarAdyacentes(x,y);
                     } else {
                         c.bloquearCasilla();
                     }
