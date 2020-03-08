@@ -78,6 +78,7 @@ public class buscaminas extends JFrame implements Observer {
                 Coordenada coord = new Coordenada(i, j);
                 casilla.addMouseListener(new cCasilla(coord));
                 panelTablero.add(casilla);
+                asignarIcono(coord);
             }
         }
     }
@@ -98,7 +99,7 @@ public class buscaminas extends JFrame implements Observer {
 
     private void asignarIcono(Coordenada pC) {
         ImageIcon imagen = null;
-        Casilla c = Tablero.getmTablero().devolverCasilla(pC.getFila(), pC.getColumna());
+        Casilla c = Tablero.getmTablero().devolverCasilla(pC.getColumna(), pC.getFila());
         if (!c.estaPulsada()) {
             imagen = new ImageIcon(getClass().getResource("facingDown.png"));
         } else {
@@ -144,12 +145,12 @@ public class buscaminas extends JFrame implements Observer {
 
         if (imagen != null) {
             Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(
-                    btntablero[pC.getFila()][pC.getColumna()].getWidth(),
-                    btntablero[pC.getFila()][pC.getColumna()].getHeight(), Image.SCALE_DEFAULT));
-            btntablero[pC.getFila()][pC.getColumna()].setIcon(icono);
-            btntablero[pC.getFila()][pC.getColumna()].setText("");
-            btntablero[pC.getFila()][pC.getColumna()].setEnabled(false);
-            btntablero[pC.getFila()][pC.getColumna()].setDisabledIcon(btntablero[pC.getFila()][pC.getColumna()].getIcon());
+                    btntablero[pC.getColumna()][pC.getFila()].getWidth(),
+                    btntablero[pC.getColumna()][pC.getFila()].getHeight(), Image.SCALE_DEFAULT));
+            btntablero[pC.getColumna()][pC.getFila()].setIcon(icono);
+            btntablero[pC.getColumna()][pC.getFila()].setText("");
+            btntablero[pC.getColumna()][pC.getFila()].setEnabled(false);
+            btntablero[pC.getColumna()][pC.getFila()].setDisabledIcon(btntablero[pC.getColumna()][pC.getFila()].getIcon());
         }
     }
 
