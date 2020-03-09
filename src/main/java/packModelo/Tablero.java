@@ -5,17 +5,10 @@ import java.util.Iterator;
 
 public class Tablero {
 
-    private static Tablero mTablero;
     private Casilla[][] matriz;
     private int altura;
     private int anchura;
     private int minas;
-
-
-    public static Tablero getmTablero(){
-        if(mTablero == null) mTablero = new Tablero();
-        return mTablero;
-    }
 
     public Casilla devolverCasilla(int x, int y) {
         return this.matriz[x][y];

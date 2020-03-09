@@ -99,7 +99,7 @@ public class buscaminas extends JFrame implements Observer {
 
     private void asignarIcono(Coordenada pC) {
         ImageIcon imagen = null;
-        Casilla c = Tablero.getmTablero().devolverCasilla(pC.getColumna(), pC.getFila());
+        Casilla c = Juego.getmJuego().getTablero().devolverCasilla(pC.getColumna(), pC.getFila());
         if (!c.estaPulsada()) {
             imagen = new ImageIcon(getClass().getResource("facingDown.png"));
         } else {

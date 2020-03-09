@@ -18,16 +18,16 @@ public class cCasilla implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         int x = coordenada.getColumna();
         int y = coordenada.getFila();
-        Casilla c = Tablero.getmTablero().devolverCasilla(x, y);
+        Casilla c = Juego.getmJuego().getTablero().devolverCasilla(x, y);
 
-        if (!Juego.getmJuego().haPerdido() && !Tablero.getmTablero().haGanado()) {
+        if (!Juego.getmJuego().haPerdido() && !Juego.getmJuego().getTablero().haGanado()) {
             if (e.getButton() == MouseEvent.BUTTON1) { //Mira a ver si se ha clicado con el botón izquierdo del ratón
                 if (c instanceof CasillaMina) {
                     Juego.getmJuego().terminarPartida();
                 } else {
                     if (((CasillaNormal) c).getNumero() == 0) {
                         c.bloquearCasilla();
-                        Tablero.getmTablero().desplegarAdyacentes(x,y);
+                        Juego.getmJuego().getTablero().desplegarAdyacentes(x,y);
                     } else {
                         c.bloquearCasilla();
                     }
