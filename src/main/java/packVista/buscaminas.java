@@ -94,14 +94,56 @@ public class buscaminas extends JFrame implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+        if (o instanceof Juego) {
+            Coordenada coord = (Coordenada) arg;
+            int fila = coord.getFila();
+            int col = coord.getColumna();
+            Casilla c = Juego.getmJuego().getTablero().devolverCasilla(col, fila);
 
+            if (Juego.getmJuego().haPerdido()) {
+                btntablero[col][fila].setBackground(new Color(252, 3, 3)); // La mina pulsada muestra otro fondo
+                mostrarMinas();
+                JOptionPane.showMessageDialog(null, "Has perdido la partida!",
+                        "Información", JOptionPane.ERROR_MESSAGE);
+            }
+
+            if (Juego.getmJuego().haGanado()) {
+                JOptionPane.showMessageDialog(null,
+                        "Has ganado la partida!", "Información",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+
+            if (c.estaPulsada()) {
+                if (c.estamarcada()) {
+                    minasRestantes.setText(Juego.getmJuego().getnMinasRestantes());
+                }
+                asignarIcono(coord);
+                btntablero[col][fila].setEnabled(false);
+            }
+        }
+        /*
+        } else if (observador instanceof Cronometro) {
+            mostrarCronometro((String) parametro);
+        }*/
+    }
+
+    public void mostrarMinas() {
+        for (int i = 0; i < columnas; i++) {
+            for (int j = 0; j < filas; j++) {
+                Casilla c = Juego.getmJuego().getTablero().devolverCasilla(i, j);
+                if (c instanceof CasillaMina) {
+                    Coordenada coord = c.getCoordenada();
+                    asignarIcono(coord);
+                }
+            }
+        }
     }
 
     private void asignarIcono(Coordenada pC) {
         ImageIcon imagen = null;
         Casilla c = Juego.getmJuego().getTablero().devolverCasilla(pC.getColumna(), pC.getFila());
         if (!c.estaPulsada()) {
-            imagen = new ImageIcon(getClass().getResource("facingDown.png"));
+            imagen = new ImageIcon(getClass().getResource("/facingDown.png"));
         } else {
             if (c instanceof CasillaMina) {
                 imagen = new ImageIcon(getClass().getResource("bomb.png"));
@@ -321,5 +363,4 @@ public class buscaminas extends JFrame implements Observer {
     public JComponent $$$getRootComponent$$$() {
         return contentPane;
     }
-
 }

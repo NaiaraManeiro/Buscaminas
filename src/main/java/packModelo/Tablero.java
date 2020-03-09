@@ -9,6 +9,7 @@ public class Tablero {
     private int altura;
     private int anchura;
     private int minas;
+    private int nCasillasRestantes;
 
     public Casilla devolverCasilla(int x, int y) {
         return this.matriz[x][y];
@@ -18,30 +19,27 @@ public class Tablero {
         matriz[x][y].marcarCasilla();
     }
 
-    public void incrementarMinas(){minas++;}
-
-    public void decrementarMinas(){minas--;}
-
     public void marcarCasilla(int x, int y){
         matriz[x][y].marcarCasilla();
     }
 
     public int getMinas(){return minas;}
-    public void setAltura(int pAltura){
-        this.altura = pAltura;
-    }
-
-    public void setAnchura(int pAnchura){
-        this.anchura = pAnchura;
-    }
-
     public void setMinas(int pMinas){
         this.minas = pMinas;
     }
 
     public int getFilas(){ return altura; }
+    public void setAltura(int pAltura){
+        this.altura = pAltura;
+    }
 
     public int getColumnas() { return anchura; }
+    public void setAnchura(int pAnchura){
+        this.anchura = pAnchura;
+    }
+
+    public int getnCasillasRestantes(){ return nCasillasRestantes; }
+    public void decrementarCasillasRestantes(){ nCasillasRestantes--;}
 
     public void setCasillas(Casilla[][] casillas) { this.matriz = casillas; }
 
@@ -52,20 +50,6 @@ public class Tablero {
         this.matriz[x][y] = pCasilla;
     }
 
-    public boolean haGanado(){
-        boolean ganar = false;
-        if(matriz != null){
-            for (int i = 0; i< getColumnas(); i++){
-                for (int j = 0; j<getFilas(); j++){
-                    Casilla cc = matriz[i][j];
-                    if(cc instanceof CasillaNormal && cc.estaPulsada()) ganar = true;
-                    else return false;
-                }
-            }
-        }
-        return ganar;
-    }
-
     public void desplegarAdyacentes(int x, int y) {
         Casilla act = this.devolverCasilla(x, y);
         ArrayList<Casilla> mirar = new ArrayList<>();
@@ -73,8 +57,8 @@ public class Tablero {
         Iterator<Casilla> itr = mirar.iterator();
         while (itr.hasNext()) {
             Casilla c = itr.next();
-            if (c instanceof CasillaNormal && ((CasillaNormal) c).getNumero() == 0 && !c.getCasillaClicada()) {
-                c.marcarCasilla();
+            if (c instanceof CasillaNormal && ((CasillaNormal) c).getNumero() == 0 && !c.estaPulsada()) {
+                c.setCasillaClicada(true);
                 Coordenada coord = c.getCoordenada();
                 x = coord.getColumna();
                 y = coord.getFila();
@@ -95,9 +79,9 @@ public class Tablero {
                 Casilla diagAbajIzq = this.devolverCasilla(x - 1, y - 1);
                 mirar.add(diagAbajIzq);
             } else if (c instanceof CasillaNormal && ((CasillaNormal) c).getNumero() != 0) {
-                c.marcarCasilla();
+                c.setCasillaClicada(true);
             }
-
+            this.decrementarCasillasRestantes();
         }
     }
 }

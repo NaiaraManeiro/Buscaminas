@@ -47,4 +47,12 @@ public class Juego extends Observable {
     public boolean haPerdido(){
         return derrota;
     }
+
+    public boolean haGanado() { return this.tablero.getMinas() == this.tablero.getnCasillasRestantes(); }
+
+    public String getnMinasRestantes() { return nMinasRestantes+""; }
+
+    public void incrementarMinas(){nMinasRestantes++;}
+
+    public void decrementarMinas(){nMinasRestantes--;}
 }

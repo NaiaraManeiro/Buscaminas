@@ -20,7 +20,7 @@ public class cCasilla implements MouseListener {
         int y = coordenada.getFila();
         Casilla c = Juego.getmJuego().getTablero().devolverCasilla(x, y);
 
-        if (!Juego.getmJuego().haPerdido() && !Juego.getmJuego().getTablero().haGanado()) {
+        if (!Juego.getmJuego().haPerdido() && !Juego.getmJuego().haGanado()) {
             if (e.getButton() == MouseEvent.BUTTON1) { //Mira a ver si se ha clicado con el botón izquierdo del ratón
                 if (c instanceof CasillaMina) {
                     Juego.getmJuego().terminarPartida();
@@ -30,6 +30,7 @@ public class cCasilla implements MouseListener {
                         Juego.getmJuego().getTablero().desplegarAdyacentes(x,y);
                     } else {
                         c.bloquearCasilla();
+                        Juego.getmJuego().getTablero().decrementarCasillasRestantes();
                     }
                 }
             } else if (e.getButton() == MouseEvent.BUTTON3) { //Mira a ver si se ha clicado con el botón derecho del ratón
@@ -37,9 +38,11 @@ public class cCasilla implements MouseListener {
                 if (!pulsada){
                     c.marcarCasilla();
                     c.setCasillaClicada(true);
+                    Juego.getmJuego().decrementarMinas();
                 }
                 else {
                     c.desmarcarCasilla();
+                    Juego.getmJuego().incrementarMinas();
                 }
 
             }

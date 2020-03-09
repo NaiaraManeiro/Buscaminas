@@ -11,9 +11,7 @@ public abstract class Casilla {
         this.coordenada = pCoordenada;
     }
 
-    public void marcarCasilla() {
-            this.banderita = true;
-    }
+    public void marcarCasilla() { this.banderita = true; }
 
     public void desmarcarCasilla(){
         this.banderita = false;
@@ -23,10 +21,6 @@ public abstract class Casilla {
 
     public void setCasillaClicada(boolean cambiar){
         this.casillaClicada = cambiar;
-    }
-
-    public boolean getCasillaClicada(){
-        return this.casillaClicada;
     }
 
     public boolean estaPulsada(){return casillaClicada;}
