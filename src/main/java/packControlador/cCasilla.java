@@ -1,7 +1,6 @@
 package packControlador;
 
 import packModelo.*;
-import packVista.buscaminas;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;

@@ -11,7 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class login extends JDialog {
+public class Login extends JDialog {
     private JPanel rootpanel;
     private JButton aceptarButton;
     private JTextField textusuario;
@@ -22,7 +22,7 @@ public class login extends JDialog {
 
     public static void main(String[] args) {
         try {
-            login dialog = new login();
+            Login dialog = new Login();
             dialog.setPreferredSize(new Dimension(275, 250));
             dialog.pack();
             dialog.setLocationRelativeTo(null);
@@ -33,7 +33,7 @@ public class login extends JDialog {
         }
     }
 
-    public login() {
+    public Login() {
 
         setTitle("Login");
         setResizable(false);
@@ -57,7 +57,7 @@ public class login extends JDialog {
                         Juego.getmJuego().crearUsuario(usuario, 3);
                     }
                     dispose(); //Cerramos la ventana actual
-                    buscaminas bus = new buscaminas(); //Abrimos la pantalla del juego con el nivel marcado
+                    Buscaminas bus = new Buscaminas(); //Abrimos la pantalla del juego con el nivel marcado
                     bus.setLocationRelativeTo(null);
                     bus.setVisible(true);
                 }

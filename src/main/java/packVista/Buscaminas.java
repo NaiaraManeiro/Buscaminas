@@ -15,7 +15,7 @@ import java.awt.event.MouseListener;
 import java.util.Observable;
 import java.util.Observer;
 
-public class buscaminas extends JFrame implements Observer {
+public class Buscaminas extends JFrame implements Observer {
 
     private JPanel contentPane, panel, panelTablero, panelBotones;
     private JButton[][] btntablero;
@@ -30,7 +30,7 @@ public class buscaminas extends JFrame implements Observer {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    buscaminas frame = new buscaminas();
+                    Buscaminas frame = new Buscaminas();
                     frame.setPreferredSize(new Dimension(850, 500));
                     frame.pack();
                     frame.setLocationRelativeTo(null);
@@ -43,7 +43,7 @@ public class buscaminas extends JFrame implements Observer {
         });
     }
 
-    public buscaminas() {
+    public Buscaminas() {
         setTitle("Buscaminas");
 
         contentPane = new JPanel();
@@ -239,7 +239,7 @@ public class buscaminas extends JFrame implements Observer {
                 @Override
                 public void mousePressed(MouseEvent arg0) {
                     dispose();
-                    new login();
+                    new Login();
 
                 }
 
