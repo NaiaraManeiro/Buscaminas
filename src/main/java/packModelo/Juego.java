@@ -55,4 +55,16 @@ public class Juego extends Observable {
     public void incrementarMinas(){nMinasRestantes++;}
 
     public void decrementarMinas(){nMinasRestantes--;}
+
+    public void marcarCasilla(Coordenada coord){
+        tablero.marcarCasilla(coord.getColumna(), coord.getFila());
+        setChanged();
+        notifyObservers(coord);
+    }
+
+    public void desmarcarCasilla(Coordenada coord){
+        tablero.desmarcarCasilla(coord.getColumna(), coord.getFila());
+        setChanged();
+        notifyObservers(coord);
+    }
 }

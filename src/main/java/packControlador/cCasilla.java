@@ -8,16 +8,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class cCasilla implements MouseListener {
-    private Coordenada coordenada;
 
-    public cCasilla(Coordenada pCoordenada){
-        this.coordenada = pCoordenada;
-    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int x = coordenada.getColumna();
-        int y = coordenada.getFila();
+        JButton btn = (JButton)e.getSource();
+        String coor = btn.getName();
+        char xString = coor.charAt(0); int x = Integer.parseInt("" + xString);
+        char yString = coor.charAt(1); int y = Integer.parseInt("" + yString);
+        Coordenada coordenada = new Coordenada(x, y);
+
         Casilla c = Juego.getmJuego().getTablero().devolverCasilla(x, y);
 
         if (!Juego.getmJuego().haPerdido() && !Juego.getmJuego().haGanado()) {
@@ -36,12 +36,11 @@ public class cCasilla implements MouseListener {
             } else if (e.getButton() == MouseEvent.BUTTON3) { //Mira a ver si se ha clicado con el botón derecho del ratón
                 boolean pulsada = c.estaPulsada();
                 if (!pulsada){
-                    c.marcarCasilla();
-                    c.setCasillaClicada(true);
+                    Juego.getmJuego().marcarCasilla(coordenada);
                     Juego.getmJuego().decrementarMinas();
                 }
                 else {
-                    c.desmarcarCasilla();
+                    Juego.getmJuego().desmarcarCasilla(coordenada);
                     Juego.getmJuego().incrementarMinas();
                 }
 

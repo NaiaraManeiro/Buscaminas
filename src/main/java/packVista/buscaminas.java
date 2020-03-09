@@ -73,10 +73,11 @@ public class buscaminas extends JFrame implements Observer {
 
         for (int i = 0; i < columnas; i++) {
             for (int j = 0; j < filas; j++) {
-                casilla = new JButton();
-                btntablero[i][j] = casilla;
                 Coordenada coord = new Coordenada(i, j);
-                casilla.addMouseListener(new cCasilla(coord));
+                casilla = new JButton();
+                casilla.setName("" + i + "" + j + "");
+                btntablero[i][j] = casilla;
+                casilla.addMouseListener(new cCasilla());
                 panelTablero.add(casilla);
                 asignarIcono(coord);
             }
@@ -85,7 +86,7 @@ public class buscaminas extends JFrame implements Observer {
 
     public void jugar() {
         Juego.getmJuego().jugar();
-        //Juego.getmJuego().addObserver(this);
+        Juego.getmJuego().addObserver(this);
         //Juego.getmJuego().getCrono().addObserver(this);
         filas = Juego.getmJuego().getTablero().getFilas();
         columnas = Juego.getmJuego().getTablero().getColumnas();
@@ -146,53 +147,51 @@ public class buscaminas extends JFrame implements Observer {
             imagen = new ImageIcon(getClass().getResource("/facingDown.png"));
         } else {
             if (c instanceof CasillaMina) {
-                imagen = new ImageIcon(getClass().getResource("bomb.png"));
+                imagen = new ImageIcon(getClass().getResource("/bomb.png"));
             } else if (c instanceof CasillaNormal) {
                 switch (((CasillaNormal) c).getNumero()) {
                     case 0:
-                        imagen = new ImageIcon(getClass().getResource("0.png"));
+                        imagen = new ImageIcon(getClass().getResource("/0.png"));
                         break;
                     case 1:
-                        imagen = new ImageIcon(getClass().getResource("1.png"));
+                        imagen = new ImageIcon(getClass().getResource("/1.png"));
                         break;
                     case 2:
-                        imagen = new ImageIcon(getClass().getResource("2.png"));
+                        imagen = new ImageIcon(getClass().getResource("/2.png"));
                         break;
                     case 3:
-                        imagen = new ImageIcon(getClass().getResource("3.png"));
+                        imagen = new ImageIcon(getClass().getResource("/3.png"));
                         break;
                     case 4:
-                        imagen = new ImageIcon(getClass().getResource("4.png"));
+                        imagen = new ImageIcon(getClass().getResource("/4.png"));
                         break;
                     case 5:
-                        imagen = new ImageIcon(getClass().getResource("5.png"));
+                        imagen = new ImageIcon(getClass().getResource("/5.png"));
                         break;
                     case 6:
-                        imagen = new ImageIcon(getClass().getResource("6.png"));
+                        imagen = new ImageIcon(getClass().getResource("/6.png"));
                         break;
                     case 7:
-                        imagen = new ImageIcon(getClass().getResource("7.png"));
+                        imagen = new ImageIcon(getClass().getResource("/7.png"));
                         break;
                     case 8:
-                        imagen = new ImageIcon(getClass().getResource("8.png"));
+                        imagen = new ImageIcon(getClass().getResource("/8.png"));
                         break;
                     default:
                         break;
                 }
             } else if (c.estamarcada()) {
-                imagen = new ImageIcon(getClass().getResource("flagged.png"));
+                imagen = new ImageIcon(getClass().getResource("/flagged.png"));
             }
 
         }
 
         if (imagen != null) {
-            Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(
-                    btntablero[pC.getColumna()][pC.getFila()].getWidth(),
-                    btntablero[pC.getColumna()][pC.getFila()].getHeight(), Image.SCALE_DEFAULT));
+            Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
             btntablero[pC.getColumna()][pC.getFila()].setIcon(icono);
             btntablero[pC.getColumna()][pC.getFila()].setText("");
-            btntablero[pC.getColumna()][pC.getFila()].setEnabled(false);
-            btntablero[pC.getColumna()][pC.getFila()].setDisabledIcon(btntablero[pC.getColumna()][pC.getFila()].getIcon());
+            //btntablero[pC.getColumna()][pC.getFila()].setEnabled(false);
+            //btntablero[pC.getColumna()][pC.getFila()].setDisabledIcon(btntablero[pC.getColumna()][pC.getFila()].getIcon());
         }
     }
 

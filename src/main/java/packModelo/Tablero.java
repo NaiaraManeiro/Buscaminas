@@ -15,13 +15,10 @@ public class Tablero {
         return this.matriz[x][y];
     }
 
-    public void marcarDesmarcarCasilla(int x, int y){
-        matriz[x][y].marcarCasilla();
-    }
-
     public void marcarCasilla(int x, int y){
         matriz[x][y].marcarCasilla();
     }
+    public void desmarcarCasilla(int x, int y){ matriz[x][y].desmarcarCasilla(); }
 
     public int getMinas(){return minas;}
     public void setMinas(int pMinas){
