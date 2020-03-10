@@ -18,7 +18,10 @@ public abstract class Modo {
 
         int altura = this.tablero.getFilas();
         int anchura = this.tablero.getColumnas();
+        int minas = this.tablero.getMinas();
+
         Casilla[][] matriz = new Casilla[anchura][altura];
+        this.tablero.setnCasillasRestantes((altura*anchura)-minas);
 
         for (int i = 0; i<anchura;i++){
             for(int j = 0; j<altura;j++){
@@ -27,7 +30,7 @@ public abstract class Modo {
         }
         tablero.setCasillas(matriz);
         ponerMinas();
-        ponerNumeros();
+        //ponerNumeros();
         return tablero;
     }
 
@@ -40,14 +43,14 @@ public abstract class Modo {
             do {
                 fila = r.nextInt(tablero.getFilas());
                 columna = r.nextInt(tablero.getColumnas());
-                incrementarAdyacentes(fila,columna);
+                incrementarAdyacentes(columna,fila);
                 if(tablero.devolverCasilla(columna, fila) instanceof CasillaMina) hayMina = true;
                 else hayMina = false;
             } while (hayMina);
             tablero.setCasilla(new CasillaMina(false,false, new Coordenada(columna, fila)));
         }
     }
-
+    /*
     private void ponerNumeros(){
         for (int i = 0; i < tablero.getColumnas(); i++) {
             for (int j = 0; j < tablero.getFilas(); j++) {
@@ -56,7 +59,7 @@ public abstract class Modo {
                 }
             }
         }
-    }
+    }*/
 
     private void incrementarCasilla(int pFila, int pColumna){
         // si las coordenadas están dentro del tablero, entonces

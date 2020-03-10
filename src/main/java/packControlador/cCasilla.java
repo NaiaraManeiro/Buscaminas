@@ -8,7 +8,6 @@ import java.awt.event.MouseListener;
 
 public class cCasilla implements MouseListener {
 
-
     @Override
     public void mouseClicked(MouseEvent e) {
         JButton btn = (JButton)e.getSource();
