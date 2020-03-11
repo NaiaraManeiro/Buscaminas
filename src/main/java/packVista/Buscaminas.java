@@ -10,6 +10,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Observable;
@@ -58,6 +60,22 @@ public class Buscaminas extends JFrame implements Observer {
         contentPane.add(getPanel(), BorderLayout.NORTH);
         contentPane.add(getPanelBotones(), BorderLayout.SOUTH);
 
+        volverAlMenuButton.addActionListener(new ActionListener() { //ARREGLAAAR!
+            public void actionPerformed(ActionEvent actionEvent) {
+                dispose(); //Cerramos la ventana actual
+                Login log = new Login(); //Abrimos la pantalla de inicio
+                log.setLocationRelativeTo(null);
+                log.setVisible(true);
+            }
+        });
+        reiniciarButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                dispose(); //Cerramos la ventana actual
+                Buscaminas bus = new Buscaminas(); //Abrimos la pantalla del juego con el nivel marcado
+                bus.setLocationRelativeTo(null);
+                bus.setVisible(true);
+            }
+        });
         jugar();
     }
 
@@ -204,33 +222,11 @@ public class Buscaminas extends JFrame implements Observer {
         }
     }
 
+
+
     private JButton getBtnReiniciar() {
         if (reiniciarButton == null) {
             reiniciarButton = new JButton("Reiniciar");
-            reiniciarButton.addMouseListener(new MouseListener() {
-
-                @Override
-                public void mouseReleased(MouseEvent arg0) {
-                }
-
-                @Override
-                public void mousePressed(MouseEvent arg0) {
-                    jugar();
-
-                }
-
-                @Override
-                public void mouseExited(MouseEvent arg0) {
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent arg0) {
-                }
-
-                @Override
-                public void mouseClicked(MouseEvent arg0) {
-                }
-            });
         }
         return reiniciarButton;
     }
@@ -238,32 +234,6 @@ public class Buscaminas extends JFrame implements Observer {
     private JButton getBtnVolverAlMenu() {
         if (volverAlMenuButton == null) {
             volverAlMenuButton = new JButton("Volver Al Menu");
-            volverAlMenuButton.addMouseListener(new MouseListener() {
-
-
-                @Override
-                public void mouseReleased(MouseEvent arg0) {
-                }
-
-                @Override
-                public void mousePressed(MouseEvent arg0) {
-                    dispose();
-                    new Login();
-
-                }
-
-                @Override
-                public void mouseExited(MouseEvent arg0) {
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent arg0) {
-                }
-
-                @Override
-                public void mouseClicked(MouseEvent arg0) {
-                }
-            });
         }
         return volverAlMenuButton;
     }
