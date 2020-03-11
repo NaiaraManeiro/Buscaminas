@@ -3,15 +3,11 @@ package packModelo;
 import java.util.Random;
 
 public abstract class Modo {
-    private Tablero tablero;
+    protected Tablero tablero;
 
-    public Modo(){}
-
-    abstract public void definirAltura();
-
-    abstract public void definirAnchura();
-
-    abstract public void definirMinas();
+    protected abstract void definirAltura();
+    protected abstract void definirAnchura();
+    protected abstract void definirMinas();
 
     public Tablero generarTablero() {
         this.tablero = new Tablero();
@@ -22,16 +18,21 @@ public abstract class Modo {
 
         int altura = this.tablero.getFilas();
         int anchura = this.tablero.getColumnas();
-        Casilla[][] matriz = new Casilla[altura-1][anchura-1];
+        int minas = this.tablero.getMinas();
 
-        for (int i = 0; i<altura;i++){
-            for(int j = 0; j<anchura;j++){
-                matriz[i][j] = new CasillaNormal(false,false);
+        Casilla[][] matriz = new Casilla[anchura][altura];
+        this.tablero.setnCasillasRestantes((altura*anchura)-minas);
+
+        for (int i = 0; i<anchura;i++){
+            for(int j = 0; j<altura;j++){
+                matriz[i][j] = new CasillaNormal(false,false, new Coordenada(i, j));
             }
         }
         tablero.setCasillas(matriz);
+        ponerMinas();
         return tablero;
     }
+
     private void ponerMinas(){
         boolean hayMina;
         int fila, columna;
@@ -41,28 +42,19 @@ public abstract class Modo {
             do {
                 fila = r.nextInt(tablero.getFilas());
                 columna = r.nextInt(tablero.getColumnas());
-                incrementarAdyacentes(fila,columna);
-                if(Tablero.getmTablero().devolverCasilla(fila,columna) instanceof CasillaMina) hayMina = true;
+                incrementarAdyacentes(columna,fila);
+                if(tablero.devolverCasilla(columna, fila) instanceof CasillaMina) hayMina = true;
                 else hayMina = false;
             } while (hayMina);
-            Casilla a = Tablero.getmTablero().devolverCasilla(fila,columna);
-            a = new CasillaMina(false,false);
+            tablero.setCasilla(new CasillaMina(false,false, new Coordenada(columna, fila)));
         }
     }
-    private void ponerNumeros(){
-        for (int i = 0; i < tablero.getFilas(); i++) {
-            for (int j = 0; j < tablero.getColumnas(); j++) {
-                if(Tablero.getmTablero().devolverCasilla(i,j) instanceof CasillaMina) {
-                    incrementarAdyacentes(i,j);
-                }
-            }
-        }
-    }
-    private void incrementarCasilla(int pFila, int pColumna){
+
+    private void incrementarCasilla(int pColumna, int pFila){
         // si las coordenadas están dentro del tablero, entonces
         if ((pFila >= 0 && pColumna >= 0)&&(pFila < tablero.getFilas() && pColumna < tablero.getColumnas())){
             //si es una instancia de CasillaVacia, entonces se le cambia el tipo de casilla, y le incrementamos el número
-            if (Tablero.getmTablero().devolverCasilla(pFila,pColumna) instanceof CasillaNormal) ((CasillaNormal) Tablero.getmTablero().devolverCasilla(pFila,pColumna)).incrementarNumero();
+            if (tablero.devolverCasilla(pColumna, pFila) instanceof CasillaNormal) ((CasillaNormal) tablero.devolverCasilla(pColumna, pFila)).incrementarNumero();
         }
     }
     // incrementamos o ponemos numero a la coordenada seleccionada (los parámetros son las coordenadas donde se encuentra la mina)
@@ -75,13 +67,18 @@ public abstract class Modo {
          *        /  |  \
          *       v   v   v
          * */
-        incrementarCasilla(x-1, y-1);
-        incrementarCasilla(x-1, y);
-        incrementarCasilla(x-1, y+1);
+
         incrementarCasilla(x, y+1);
-        incrementarCasilla(x+1, y+1);
-        incrementarCasilla(x+1, y);
-        incrementarCasilla(x+1, y-1);
         incrementarCasilla(x, y-1);
+
+        incrementarCasilla(x+1, y);
+        incrementarCasilla(x-1, y);
+
+        incrementarCasilla(x-1, y-1);
+        incrementarCasilla(x-1, y+1);
+
+        incrementarCasilla(x+1, y+1);
+        incrementarCasilla(x+1, y-1);
+
     }
 }

@@ -1,6 +1,6 @@
 package packControlador;
 
-import packVista.buscaminas;
+import packModelo.*;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
@@ -8,21 +8,46 @@ import java.awt.event.MouseListener;
 
 public class cCasilla implements MouseListener {
 
-
     @Override
     public void mouseClicked(MouseEvent e) {
         JButton btn = (JButton)e.getSource();
+        String coor = btn.getName();
+        char xString = coor.charAt(0); int x = Integer.parseInt("" + xString);
+        char yString = coor.charAt(1); int y = Integer.parseInt("" + yString);
+        Coordenada coordenada = new Coordenada(x, y);
 
-            /*
-        if (!Buscaminas.getElBuscaminas().hasPerdido()
-                && !Buscaminas.getElBuscaminas().hasGanado()) {
-            if (e.getButton() == MouseEvent.BUTTON1) {
-                Buscaminas.getElBuscaminas().desplegarCasilla(c);
+        Casilla c = Juego.getmJuego().getTablero().devolverCasilla(x, y);
 
-            } else if (e.getButton() == MouseEvent.BUTTON3) {
-                if (btn.isEnabled() == true) Buscaminas.getElBuscaminas().marcarDesmarcarCasilla(c);
+        if (!Juego.getmJuego().haPerdido() && !Juego.getmJuego().haGanado()) {
+            if (e.getButton() == MouseEvent.BUTTON1) { //Mira a ver si se ha clicado con el botón izquierdo del ratón
+                if (!c.estaPulsada()){
+                    if (c instanceof CasillaMina) {
+                        c.setCasillaClicada(true);
+                        Juego.getmJuego().terminarPartida(coordenada);
+                    } else {
+                        if (((CasillaNormal) c).getNumero() == 0) {
+                            Juego.getmJuego().getTablero().desplegarAdyacentes(x,y);
+                        } else {
+                            c.bloquearCasilla();
+                            Juego.getmJuego().activarUpdate(coordenada);
+                            Juego.getmJuego().getTablero().decrementarCasillasRestantes();
+                        }
+                    }
+                }
+
+            } else if (e.getButton() == MouseEvent.BUTTON3) { //Mira a ver si se ha clicado con el botón derecho del ratón
+                boolean pulsada = c.estaPulsada();
+                if (!pulsada){
+                    Juego.getmJuego().marcarCasilla(coordenada);
+                    Juego.getmJuego().decrementarMinas();
+                }
+                else {
+                    Juego.getmJuego().desmarcarCasilla(coordenada);
+                    Juego.getmJuego().incrementarMinas();
+                }
+
             }
-        }*/
+        }
     }
 
     @Override

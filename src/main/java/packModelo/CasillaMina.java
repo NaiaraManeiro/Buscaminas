@@ -2,13 +2,13 @@ package packModelo;
 
 public class CasillaMina extends Casilla {
 
-    public CasillaMina(boolean pCasillaClicada, boolean pBanderita){
-        super(false, false);
+    public CasillaMina(boolean pCasillaClicada, boolean pBanderita, Coordenada pCoordenada){
+        super(false, false, pCoordenada);
     }
 
     public void bloquearCasilla() {
         setCasillaClicada(true);
         // Hacer que se acabe la partida
-        Juego.getmJuego().terminarPartida();
+        Juego.getmJuego().terminarPartida(super.getCoordenada());
     }
 }

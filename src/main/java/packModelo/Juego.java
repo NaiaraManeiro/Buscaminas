@@ -23,6 +23,7 @@ public class Juego extends Observable {
     public void jugar(){
         setModo(this.usuario.getNivel());
         this.tablero = this.nivel.generarTablero();
+        derrota = false;
     }
 
     public void setModo(Modo pModo){
@@ -41,7 +42,35 @@ public class Juego extends Observable {
         return crono;
     }
 
-    public void terminarPartida(){
+    public void terminarPartida(Coordenada coord){
         derrota = true;
+        activarUpdate(coord);
+    }
+
+    public boolean haPerdido(){
+        return derrota;
+    }
+
+    public boolean haGanado() { return this.tablero.getMinas() == this.tablero.getnCasillasRestantes(); }
+
+    public String getnMinasRestantes() { return nMinasRestantes+""; }
+
+    public void incrementarMinas(){nMinasRestantes++;}
+
+    public void decrementarMinas(){nMinasRestantes--;}
+
+    public void marcarCasilla(Coordenada coord){
+        tablero.marcarCasilla(coord.getColumna(), coord.getFila());
+        activarUpdate(coord);
+    }
+
+    public void desmarcarCasilla(Coordenada coord){
+        tablero.desmarcarCasilla(coord.getColumna(), coord.getFila());
+        activarUpdate(coord);
+    }
+
+    public void activarUpdate(Coordenada coord){
+        setChanged();
+        notifyObservers(coord);
     }
 }
