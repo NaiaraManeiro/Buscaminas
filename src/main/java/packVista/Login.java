@@ -35,7 +35,7 @@ public class Login extends JDialog {
 
     public Login() {
 
-        setTitle("Login");
+        setTitle("Buscaminas: Usuario");
         setResizable(false);
         setContentPane(rootpanel);
 
