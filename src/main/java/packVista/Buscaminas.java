@@ -101,6 +101,14 @@ public class Buscaminas extends JFrame implements Observer {
             int col = coord.getColumna();
             Casilla c = Juego.getmJuego().getTablero().devolverCasilla(col, fila);
 
+            if (c.estaPulsada()) {
+                if (c.estamarcada()) {
+                    minasRestantes.setText(Juego.getmJuego().getnMinasRestantes());
+                }
+                asignarIcono(coord);
+                btntablero[fila][col].setEnabled(false);
+            }
+
             if (Juego.getmJuego().haPerdido()) {
                 btntablero[fila][col].setBackground(new Color(252, 3, 3)); // La mina pulsada muestra otro fondo
                 mostrarMinas();
@@ -112,14 +120,6 @@ public class Buscaminas extends JFrame implements Observer {
                 JOptionPane.showMessageDialog(null,
                         "Has ganado la partida!", "Información",
                         JOptionPane.INFORMATION_MESSAGE);
-            }
-
-            if (c.estaPulsada()) {
-                if (c.estamarcada()) {
-                    minasRestantes.setText(Juego.getmJuego().getnMinasRestantes());
-                }
-                asignarIcono(coord);
-                btntablero[fila][col].setEnabled(false);
             }
         }
         /*
@@ -134,6 +134,7 @@ public class Buscaminas extends JFrame implements Observer {
                 Casilla c = Juego.getmJuego().getTablero().devolverCasilla(i, j);
                 if (c instanceof CasillaMina) {
                     Coordenada coord = c.getCoordenada();
+                    c.setCasillaClicada(true);
                     asignarIcono(coord);
                 }
             }
@@ -147,10 +148,11 @@ public class Buscaminas extends JFrame implements Observer {
         if (!c.estaPulsada()) {
             imagen = new ImageIcon(getClass().getResource("/facingDown.png"));
         } else {
-            bloquear = true;
             if (c instanceof CasillaMina) {
                 imagen = new ImageIcon(getClass().getResource("/bomb.png"));
+                bloquear = true;
             } else if (c instanceof CasillaNormal) {
+                bloquear = true;
                 switch (((CasillaNormal) c).getNumero()) {
                     case 0:
                         imagen = new ImageIcon(getClass().getResource("/0.png"));
@@ -192,7 +194,7 @@ public class Buscaminas extends JFrame implements Observer {
             Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
             btntablero[pC.getFila()][pC.getColumna()].setIcon(icono);
             btntablero[pC.getFila()][pC.getColumna()].setText("");
-            btntablero[pC.getFila()][pC.getColumna()].setDisabledIcon(btntablero[pC.getFila()][pC.getColumna()].getIcon());
+            //btntablero[pC.getFila()][pC.getColumna()].setDisabledIcon(btntablero[pC.getFila()][pC.getColumna()].getIcon());
             if (bloquear) {
                 btntablero[pC.getFila()][pC.getColumna()].setEnabled(false);
             }

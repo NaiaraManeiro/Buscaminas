@@ -42,7 +42,10 @@ public class Juego extends Observable {
         return crono;
     }
 
-    public void terminarPartida(){ derrota = true; }
+    public void terminarPartida(Coordenada coord){
+        derrota = true;
+        activarUpdate(coord);
+    }
 
     public boolean haPerdido(){
         return derrota;
@@ -58,12 +61,15 @@ public class Juego extends Observable {
 
     public void marcarCasilla(Coordenada coord){
         tablero.marcarCasilla(coord.getColumna(), coord.getFila());
-        setChanged();
-        notifyObservers(coord);
+        activarUpdate(coord);
     }
 
     public void desmarcarCasilla(Coordenada coord){
         tablero.desmarcarCasilla(coord.getColumna(), coord.getFila());
+        activarUpdate(coord);
+    }
+
+    public void activarUpdate(Coordenada coord){
         setChanged();
         notifyObservers(coord);
     }

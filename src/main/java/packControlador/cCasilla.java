@@ -20,17 +20,21 @@ public class cCasilla implements MouseListener {
 
         if (!Juego.getmJuego().haPerdido() && !Juego.getmJuego().haGanado()) {
             if (e.getButton() == MouseEvent.BUTTON1) { //Mira a ver si se ha clicado con el botón izquierdo del ratón
-                if (c instanceof CasillaMina) {
-                    Juego.getmJuego().terminarPartida();
-                } else {
-                    if (((CasillaNormal) c).getNumero() == 0) {
-                        c.bloquearCasilla();
-                        Juego.getmJuego().getTablero().desplegarAdyacentes(x,y);
+                if (!c.estaPulsada()){
+                    if (c instanceof CasillaMina) {
+                        c.setCasillaClicada(true);
+                        Juego.getmJuego().terminarPartida(coordenada);
                     } else {
-                        c.bloquearCasilla();
-                        Juego.getmJuego().getTablero().decrementarCasillasRestantes();
+                        if (((CasillaNormal) c).getNumero() == 0) {
+                            Juego.getmJuego().getTablero().desplegarAdyacentes(x,y);
+                        } else {
+                            c.bloquearCasilla();
+                            Juego.getmJuego().activarUpdate(coordenada);
+                            Juego.getmJuego().getTablero().decrementarCasillasRestantes();
+                        }
                     }
                 }
+
             } else if (e.getButton() == MouseEvent.BUTTON3) { //Mira a ver si se ha clicado con el botón derecho del ratón
                 boolean pulsada = c.estaPulsada();
                 if (!pulsada){

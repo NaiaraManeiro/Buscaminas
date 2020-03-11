@@ -30,7 +30,6 @@ public abstract class Modo {
         }
         tablero.setCasillas(matriz);
         ponerMinas();
-        //ponerNumeros();
         return tablero;
     }
 
@@ -50,18 +49,8 @@ public abstract class Modo {
             tablero.setCasilla(new CasillaMina(false,false, new Coordenada(columna, fila)));
         }
     }
-    /*
-    private void ponerNumeros(){
-        for (int i = 0; i < tablero.getColumnas(); i++) {
-            for (int j = 0; j < tablero.getFilas(); j++) {
-                if(tablero.devolverCasilla(i,j) instanceof CasillaMina) {
-                    incrementarAdyacentes(i,j);
-                }
-            }
-        }
-    }*/
 
-    private void incrementarCasilla(int pFila, int pColumna){
+    private void incrementarCasilla(int pColumna, int pFila){
         // si las coordenadas están dentro del tablero, entonces
         if ((pFila >= 0 && pColumna >= 0)&&(pFila < tablero.getFilas() && pColumna < tablero.getColumnas())){
             //si es una instancia de CasillaVacia, entonces se le cambia el tipo de casilla, y le incrementamos el número
@@ -78,13 +67,18 @@ public abstract class Modo {
          *        /  |  \
          *       v   v   v
          * */
-        incrementarCasilla(x-1, y-1);
-        incrementarCasilla(x-1, y);
-        incrementarCasilla(x-1, y+1);
+
         incrementarCasilla(x, y+1);
-        incrementarCasilla(x+1, y+1);
-        incrementarCasilla(x+1, y);
-        incrementarCasilla(x+1, y-1);
         incrementarCasilla(x, y-1);
+
+        incrementarCasilla(x+1, y);
+        incrementarCasilla(x-1, y);
+
+        incrementarCasilla(x-1, y-1);
+        incrementarCasilla(x-1, y+1);
+
+        incrementarCasilla(x+1, y+1);
+        incrementarCasilla(x+1, y-1);
+
     }
 }

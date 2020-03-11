@@ -1,7 +1,6 @@
 package packModelo;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
 
 public class Tablero {
 
@@ -12,7 +11,11 @@ public class Tablero {
     private int nCasillasRestantes;
 
     public Casilla devolverCasilla(int x, int y) {
-        return this.matriz[x][y];
+        try{
+            return this.matriz[x][y];
+        } catch (Exception e){
+            return null;
+        }
     }
 
     public void marcarCasilla(int x, int y){
@@ -49,37 +52,51 @@ public class Tablero {
     }
 
     public void desplegarAdyacentes(int x, int y) {
+        boolean fin = false;
         Casilla act = this.devolverCasilla(x, y);
-        ArrayList<Casilla> mirar = new ArrayList<>();
+        LinkedList<Casilla> mirar = new LinkedList<>();
         mirar.add(act);
-        Iterator<Casilla> itr = mirar.iterator();
-        while (itr.hasNext()) {
-            Casilla c = itr.next();
+        while (!fin) {
+            Casilla c = mirar.remove();
             if (c instanceof CasillaNormal && ((CasillaNormal) c).getNumero() == 0 && !c.estaPulsada()) {
                 c.setCasillaClicada(true);
                 Coordenada coord = c.getCoordenada();
                 x = coord.getColumna();
                 y = coord.getFila();
                 Casilla arriba = this.devolverCasilla(x, y + 1);
-                mirar.add(arriba);
+                anadir(arriba, mirar);
                 Casilla abajo = this.devolverCasilla(x, y - 1);
-                mirar.add(abajo);
+                anadir(abajo, mirar);
                 Casilla derecha = this.devolverCasilla(x + 1, y);
-                mirar.add(derecha);
+                anadir(derecha, mirar);
                 Casilla izquierda = this.devolverCasilla(x - 1, y);
-                mirar.add(izquierda);
+                anadir(izquierda, mirar);
                 Casilla diagArribDer = this.devolverCasilla(x + 1, y + 1);
-                mirar.add(diagArribDer);
+                anadir(diagArribDer, mirar);
                 Casilla diagArribIzq = this.devolverCasilla(x - 1, y + 1);
-                mirar.add(diagArribIzq);
+                anadir(diagArribIzq, mirar);
                 Casilla diagAbajDer = this.devolverCasilla(x + 1, y - 1);
-                mirar.add(diagAbajDer);
+                anadir(diagAbajDer, mirar);
                 Casilla diagAbajIzq = this.devolverCasilla(x - 1, y - 1);
-                mirar.add(diagAbajIzq);
-            } else if (c instanceof CasillaNormal && ((CasillaNormal) c).getNumero() != 0) {
-                c.setCasillaClicada(true);
+                anadir(diagAbajIzq, mirar);
+                Juego.getmJuego().activarUpdate(coord);
             }
             this.decrementarCasillasRestantes();
+            if (mirar.isEmpty()){
+                fin = true;
+            }
+        }
+    }
+
+    public void anadir(Casilla casilla, LinkedList<Casilla> mirar){
+        if (casilla != null) {
+            if (casilla instanceof CasillaNormal && ((CasillaNormal) casilla).getNumero() == 0) {
+                mirar.add(casilla);
+            } else if (casilla instanceof CasillaNormal && ((CasillaNormal) casilla).getNumero() != 0) {
+                casilla.setCasillaClicada(true);
+                Juego.getmJuego().activarUpdate(casilla.getCoordenada());
+                this.decrementarCasillasRestantes();
+            }
         }
     }
 }
