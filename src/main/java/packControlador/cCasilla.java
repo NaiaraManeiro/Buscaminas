@@ -1,7 +1,7 @@
 package packControlador;
 
-//import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import packModelo.*;
+import packModelo.packCasilla.*;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
@@ -21,15 +21,15 @@ public class cCasilla implements MouseListener {
 
         if (!Juego.getmJuego().haPerdido() && !Juego.getmJuego().haGanado()) {
             if (e.getButton() == MouseEvent.BUTTON1) { //Mira a ver si se ha clicado con el botón izquierdo del ratón
-                if (!c.estaPulsada()){
+                if (c.getEstado() instanceof NoClicada){
                     if (c instanceof CasillaMina) {
-                        c.setCasillaClicada(true);
+                        c.setEstado(new Clicada(coordenada));
                         Juego.getmJuego().terminarPartida(coordenada);
                     } else {
                         if (((CasillaNormal) c).getNumero() == 0) {
                             Juego.getmJuego().getTablero().desplegarAdyacentes(x,y);
                         } else if (((CasillaNormal) c).getNumero() != 0) {
-                            c.bloquearCasilla();
+                            c.setEstado(new Clicada(coordenada));
                             Juego.getmJuego().getTablero().decrementarCasillasRestantes();
                             Juego.getmJuego().activarUpdate(coordenada);
                         }
@@ -37,15 +37,7 @@ public class cCasilla implements MouseListener {
                 }
 
             } else if (e.getButton() == MouseEvent.BUTTON3) { //Mira a ver si se ha clicado con el botón derecho del ratón
-                boolean pulsada = c.estaPulsada();
-                if (!pulsada){
-                    Juego.getmJuego().marcarCasilla(coordenada);
-                    Juego.getmJuego().decrementarMinas();
-                }
-                else {
-                    Juego.getmJuego().desmarcarCasilla(coordenada);
-                    Juego.getmJuego().incrementarMinas();
-                }
+                Juego.getmJuego().marcarDesmarcarCasilla(coordenada);
 
             }
         }

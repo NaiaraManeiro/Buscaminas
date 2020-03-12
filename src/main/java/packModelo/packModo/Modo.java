@@ -1,4 +1,7 @@
-package packModelo;
+package packModelo.packModo;
+
+import packModelo.*;
+import packModelo.packCasilla.*;
 
 import java.util.Random;
 
@@ -26,7 +29,7 @@ public abstract class Modo {
 
         for (int i = 0; i < anchura; i++){
             for(int j = 0; j < altura; j++){
-                matriz[i][j] = new CasillaNormal(false,false, new Coordenada(i, j));
+                matriz[i][j] = new CasillaNormal(new NoClicada(new Coordenada(i,j)), new Coordenada(i, j));
             }
         }
         tablero.setCasillas(matriz);
@@ -44,11 +47,10 @@ public abstract class Modo {
             do {
                 fila = r.nextInt(tablero.getFilas());
                 columna = r.nextInt(tablero.getColumnas());
-                //incrementarAdyacentes(columna,fila);
                 if(tablero.devolverCasilla(columna, fila) instanceof CasillaMina) hayMina = true;
                 else hayMina = false;
             } while (hayMina);
-            tablero.setCasilla(new CasillaMina(false,false, new Coordenada(columna, fila)));
+            tablero.setCasilla(new CasillaMina(new NoClicada(new Coordenada(columna, fila)), new Coordenada(columna, fila)));
         }
     }
     private void ponerNumeros(){

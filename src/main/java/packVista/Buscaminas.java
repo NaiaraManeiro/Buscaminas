@@ -5,6 +5,7 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import packModelo.*;
 import packControlador.cCasilla;
+import packModelo.packCasilla.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -12,8 +13,6 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -143,8 +142,8 @@ public class Buscaminas extends JFrame implements Observer {
             int col = coord.getColumna();
             Casilla c = Juego.getmJuego().getTablero().devolverCasilla(col, fila);
 
-            if (c.estaPulsada()) {
-                if (c.estamarcada()) {
+            if (c.getEstado() instanceof Clicada) {
+                if (c.getEstado() instanceof Bandera) {
                     minasRestantes.setText(Juego.getmJuego().getnMinasRestantes());
                 }
                 asignarIcono(coord);
@@ -183,7 +182,7 @@ public class Buscaminas extends JFrame implements Observer {
                 Casilla c = Juego.getmJuego().getTablero().devolverCasilla(i, j);
                 if (c instanceof CasillaMina) {
                     Coordenada coord = c.getCoordenada();
-                    c.setCasillaClicada(true);
+                    c.setEstado(new Clicada(coord));
                     asignarIcono(coord);
                 }
             }
@@ -194,7 +193,7 @@ public class Buscaminas extends JFrame implements Observer {
         boolean bloquear = false;
         ImageIcon imagen = null;
         Casilla c = Juego.getmJuego().getTablero().devolverCasilla(pC.getColumna(), pC.getFila());
-        if (!c.estaPulsada()) {
+        if (c.getEstado() instanceof NoClicada) {
             imagen = new ImageIcon(getClass().getResource("/facingDown.png"));
         } else {
             if (c instanceof CasillaMina) {
@@ -233,7 +232,7 @@ public class Buscaminas extends JFrame implements Observer {
                     default:
                         break;
                 }
-            } else if (c.estamarcada()) {
+            } else if (c.getEstado() instanceof Bandera) {
                 imagen = new ImageIcon(getClass().getResource("/flagged.png"));
             }
         }
@@ -241,14 +240,12 @@ public class Buscaminas extends JFrame implements Observer {
         if (imagen != null) {
             ImageIcon icono = new ImageIcon(imagen.getImage().getScaledInstance(btntablero[pC.getFila()][pC.getColumna()].getWidth(), btntablero[pC.getFila()][pC.getColumna()].getHeight(), Image.SCALE_DEFAULT));
             btntablero[pC.getFila()][pC.getColumna()].setIcon(icono);
-            //btntablero[pC.getFila()][pC.getColumna()].setIcon(new ImageIcon("D:/Uni/buscaminas/target/classes/2.png"));
             btntablero[pC.getFila()][pC.getColumna()].setText("");
             if (bloquear) {
                 btntablero[pC.getFila()][pC.getColumna()].setEnabled(false);
             }
         }
     }
-
 
     private JButton getBtnReiniciar() {
         if (reiniciarButton == null) {

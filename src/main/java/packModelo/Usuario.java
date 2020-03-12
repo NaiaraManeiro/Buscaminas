@@ -1,5 +1,10 @@
 package packModelo;
 
+import packModelo.packModo.Modo;
+import packModelo.packModo.Nivel1;
+import packModelo.packModo.Nivel2;
+import packModelo.packModo.Nivel3;
+
 public class Usuario {
     private String nombre;
     private Modo nivel;

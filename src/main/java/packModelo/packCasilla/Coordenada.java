@@ -1,4 +1,4 @@
-package packModelo;
+package packModelo.packCasilla;
 
 public class Coordenada {
     private int fila;

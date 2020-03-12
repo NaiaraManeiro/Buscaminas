@@ -1,5 +1,8 @@
 package packModelo;
 
+import packModelo.packCasilla.Coordenada;
+import packModelo.packModo.Modo;
+
 import java.util.Observable;
 
 public class Juego extends Observable {
@@ -61,13 +64,8 @@ public class Juego extends Observable {
 
     public void decrementarMinas(){nMinasRestantes--;}
 
-    public void marcarCasilla(Coordenada coord){
-        tablero.marcarCasilla(coord.getColumna(), coord.getFila());
-        activarUpdate(coord);
-    }
-
-    public void desmarcarCasilla(Coordenada coord){
-        tablero.desmarcarCasilla(coord.getColumna(), coord.getFila());
+    public void marcarDesmarcarCasilla(Coordenada coord){
+        tablero.marcarDesmarcarCasilla(coord.getColumna(), coord.getFila());
         activarUpdate(coord);
     }
 

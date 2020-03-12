@@ -1,5 +1,7 @@
 package packModelo;
 
+import packModelo.packCasilla.*;
+
 import java.util.*;
 
 public class Tablero {
@@ -18,10 +20,9 @@ public class Tablero {
         }
     }
 
-    public void marcarCasilla(int x, int y){
-        matriz[x][y].marcarCasilla();
+    public void marcarDesmarcarCasilla(int x, int y){
+        matriz[x][y].marcarDesmarcarCasilla();
     }
-    public void desmarcarCasilla(int x, int y){ matriz[x][y].desmarcarCasilla(); }
 
     public int getMinas(){return minas;}
     public void setMinas(int pMinas){
@@ -59,9 +60,9 @@ public class Tablero {
         visitados.add(act);
         while (!mirar.isEmpty()) {
             Casilla c = mirar.remove();
-            if (c instanceof CasillaNormal && ((CasillaNormal) c).getNumero() == 0 && !c.estaPulsada()) {
-                c.setCasillaClicada(true);
+            if (c instanceof CasillaNormal && ((CasillaNormal) c).getNumero() == 0 && c.getEstado() instanceof NoClicada) {
                 Coordenada coord = c.getCoordenada();
+                c.setEstado(new Clicada(coord));
                 x = coord.getColumna();
                 y = coord.getFila();
                 Casilla arriba = this.devolverCasilla(x, y + 1);
@@ -94,8 +95,8 @@ public class Tablero {
                     visitados.add(casilla);
                 }
             } else if (casilla instanceof CasillaNormal && ((CasillaNormal) casilla).getNumero() != 0) {
-                if (!casilla.estaPulsada()){
-                    casilla.setCasillaClicada(true);
+                if (casilla.getEstado() instanceof NoClicada){
+                    casilla.setEstado(new Clicada(casilla.getCoordenada()));
                     this.decrementarCasillasRestantes();
                     Juego.getmJuego().activarUpdate(casilla.getCoordenada());
                 }
