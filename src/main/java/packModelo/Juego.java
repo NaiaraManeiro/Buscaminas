@@ -54,6 +54,7 @@ public class Juego extends Observable {
     public boolean haGanado() { return this.tablero.getMinas() == this.tablero.getnCasillasRestantes(); }
 
     public String getnMinasRestantes() { return nMinasRestantes+""; }
+    public void setnMinasRestantes(int minas){ nMinasRestantes = minas;}
 
     public void incrementarMinas(){nMinasRestantes++;}
 

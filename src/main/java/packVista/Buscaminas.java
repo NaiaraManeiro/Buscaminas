@@ -27,13 +27,13 @@ public class Buscaminas extends JFrame implements Observer {
     private JButton reiniciarButton;
     private JButton volverAlMenuButton;
     private int filas, columnas;
+    private boolean mostrarPerdida;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
                     Buscaminas frame = new Buscaminas();
-                    frame.setPreferredSize(new Dimension(1050, 700));
                     frame.pack();
                     frame.setLocationRelativeTo(null);
                     frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -57,6 +57,8 @@ public class Buscaminas extends JFrame implements Observer {
         contentPane.setLayout(new BorderLayout(0, 0));
         contentPane.add(getPanel(), BorderLayout.NORTH);
         contentPane.add(getPanelBotones(), BorderLayout.SOUTH);
+        minasRestantes.setEnabled(false);
+        cronometro.setEnabled(false);
 
         volverAlMenuButton.addActionListener(new ActionListener() { //ARREGLAAAR!
             public void actionPerformed(ActionEvent actionEvent) {
@@ -72,6 +74,7 @@ public class Buscaminas extends JFrame implements Observer {
                 Buscaminas bus = new Buscaminas(); //Abrimos la pantalla del juego con el nivel marcado
                 bus.setLocationRelativeTo(null);
                 bus.setVisible(true);
+                mostrarPerdida = true;
             }
         });
 
@@ -103,9 +106,12 @@ public class Buscaminas extends JFrame implements Observer {
                 asignarIcono(coord);
             }
         }
+
+        minasRestantes.setText(Juego.getmJuego().getnMinasRestantes());
     }
 
     public void jugar() {
+        mostrarPerdida = false;
         Juego.getmJuego().jugar();
         Juego.getmJuego().addObserver(this);
         //Juego.getmJuego().getCrono().addObserver(this);
@@ -133,8 +139,10 @@ public class Buscaminas extends JFrame implements Observer {
             if (Juego.getmJuego().haPerdido()) {
                 btntablero[fila][col].setBackground(new Color(252, 3, 3)); // La mina pulsada muestra otro fondo
                 mostrarMinas();
-                JOptionPane.showMessageDialog(null, "Has perdido la partida!",
-                        "Información", JOptionPane.ERROR_MESSAGE);
+                if (!mostrarPerdida) {
+                    JOptionPane.showMessageDialog(null, "Has perdido la partida!",
+                            "Información", JOptionPane.ERROR_MESSAGE);
+                }
             }
 
             if (Juego.getmJuego().haGanado()) {
@@ -142,9 +150,11 @@ public class Buscaminas extends JFrame implements Observer {
                         "Has ganado la partida!", "Información",
                         JOptionPane.INFORMATION_MESSAGE);
             }
+
+
         }
         /*
-        } else if (observador instanceof Cronometro) {
+        else if (observador instanceof Cronometro) {
             mostrarCronometro((String) parametro);
         }*/
     }

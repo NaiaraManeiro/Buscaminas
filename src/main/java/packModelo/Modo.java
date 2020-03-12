@@ -22,6 +22,7 @@ public abstract class Modo {
 
         Casilla[][] matriz = new Casilla[anchura][altura];
         this.tablero.setnCasillasRestantes((altura*anchura)-minas);
+        Juego.getmJuego().setnMinasRestantes(minas);
 
         for (int i = 0; i < anchura; i++){
             for(int j = 0; j < altura; j++){
