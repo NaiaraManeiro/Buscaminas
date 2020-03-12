@@ -23,8 +23,8 @@ public abstract class Modo {
         Casilla[][] matriz = new Casilla[anchura][altura];
         this.tablero.setnCasillasRestantes((altura*anchura)-minas);
 
-        for (int i = 0; i<anchura;i++){
-            for(int j = 0; j<altura;j++){
+        for (int i = 0; i < anchura; i++){
+            for(int j = 0; j < altura; j++){
                 matriz[i][j] = new CasillaNormal(false,false, new Coordenada(i, j));
             }
         }

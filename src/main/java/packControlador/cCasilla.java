@@ -1,5 +1,6 @@
 package packControlador;
 
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import packModelo.*;
 
 import javax.swing.*;
@@ -11,9 +12,9 @@ public class cCasilla implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         JButton btn = (JButton)e.getSource();
-        String coor = btn.getName();
-        char xString = coor.charAt(0); int x = Integer.parseInt("" + xString);
-        char yString = coor.charAt(1); int y = Integer.parseInt("" + yString);
+        String coor[] = btn.getName().split(";");
+        String xString = coor[0]; int x = Integer.parseInt(xString);
+        String yString = coor[1]; int y = Integer.parseInt(yString);
         Coordenada coordenada = new Coordenada(x, y);
 
         Casilla c = Juego.getmJuego().getTablero().devolverCasilla(x, y);

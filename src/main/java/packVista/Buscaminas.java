@@ -33,7 +33,7 @@ public class Buscaminas extends JFrame implements Observer {
             public void run() {
                 try {
                     Buscaminas frame = new Buscaminas();
-                    frame.setPreferredSize(new Dimension(850, 500));
+                    frame.setPreferredSize(new Dimension(1050, 700));
                     frame.pack();
                     frame.setLocationRelativeTo(null);
                     frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -50,12 +50,10 @@ public class Buscaminas extends JFrame implements Observer {
         setTitle("Buscaminas");
         setResizable(false);
 
-
         contentPane = new JPanel();
         setContentPane(contentPane);
         setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
-        contentPane.setBounds(100, 100, 1000, 1000);
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        contentPane.setBorder(new EmptyBorder(10, 10, 10, 10));
         contentPane.setLayout(new BorderLayout(0, 0));
         contentPane.add(getPanel(), BorderLayout.NORTH);
         contentPane.add(getPanelBotones(), BorderLayout.SOUTH);
@@ -76,6 +74,7 @@ public class Buscaminas extends JFrame implements Observer {
                 bus.setVisible(true);
             }
         });
+
         jugar();
     }
 
@@ -85,8 +84,8 @@ public class Buscaminas extends JFrame implements Observer {
         panelTablero = new JPanel();
         panelTablero.setLayout(new GridLayout(filas, columnas, 0, 0));
         contentPane.add(panelTablero, BorderLayout.CENTER);
-        int ancho = filas * columnas + 250;
-        int alto = ancho - filas * columnas / 2;
+        int ancho = filas * columnas + 550;
+        int alto = ancho - filas * columnas / 5;
         Dimension d = new Dimension(ancho, alto);
         this.setMinimumSize(d);
         this.setSize(d);
@@ -97,7 +96,7 @@ public class Buscaminas extends JFrame implements Observer {
                 Coordenada coord = new Coordenada(j, i);
                 casilla = new JButton();
                 casilla.setBounds(i, j, 100, 100);
-                casilla.setName("" + j + "" + i + "");
+                casilla.setName("" + j + ";" + i + "");
                 casilla.addMouseListener(new cCasilla());
                 btntablero[i][j] = casilla;
                 panelTablero.add(casilla);
@@ -223,7 +222,6 @@ public class Buscaminas extends JFrame implements Observer {
     }
 
 
-
     private JButton getBtnReiniciar() {
         if (reiniciarButton == null) {
             reiniciarButton = new JButton("Reiniciar");
@@ -285,7 +283,7 @@ public class Buscaminas extends JFrame implements Observer {
      */
     private void $$$setupUI$$$() {
         contentPane = new JPanel();
-        contentPane.setLayout(new GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1, true, false));
+        contentPane.setLayout(new GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1));
         contentPane.setBackground(new Color(-9999251));
         contentPane.setEnabled(true);
         contentPane.setToolTipText("");
@@ -354,5 +352,4 @@ public class Buscaminas extends JFrame implements Observer {
     public JComponent $$$getRootComponent$$$() {
         return contentPane;
     }
-
 }

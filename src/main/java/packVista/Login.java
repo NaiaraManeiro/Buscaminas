@@ -23,7 +23,7 @@ public class Login extends JDialog {
     public static void main(String[] args) {
         try {
             Login dialog = new Login();
-            dialog.setPreferredSize(new Dimension(275, 250));
+            dialog.setPreferredSize(new Dimension(375, 350));
             dialog.pack();
             dialog.setLocationRelativeTo(null);
             dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
