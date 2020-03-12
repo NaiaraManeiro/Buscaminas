@@ -87,7 +87,7 @@ public class Tablero {
         }
     }
 
-    public void anadir(Casilla casilla, LinkedList<Casilla> mirar, LinkedList<Casilla> visitados){
+    private void anadir(Casilla casilla, LinkedList<Casilla> mirar, LinkedList<Casilla> visitados){
         if (casilla != null) {
             if (casilla instanceof CasillaNormal && ((CasillaNormal) casilla).getNumero() == 0) {
                 if (!visitados.contains(casilla)){

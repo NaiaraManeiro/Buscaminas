@@ -16,6 +16,7 @@ public class Cronometro extends Observable implements Runnable {
     public int getMinutos() { return minutos; }
     public int getSegundos() { return segundos; }
 
+    public void pararCrono(){stopped=true;}
     @Override
     public void run() {
         minutos = 0;
@@ -37,6 +38,7 @@ public class Cronometro extends Observable implements Runnable {
     public void reset(){
         minutos = 0;
         segundos = 0;
+        stopped = false;
     }
 }
 

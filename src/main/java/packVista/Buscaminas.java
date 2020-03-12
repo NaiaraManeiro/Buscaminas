@@ -81,6 +81,7 @@ public class Buscaminas extends JFrame implements Observer {
                 Buscaminas bus = new Buscaminas(); //Abrimos la pantalla del juego con el nivel marcado
                 bus.setLocationRelativeTo(null);
                 bus.setVisible(true);
+                Juego.getmJuego().getCrono().reset();
                 mostrarPerdida = true;
                 mostrarGanado = true;
             }
@@ -149,11 +150,12 @@ public class Buscaminas extends JFrame implements Observer {
                 asignarIcono(coord);
                 btntablero[fila][col].setEnabled(false);
             }
-
             if (Juego.getmJuego().haPerdido()) {
                 btntablero[fila][col].setBackground(new Color(252, 3, 3)); // La mina pulsada muestra otro fondo
                 mostrarMinas();
+                //
                 if (!mostrarPerdida) {
+                    //
                     JOptionPane.showMessageDialog(null, "Has perdido la partida!",
                             "Información", JOptionPane.ERROR_MESSAGE);
                 }
@@ -161,6 +163,7 @@ public class Buscaminas extends JFrame implements Observer {
 
             if (Juego.getmJuego().haGanado()) {
                 if (!mostrarGanado) {
+                    //Juego.getmJuego().getCrono().pararCrono();
                     JOptionPane.showMessageDialog(null,
                             "Has ganado la partida!", "Información",
                             JOptionPane.INFORMATION_MESSAGE);
