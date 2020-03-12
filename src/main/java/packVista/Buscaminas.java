@@ -60,6 +60,8 @@ public class Buscaminas extends JFrame implements Observer {
         contentPane.add(getPanelBotones(), BorderLayout.SOUTH);
         minasRestantes.setEnabled(false);
         cronometro.setEnabled(false);
+        cronometro.setDisabledTextColor(new Color(0, 0, 0));
+        minasRestantes.setDisabledTextColor(new Color(0, 0, 0));
 
         volverAlMenuButton.addActionListener(new ActionListener() { //ARREGLAAAR!
             public void actionPerformed(ActionEvent actionEvent) {
@@ -297,6 +299,7 @@ public class Buscaminas extends JFrame implements Observer {
             cronometro = new JTextField();
             cronometro.setEnabled(false);
             cronometro.setColumns(3);
+
         }
         return cronometro;
     }
@@ -327,11 +330,18 @@ public class Buscaminas extends JFrame implements Observer {
         contentPane.add(panel, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         minasRestantes = new JTextField();
         minasRestantes.setBackground(new Color(-590081));
+        Font minasRestantesFont = this.$$$getFont$$$("Microsoft JhengHei", Font.BOLD, 14, minasRestantes.getFont());
+        if (minasRestantesFont != null) minasRestantes.setFont(minasRestantesFont);
         minasRestantes.setHorizontalAlignment(0);
         panel.add(minasRestantes, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         cronometro = new JTextField();
+        cronometro.setBackground(new Color(-590081));
         cronometro.setEditable(true);
-        cronometro.setForeground(new Color(-590081));
+        cronometro.setEnabled(true);
+        Font cronometroFont = this.$$$getFont$$$("Microsoft JhengHei", Font.PLAIN, 14, cronometro.getFont());
+        if (cronometroFont != null) cronometro.setFont(cronometroFont);
+        cronometro.setForeground(new Color(-16777216));
+        cronometro.setHorizontalAlignment(0);
         panel.add(cronometro, new GridConstraints(1, 2, 2, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JLabel label1 = new JLabel();
         label1.setEnabled(true);
@@ -353,6 +363,10 @@ public class Buscaminas extends JFrame implements Observer {
         panel.add(spacer2, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         panelTablero = new JPanel();
         panelTablero.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panelTablero.setBackground(new Color(-590081));
+        Font panelTableroFont = this.$$$getFont$$$("Microsoft JhengHei", Font.PLAIN, 14, panelTablero.getFont());
+        if (panelTableroFont != null) panelTablero.setFont(panelTableroFont);
+        panelTablero.setForeground(new Color(-16777216));
         contentPane.add(panelTablero, new GridConstraints(1, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
@@ -396,4 +410,5 @@ public class Buscaminas extends JFrame implements Observer {
     public JComponent $$$getRootComponent$$$() {
         return contentPane;
     }
+
 }
