@@ -52,11 +52,12 @@ public class Tablero {
     }
 
     public void desplegarAdyacentes(int x, int y) {
-        boolean fin = false;
         Casilla act = this.devolverCasilla(x, y);
         LinkedList<Casilla> mirar = new LinkedList<>();
+        LinkedList<Casilla> visitados = new LinkedList<>();
         mirar.add(act);
-        while (!fin) {
+        visitados.add(act);
+        while (!mirar.isEmpty()) {
             Casilla c = mirar.remove();
             if (c instanceof CasillaNormal && ((CasillaNormal) c).getNumero() == 0 && !c.estaPulsada()) {
                 c.setCasillaClicada(true);
@@ -64,38 +65,40 @@ public class Tablero {
                 x = coord.getColumna();
                 y = coord.getFila();
                 Casilla arriba = this.devolverCasilla(x, y + 1);
-                anadir(arriba, mirar);
+                anadir(arriba, mirar, visitados);
                 Casilla abajo = this.devolverCasilla(x, y - 1);
-                anadir(abajo, mirar);
+                anadir(abajo, mirar, visitados);
                 Casilla derecha = this.devolverCasilla(x + 1, y);
-                anadir(derecha, mirar);
+                anadir(derecha, mirar, visitados);
                 Casilla izquierda = this.devolverCasilla(x - 1, y);
-                anadir(izquierda, mirar);
+                anadir(izquierda, mirar, visitados);
                 Casilla diagArribDer = this.devolverCasilla(x + 1, y + 1);
-                anadir(diagArribDer, mirar);
+                anadir(diagArribDer, mirar, visitados);
                 Casilla diagArribIzq = this.devolverCasilla(x - 1, y + 1);
-                anadir(diagArribIzq, mirar);
+                anadir(diagArribIzq, mirar, visitados);
                 Casilla diagAbajDer = this.devolverCasilla(x + 1, y - 1);
-                anadir(diagAbajDer, mirar);
+                anadir(diagAbajDer, mirar, visitados);
                 Casilla diagAbajIzq = this.devolverCasilla(x - 1, y - 1);
-                anadir(diagAbajIzq, mirar);
+                anadir(diagAbajIzq, mirar, visitados);
                 Juego.getmJuego().activarUpdate(coord);
             }
             this.decrementarCasillasRestantes();
-            if (mirar.isEmpty()){
-                fin = true;
-            }
         }
     }
 
-    public void anadir(Casilla casilla, LinkedList<Casilla> mirar){
+    public void anadir(Casilla casilla, LinkedList<Casilla> mirar, LinkedList<Casilla> visitados){
         if (casilla != null) {
             if (casilla instanceof CasillaNormal && ((CasillaNormal) casilla).getNumero() == 0) {
-                mirar.add(casilla);
+                if (!visitados.contains(casilla)){
+                    mirar.add(casilla);
+                    visitados.add(casilla);
+                }
             } else if (casilla instanceof CasillaNormal && ((CasillaNormal) casilla).getNumero() != 0) {
-                casilla.setCasillaClicada(true);
-                Juego.getmJuego().activarUpdate(casilla.getCoordenada());
-                this.decrementarCasillasRestantes();
+                if (!casilla.estaPulsada()){
+                    casilla.setCasillaClicada(true);
+                    this.decrementarCasillasRestantes();
+                    Juego.getmJuego().activarUpdate(casilla.getCoordenada());
+                }
             }
         }
     }

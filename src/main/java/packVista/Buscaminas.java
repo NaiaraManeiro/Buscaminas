@@ -49,7 +49,7 @@ public class Buscaminas extends JFrame implements Observer {
     public Buscaminas() {
 
         setTitle("Buscaminas");
-        setResizable(false);
+        //setResizable(false);
 
         contentPane = new JPanel();
         setContentPane(contentPane);
@@ -109,7 +109,7 @@ public class Buscaminas extends JFrame implements Observer {
             for (int j = 0; j < columnas; j++) {
                 Coordenada coord = new Coordenada(j, i);
                 casilla = new JButton();
-                casilla.setBounds(i, j, 100, 100);
+                casilla.setBounds(i, j, 53, 53);
                 casilla.setName("" + j + ";" + i + "");
                 casilla.addMouseListener(new cCasilla());
                 btntablero[i][j] = casilla;
@@ -164,10 +164,7 @@ public class Buscaminas extends JFrame implements Observer {
                             "Has ganado la partida!", "Información",
                             JOptionPane.INFORMATION_MESSAGE);
                 }
-
             }
-
-
         }
         /*
         else if (observador instanceof Cronometro) {
@@ -205,7 +202,7 @@ public class Buscaminas extends JFrame implements Observer {
                         imagen = new ImageIcon(getClass().getResource("/0.png"));
                         break;
                     case 1:
-                        imagen = new ImageIcon(getClass().getResource("/1.jpeg"));
+                        imagen = new ImageIcon(getClass().getResource("/1.png"));
                         break;
                     case 2:
                         imagen = new ImageIcon(getClass().getResource("/2.png"));
@@ -237,10 +234,10 @@ public class Buscaminas extends JFrame implements Observer {
         }
 
         if (imagen != null) {
-            Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(btntablero[pC.getFila()][pC.getColumna()].getWidth(), btntablero[pC.getFila()][pC.getColumna()].getHeight(), Image.SCALE_DEFAULT));
+            ImageIcon icono = new ImageIcon(imagen.getImage().getScaledInstance(btntablero[pC.getFila()][pC.getColumna()].getWidth(), btntablero[pC.getFila()][pC.getColumna()].getHeight(), Image.SCALE_DEFAULT));
             btntablero[pC.getFila()][pC.getColumna()].setIcon(icono);
+            //btntablero[pC.getFila()][pC.getColumna()].setIcon(new ImageIcon("D:/Uni/buscaminas/target/classes/2.png"));
             btntablero[pC.getFila()][pC.getColumna()].setText("");
-            //btntablero[pC.getFila()][pC.getColumna()].setDisabledIcon(btntablero[pC.getFila()][pC.getColumna()].getIcon());
             if (bloquear) {
                 btntablero[pC.getFila()][pC.getColumna()].setEnabled(false);
             }
