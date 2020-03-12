@@ -28,6 +28,7 @@ public class Buscaminas extends JFrame implements Observer {
     private JButton volverAlMenuButton;
     private int filas, columnas;
     private boolean mostrarPerdida;
+    private boolean mostrarGanado;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -64,10 +65,15 @@ public class Buscaminas extends JFrame implements Observer {
             public void actionPerformed(ActionEvent actionEvent) {
                 dispose(); //Cerramos la ventana actual
                 Login log = new Login(); //Abrimos la pantalla de inicio
+                log.setPreferredSize(new Dimension(375, 350));
+                log.pack();
                 log.setLocationRelativeTo(null);
                 log.setVisible(true);
+                mostrarPerdida = true;
+                mostrarGanado = true;
             }
         });
+
         reiniciarButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 dispose(); //Cerramos la ventana actual
@@ -75,6 +81,7 @@ public class Buscaminas extends JFrame implements Observer {
                 bus.setLocationRelativeTo(null);
                 bus.setVisible(true);
                 mostrarPerdida = true;
+                mostrarGanado = true;
             }
         });
 
@@ -112,6 +119,7 @@ public class Buscaminas extends JFrame implements Observer {
 
     public void jugar() {
         mostrarPerdida = false;
+        mostrarGanado = false;
         Juego.getmJuego().jugar();
         Juego.getmJuego().addObserver(this);
         //Juego.getmJuego().getCrono().addObserver(this);
@@ -146,10 +154,13 @@ public class Buscaminas extends JFrame implements Observer {
                 }
             }
 
-            if (Juego.getmJuego().haGanado() && !mostrarPerdida) {
-                JOptionPane.showMessageDialog(null,
-                        "Has ganado la partida!", "Información",
-                        JOptionPane.INFORMATION_MESSAGE);
+            if (Juego.getmJuego().haGanado()) {
+                if (!mostrarGanado) {
+                    JOptionPane.showMessageDialog(null,
+                            "Has ganado la partida!", "Información",
+                            JOptionPane.INFORMATION_MESSAGE);
+                }
+
             }
 
 

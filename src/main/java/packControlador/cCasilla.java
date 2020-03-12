@@ -28,7 +28,7 @@ public class cCasilla implements MouseListener {
                     } else {
                         if (((CasillaNormal) c).getNumero() == 0) {
                             Juego.getmJuego().getTablero().desplegarAdyacentes(x,y);
-                        } else {
+                        } else if (((CasillaNormal) c).getNumero() != 0) {
                             c.bloquearCasilla();
                             Juego.getmJuego().activarUpdate(coordenada);
                             Juego.getmJuego().getTablero().decrementarCasillasRestantes();
