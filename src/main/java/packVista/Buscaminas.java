@@ -49,7 +49,7 @@ public class Buscaminas extends JFrame implements Observer {
     public Buscaminas() {
 
         setTitle("Buscaminas");
-        //setResizable(false);
+        setResizable(false);
 
         contentPane = new JPanel();
         setContentPane(contentPane);
@@ -126,7 +126,7 @@ public class Buscaminas extends JFrame implements Observer {
         mostrarGanado = false;
         Juego.getmJuego().jugar();
         Juego.getmJuego().addObserver(this);
-        //Juego.getmJuego().getCrono().addObserver(this);
+        Juego.getmJuego().getCrono().addObserver(this);
         filas = Juego.getmJuego().getTablero().getFilas();
         columnas = Juego.getmJuego().getTablero().getColumnas();
         crearTablero(filas, columnas);
@@ -165,12 +165,15 @@ public class Buscaminas extends JFrame implements Observer {
                             JOptionPane.INFORMATION_MESSAGE);
                 }
             }
+        } else if (o instanceof Cronometro) {
+            mostrarCronometro((String) arg);
         }
-        /*
-        else if (observador instanceof Cronometro) {
-            mostrarCronometro((String) parametro);
-        }*/
     }
+
+    private void mostrarCronometro(String tiempo) {
+        getTxtCronometro().setText(tiempo);
+    }
+
 
     public void mostrarMinas() {
         for (int i = 0; i < columnas; i++) {
@@ -274,7 +277,7 @@ public class Buscaminas extends JFrame implements Observer {
             panel = new JPanel();
             panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
             panel.add(getTxtNumMinas());
-            //panel_1.add(getTxtCronometro());
+            panel.add(getTxtCronometro());
         }
         return panel;
     }
@@ -287,7 +290,15 @@ public class Buscaminas extends JFrame implements Observer {
             panelBotones.add(getBtnVolverAlMenu());
         }
         return panelBotones;
+    }
 
+    private JTextField getTxtCronometro() {
+        if (cronometro == null) {
+            cronometro = new JTextField();
+            cronometro.setEnabled(false);
+            cronometro.setColumns(3);
+        }
+        return cronometro;
     }
 
     {
@@ -385,5 +396,4 @@ public class Buscaminas extends JFrame implements Observer {
     public JComponent $$$getRootComponent$$$() {
         return contentPane;
     }
-
 }

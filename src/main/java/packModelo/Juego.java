@@ -24,6 +24,11 @@ public class Juego extends Observable {
         setModo(this.usuario.getNivel());
         this.tablero = this.nivel.generarTablero();
         derrota = false;
+        if (crono==null){
+            this.crono = new Cronometro();
+        } else {
+            crono.reset();
+        }
     }
 
     public void setModo(Modo pModo){
@@ -34,9 +39,7 @@ public class Juego extends Observable {
         this.usuario = new Usuario(pNombre, pNivel);
     }
 
-    public Tablero getTablero() {
-        return tablero;
-    }
+    public Tablero getTablero() { return tablero; }
 
     public Cronometro getCrono() {
         return crono;
@@ -47,9 +50,7 @@ public class Juego extends Observable {
         activarUpdate(coord);
     }
 
-    public boolean haPerdido(){
-        return derrota;
-    }
+    public boolean haPerdido(){ return derrota; }
 
     public boolean haGanado() { return this.tablero.getMinas() == this.tablero.getnCasillasRestantes(); }
 
