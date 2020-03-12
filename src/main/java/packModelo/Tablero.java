@@ -99,4 +99,23 @@ public class Tablero {
             }
         }
     }
+    public void imprimirChivato() {
+
+        Casilla casilla;
+        for (int i = 0; i < getFilas(); i++) {
+            for (int j = 0; j < getColumnas(); j++) {
+                Coordenada c = new Coordenada(j,i);
+                casilla = devolverCasilla(c.getColumna(),c.getFila());
+                if(casilla instanceof CasillaMina) {
+                    System.out.print(" * ");
+                } else if(casilla instanceof CasillaNormal && ((CasillaNormal) casilla).getNumero() != 0) {
+                    System.out.print(" " + ((CasillaNormal) casilla).getNumero() + " ");
+                } else if(casilla instanceof CasillaNormal && ((CasillaNormal) casilla).getNumero() == 0){
+                    System.out.print(" 0 ");
+                }else{}
+            }
+            System.out.println("");
+        }
+        System.out.println("");
+    }
 }

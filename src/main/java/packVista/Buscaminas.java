@@ -118,6 +118,7 @@ public class Buscaminas extends JFrame implements Observer {
         filas = Juego.getmJuego().getTablero().getFilas();
         columnas = Juego.getmJuego().getTablero().getColumnas();
         crearTablero(filas, columnas);
+        Juego.getmJuego().getTablero().imprimirChivato();
     }
 
     @Override
@@ -145,7 +146,7 @@ public class Buscaminas extends JFrame implements Observer {
                 }
             }
 
-            if (Juego.getmJuego().haGanado()) {
+            if (Juego.getmJuego().haGanado() && !mostrarPerdida) {
                 JOptionPane.showMessageDialog(null,
                         "Has ganado la partida!", "Información",
                         JOptionPane.INFORMATION_MESSAGE);
