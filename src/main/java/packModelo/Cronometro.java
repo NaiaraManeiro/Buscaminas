@@ -16,12 +16,11 @@ public class Cronometro extends Observable implements Runnable {
     public int getMinutos() { return minutos; }
     public int getSegundos() { return segundos; }
 
-    //public void pararCrono(){stopped=true;}
     @Override
     public void run() {
         minutos = 0;
         segundos = 0;
-        //stopped = false;
+        stopped = false;
         while(!stopped) {
             if(segundos == 60) {
                 minutos++;
@@ -36,14 +35,16 @@ public class Cronometro extends Observable implements Runnable {
             segundos++;
             if (Juego.getmJuego().haPerdido() || Juego.getmJuego().haGanado()){
                 stopped = true;
-                reset();
             }
         }
     }
+
     public void reset(){
         minutos = 0;
         segundos = 0;
-        stopped = false;
+        setChanged();
+        String tiempo = (segundos < 10) ? minutos+":0"+segundos : minutos+":"+segundos ;
+        notifyObservers(tiempo);
     }
 }
 

@@ -27,11 +27,7 @@ public class Juego extends Observable {
         setModo(this.usuario.getNivel());
         this.tablero = this.nivel.generarTablero();
         derrota = false;
-        if (crono==null){
-            this.crono = new Cronometro();
-        } else {
-            crono.reset();
-        }
+        this.crono = new Cronometro();
     }
 
     public void setModo(Modo pModo){
@@ -54,14 +50,12 @@ public class Juego extends Observable {
     }
 
     public boolean haPerdido(){ return derrota; }
-
     public boolean haGanado() { return this.tablero.getMinas() == this.tablero.getnCasillasRestantes(); }
 
     public String getnMinasRestantes() { return nMinasRestantes+""; }
     public void setnMinasRestantes(int minas){ nMinasRestantes = minas;}
 
     public void incrementarMinas(){nMinasRestantes++;}
-
     public void decrementarMinas(){nMinasRestantes--;}
 
     public void marcarDesmarcarCasilla(Coordenada coord){

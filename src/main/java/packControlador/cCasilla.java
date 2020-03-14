@@ -35,10 +35,8 @@ public class cCasilla implements MouseListener {
                         }
                     }
                 }
-
             } else if (e.getButton() == MouseEvent.BUTTON3) { //Mira a ver si se ha clicado con el botón derecho del ratón
                 Juego.getmJuego().marcarDesmarcarCasilla(coordenada);
-
             }
         }
     }

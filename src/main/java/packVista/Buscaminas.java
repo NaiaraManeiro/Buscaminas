@@ -119,7 +119,6 @@ public class Buscaminas extends JFrame implements Observer {
                 asignarIcono(coord);
             }
         }
-
         minasRestantes.setText(Juego.getmJuego().getnMinasRestantes());
     }
 
@@ -153,9 +152,7 @@ public class Buscaminas extends JFrame implements Observer {
             if (Juego.getmJuego().haPerdido()) {
                 btntablero[fila][col].setBackground(new Color(252, 3, 3)); // La mina pulsada muestra otro fondo
                 mostrarMinas();
-                //
                 if (!mostrarPerdida) {
-                    //
                     JOptionPane.showMessageDialog(null, "Has perdido la partida!",
                             "Información", JOptionPane.ERROR_MESSAGE);
                 }
@@ -163,12 +160,12 @@ public class Buscaminas extends JFrame implements Observer {
 
             if (Juego.getmJuego().haGanado()) {
                 if (!mostrarGanado) {
-                    //Juego.getmJuego().getCrono().pararCrono();
                     JOptionPane.showMessageDialog(null,
                             "Has ganado la partida!", "Información",
                             JOptionPane.INFORMATION_MESSAGE);
                 }
             }
+
         } else if (o instanceof Cronometro) {
             mostrarCronometro((String) arg);
         }
@@ -177,7 +174,6 @@ public class Buscaminas extends JFrame implements Observer {
     private void mostrarCronometro(String tiempo) {
         getTxtCronometro().setText(tiempo);
     }
-
 
     public void mostrarMinas() {
         for (int i = 0; i < columnas; i++) {
@@ -410,5 +406,4 @@ public class Buscaminas extends JFrame implements Observer {
     public JComponent $$$getRootComponent$$$() {
         return contentPane;
     }
-
 }
