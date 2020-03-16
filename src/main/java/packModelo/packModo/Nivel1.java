@@ -1,7 +1,5 @@
 package packModelo.packModo;
 
-import packModelo.packModo.Modo;
-
 public class Nivel1 extends Modo {
 
     public Nivel1() {}

@@ -35,8 +35,6 @@ public class Buscaminas extends JFrame implements Observer {
                 try {
                     Buscaminas frame = new Buscaminas();
                     frame.pack();
-                    frame.setLocationRelativeTo(null);
-                    frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -62,7 +60,7 @@ public class Buscaminas extends JFrame implements Observer {
         cronometro.setDisabledTextColor(new Color(0, 0, 0));
         minasRestantes.setDisabledTextColor(new Color(0, 0, 0));
 
-        volverAlMenuButton.addActionListener(new ActionListener() { //ARREGLAAAR!
+        volverAlMenuButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 dispose(); //Cerramos la ventana actual
                 Login log = new Login(); //Abrimos la pantalla de inicio

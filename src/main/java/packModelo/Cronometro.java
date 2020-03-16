@@ -47,4 +47,3 @@ public class Cronometro extends Observable implements Runnable {
         notifyObservers(tiempo);
     }
 }
-
