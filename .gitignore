@@ -4,3 +4,5 @@
 target/
 
 buscaminas.iml
+
+.DS_Store
