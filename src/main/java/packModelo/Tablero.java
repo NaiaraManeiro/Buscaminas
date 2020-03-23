@@ -12,6 +12,7 @@ public class Tablero {
     private int minas;
     private int nCasillasRestantes;
 
+    public Tablero(){}
     public Casilla devolverCasilla(int x, int y) {
         try{
             return this.matriz[x][y];
