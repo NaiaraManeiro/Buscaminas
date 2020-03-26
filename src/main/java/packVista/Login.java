@@ -38,7 +38,7 @@ public class Login extends JDialog {
         setTitle("Buscaminas: Usuario");
         setResizable(false);
         setContentPane(rootpanel);
-        
+
         comboBoxNivel.addItem(1);
         comboBoxNivel.addItem(2);
         comboBoxNivel.addItem(3);
