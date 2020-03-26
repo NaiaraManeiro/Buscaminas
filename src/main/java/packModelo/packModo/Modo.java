@@ -5,20 +5,16 @@ import packModelo.packCasilla.*;
 
 import java.util.Random;
 
-public abstract class Modo {
+public class Modo {
     protected Tablero tablero;
+    private int numero;
 
-    protected abstract void definirAltura();
-    protected abstract void definirAnchura();
-    protected abstract void definirMinas();
-
+    public Modo(int pNivel){
+        this.numero = pNivel;
+    }
     public Tablero generarTablero() {
         this.tablero = new Tablero();
-
-        definirAltura();
-        definirAnchura();
-        definirMinas();
-
+        asignarParametros();
         int altura = this.tablero.getFilas();
         int anchura = this.tablero.getColumnas();
         int minas = this.tablero.getMinas();
@@ -37,7 +33,21 @@ public abstract class Modo {
         ponerNumeros();
         return tablero;
     }
-
+    private void asignarParametros(){
+        if (numero == 1){
+            tablero.setAltura(7);
+            tablero.setAnchura(10);
+            tablero.setMinas(10);
+        } else if (numero == 2){
+            tablero.setAltura(10);
+            tablero.setAnchura(15);
+            tablero.setMinas(30);
+        } else if (numero == 1){
+            tablero.setAltura(12);
+            tablero.setAnchura(25);
+            tablero.setMinas(75);
+        }else{}
+    }
     private void ponerMinas(){
         boolean hayMina;
         int fila, columna;

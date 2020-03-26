@@ -38,7 +38,7 @@ public class Login extends JDialog {
         setTitle("Buscaminas: Usuario");
         setResizable(false);
         setContentPane(rootpanel);
-
+        
         comboBoxNivel.addItem(1);
         comboBoxNivel.addItem(2);
         comboBoxNivel.addItem(3);
@@ -82,6 +82,56 @@ public class Login extends JDialog {
         return valido;
     }
 
+    private JButton getAceptarButton() {
+        if (aceptarButton == null) {
+            aceptarButton = new JButton("Aceptar");
+        }
+        return aceptarButton;
+    }
+    private JPanel getrootpanel() {
+        if (rootpanel == null) {
+            rootpanel = new JPanel();
+            rootpanel.add(getPanel1());
+        }
+        return rootpanel;
+    }
 
+    private JTextField getTextusuario() {
+        if (textusuario == null) {
+            textusuario = new JTextField();
+        }
+        return textusuario;
+    }
 
+    private JLabel getLblnombre() {
+        if (lblnombre == null) {
+            lblnombre = new JLabel("Nombre: ");
+        }
+        return lblnombre;
+    }
+
+    private JLabel getLblnivel() {
+        if (lblnivel == null) {
+            lblnivel = new JLabel("Nivel: ");
+        }
+        return lblnombre;
+    }
+
+    private JPanel getPanel1() {
+        if (panel1 == null) {
+            panel1 = new JPanel();
+            rootpanel.add(getAceptarButton());
+            rootpanel.add(getcomboBoxNivel());
+            rootpanel.add(getLblnivel());
+            rootpanel.add(getLblnombre());
+            rootpanel.add(getTextusuario());
+        }
+        return panel1;
+    }
+    private JComboBox getcomboBoxNivel() {
+        if (comboBoxNivel == null) {
+            comboBoxNivel = new JComboBox();
+        }
+        return comboBoxNivel;
+    }
 }
