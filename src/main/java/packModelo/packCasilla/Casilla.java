@@ -16,14 +16,11 @@ public abstract class Casilla {
 
     public Coordenada getCoordenada() { return this.coordenada; }
 
-
-
     public void marcarDesmarcarCasilla(){
-        if(this.estado instanceof NoClicada){
+        if (this.estado instanceof NoClicada){
             setEstado(new Bandera(this.getCoordenada()));
             Juego.getmJuego().decrementarMinas();
-        }
-        else if(this.estado instanceof Bandera){
+        } else if (this.estado instanceof Bandera){
             setEstado(new NoClicada(this.getCoordenada()));
             Juego.getmJuego().incrementarMinas();
         }
