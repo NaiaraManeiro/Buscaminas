@@ -146,6 +146,7 @@ public class Buscaminas extends JFrame implements Observer {
             }
 
             if (c.getEstado() instanceof Clicada || c.getEstado() instanceof NoClicada) {
+                minasRestantes.setText(Juego.getmJuego().getnMinasRestantes());
                 asignarIcono(coord);
             }
 
