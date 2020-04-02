@@ -141,11 +141,14 @@ public class Buscaminas extends JFrame implements Observer {
             Casilla c = Juego.getmJuego().getTablero().devolverCasilla(col, fila);
 
             if (c.getEstado() instanceof Clicada) {
-                if (c.getEstado() instanceof Bandera) {
-                    minasRestantes.setText(Juego.getmJuego().getnMinasRestantes());
-                }
                 asignarIcono(coord);
             }
+
+            if (c.getEstado() instanceof Bandera) {
+                minasRestantes.setText(Juego.getmJuego().getnMinasRestantes());
+                asignarIcono(coord);
+            }
+
             if (Juego.getmJuego().haPerdido()) {
                 btntablero[fila][col].setBackground(new Color(252, 3, 3)); // La mina pulsada muestra otro fondo
                 mostrarMinas();
@@ -186,17 +189,14 @@ public class Buscaminas extends JFrame implements Observer {
     }
 
     private void asignarIcono(Coordenada pC) {
-        boolean bloquear = false;
         ImageIcon imagen = null;
         Casilla c = Juego.getmJuego().getTablero().devolverCasilla(pC.getColumna(), pC.getFila());
         if (c.getEstado() instanceof NoClicada) {
             imagen = new ImageIcon(getClass().getResource("/facingDown.png"));
-        } else {
+        } else if  (c.getEstado() instanceof Clicada) {
             if (c instanceof CasillaMina) {
                 imagen = new ImageIcon(getClass().getResource("/bomb.png"));
-                bloquear = true;
             } else if (c instanceof CasillaNormal) {
-                bloquear = true;
                 switch (((CasillaNormal) c).getNumero()) {
                     case 0:
                         imagen = new ImageIcon(getClass().getResource("/0.png"));
@@ -228,9 +228,9 @@ public class Buscaminas extends JFrame implements Observer {
                     default:
                         break;
                 }
-            } else if (c.getEstado() instanceof Bandera) {
-                imagen = new ImageIcon(getClass().getResource("/flagged.png"));
             }
+        } else {
+            imagen = new ImageIcon(getClass().getResource("/flagged.png"));
         }
 
         if (imagen != null) {
