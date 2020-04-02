@@ -30,6 +30,7 @@ public class Juego extends Observable {
         this.crono = new Cronometro();
     }
 
+    public Modo getModo(){return nivel;}
     public void setModo(Modo pModo){
         this.nivel = pModo;
     }

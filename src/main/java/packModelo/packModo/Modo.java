@@ -108,4 +108,6 @@ public class Modo {
         incrementarCasilla(x+1, y+1);
         incrementarCasilla(x+1, y-1);
     }
+
+    public int getNumero(){return numero;}
 }

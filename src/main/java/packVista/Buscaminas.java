@@ -109,7 +109,16 @@ public class Buscaminas extends JFrame implements Observer {
             for (int j = 0; j < columnas; j++) {
                 Coordenada coord = new Coordenada(j, i);
                 casilla = new JButton();
-                casilla.setBounds(i, j, 53, 53);
+                if (Juego.getmJuego().getModo().getNumero() == 1) {
+                    casilla.setBounds(i, j, 63, 63);
+                } else if (Juego.getmJuego().getModo().getNumero() == 2) {
+                    this.setMinimumSize(new Dimension(1000, 800));
+                    casilla.setBounds(i, j, 65, 65);
+                } else {
+                    this.setMinimumSize(new Dimension(1700, 1000));
+                    casilla.setBounds(i, j, 70, 70);
+                }
+
                 casilla.setName("" + j + ";" + i + "");
                 casilla.addMouseListener(new cCasilla());
                 btntablero[i][j] = casilla;
@@ -141,8 +150,23 @@ public class Buscaminas extends JFrame implements Observer {
             Casilla c = Juego.getmJuego().getTablero().devolverCasilla(col, fila);
 
             if (c.getEstado() instanceof Bandera) {
-                minasRestantes.setText(Juego.getmJuego().getnMinasRestantes());
-                asignarIcono(coord);
+                if (Integer.parseInt(Juego.getmJuego().getnMinasRestantes()) < 0) {
+                    if (Juego.getmJuego().getModo().getNumero() == 1) {
+                        JOptionPane.showMessageDialog(null, "No se pueden poner más de 10 banderitas.",
+                                "Información", JOptionPane.ERROR_MESSAGE);
+                    } else if (Juego.getmJuego().getModo().getNumero() == 2) {
+                        JOptionPane.showMessageDialog(null, "No se pueden poner más de 30 banderitas.",
+                                "Información", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se pueden poner más de 75 banderitas.",
+                                "Información", JOptionPane.ERROR_MESSAGE);
+                    }
+                    c.setEstado(new NoClicada(coord));
+                    Juego.getmJuego().incrementarMinas();
+                } else {
+                    minasRestantes.setText(Juego.getmJuego().getnMinasRestantes());
+                    asignarIcono(coord);
+                }
             }
 
             if (c.getEstado() instanceof Clicada || c.getEstado() instanceof NoClicada) {
