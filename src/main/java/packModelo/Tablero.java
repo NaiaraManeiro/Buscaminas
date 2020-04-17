@@ -21,10 +21,6 @@ public class Tablero {
         }
     }
 
-    public void marcarDesmarcarCasilla(int x, int y){
-        matriz[x][y].marcarDesmarcarCasilla();
-    }
-
     public int getMinas(){return minas;}
     public void setMinas(int pMinas){
         this.minas = pMinas;
