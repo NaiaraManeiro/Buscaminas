@@ -100,6 +100,7 @@ public class Tablero {
             }
         }
     }
+
     public void imprimirChivato() {
 
         Casilla casilla;

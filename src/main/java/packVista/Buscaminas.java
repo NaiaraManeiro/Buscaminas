@@ -28,6 +28,7 @@ public class Buscaminas extends JFrame implements Observer {
     private int filas, columnas;
     private boolean mostrarPerdida;
     private boolean mostrarGanado;
+    private boolean finPartida;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -132,6 +133,7 @@ public class Buscaminas extends JFrame implements Observer {
     public void jugar() {
         mostrarPerdida = false;
         mostrarGanado = false;
+        finPartida = false;
         Juego.getmJuego().jugar();
         Juego.getmJuego().addObserver(this);
         Juego.getmJuego().getCrono().addObserver(this);
@@ -177,6 +179,8 @@ public class Buscaminas extends JFrame implements Observer {
             if (Juego.getmJuego().haPerdido()) {
                 btntablero[fila][col].setBackground(new Color(252, 3, 3)); // La mina pulsada muestra otro fondo
                 mostrarMinas();
+                finPartida = true;
+                comprobarBanderas();
                 if (!mostrarPerdida) {
                     JOptionPane.showMessageDialog(null, "Has perdido la partida!",
                             "Información", JOptionPane.ERROR_MESSAGE);
@@ -213,49 +217,67 @@ public class Buscaminas extends JFrame implements Observer {
         }
     }
 
+    public void comprobarBanderas() {
+        for (int i = 0; i < columnas; i++) {
+            for (int j = 0; j < filas; j++) {
+                Casilla c = Juego.getmJuego().getTablero().devolverCasilla(i, j);
+                if (c.getEstado() instanceof Bandera && c instanceof CasillaNormal) {
+                    asignarIcono(c.getCoordenada());
+                }
+            }
+        }
+    }
+
     private void asignarIcono(Coordenada pC) {
         ImageIcon imagen = null;
         Casilla c = Juego.getmJuego().getTablero().devolverCasilla(pC.getColumna(), pC.getFila());
-        if (c.getEstado() instanceof NoClicada) {
-            imagen = new ImageIcon(getClass().getResource("/facingDown.png"));
-        } else if (c.getEstado() instanceof Clicada) {
-            if (c instanceof CasillaMina) {
-                imagen = new ImageIcon(getClass().getResource("/bomb.png"));
-            } else if (c instanceof CasillaNormal) {
-                switch (((CasillaNormal) c).getNumero()) {
-                    case 0:
-                        imagen = new ImageIcon(getClass().getResource("/0.png"));
-                        break;
-                    case 1:
-                        imagen = new ImageIcon(getClass().getResource("/1.png"));
-                        break;
-                    case 2:
-                        imagen = new ImageIcon(getClass().getResource("/2.png"));
-                        break;
-                    case 3:
-                        imagen = new ImageIcon(getClass().getResource("/3.png"));
-                        break;
-                    case 4:
-                        imagen = new ImageIcon(getClass().getResource("/4.png"));
-                        break;
-                    case 5:
-                        imagen = new ImageIcon(getClass().getResource("/5.png"));
-                        break;
-                    case 6:
-                        imagen = new ImageIcon(getClass().getResource("/6.png"));
-                        break;
-                    case 7:
-                        imagen = new ImageIcon(getClass().getResource("/7.png"));
-                        break;
-                    case 8:
-                        imagen = new ImageIcon(getClass().getResource("/8.png"));
-                        break;
-                    default:
-                        break;
-                }
+
+        if (finPartida) {
+            if (c.getEstado() instanceof Bandera && c instanceof CasillaNormal) {
+                imagen = new ImageIcon(getClass().getResource("/wrongFlagged.png"));
             }
-        } else if (c.getEstado() instanceof Bandera) {
-            imagen = new ImageIcon(getClass().getResource("/flagged.png"));
+        } else {
+            if (c.getEstado() instanceof NoClicada) {
+                imagen = new ImageIcon(getClass().getResource("/facingDown.png"));
+            } else if (c.getEstado() instanceof Clicada) {
+                if (c instanceof CasillaMina) {
+                    imagen = new ImageIcon(getClass().getResource("/bomb.png"));
+                } else if (c instanceof CasillaNormal) {
+                    switch (((CasillaNormal) c).getNumero()) {
+                        case 0:
+                            imagen = new ImageIcon(getClass().getResource("/0.png"));
+                            break;
+                        case 1:
+                            imagen = new ImageIcon(getClass().getResource("/1.png"));
+                            break;
+                        case 2:
+                            imagen = new ImageIcon(getClass().getResource("/2.png"));
+                            break;
+                        case 3:
+                            imagen = new ImageIcon(getClass().getResource("/3.png"));
+                            break;
+                        case 4:
+                            imagen = new ImageIcon(getClass().getResource("/4.png"));
+                            break;
+                        case 5:
+                            imagen = new ImageIcon(getClass().getResource("/5.png"));
+                            break;
+                        case 6:
+                            imagen = new ImageIcon(getClass().getResource("/6.png"));
+                            break;
+                        case 7:
+                            imagen = new ImageIcon(getClass().getResource("/7.png"));
+                            break;
+                        case 8:
+                            imagen = new ImageIcon(getClass().getResource("/8.png"));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            } else if (c.getEstado() instanceof Bandera) {
+                imagen = new ImageIcon(getClass().getResource("/flagged.png"));
+            }
         }
 
         if (imagen != null) {

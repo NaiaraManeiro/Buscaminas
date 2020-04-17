@@ -45,6 +45,8 @@ public class Juego extends Observable {
         return crono;
     }
 
+    public boolean getDerrota() { return derrota;}
+
     public void terminarPartida(Coordenada coord){
         derrota = true;
         activarUpdate(coord);
