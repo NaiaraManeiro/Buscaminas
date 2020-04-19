@@ -21,6 +21,9 @@ public class Puntuaciones {
         if(miPuntuaciones == null) miPuntuaciones = new Puntuaciones();
         return miPuntuaciones;
     }
+
+
+
     public void anadirPuntuacion(String nombre, Integer puntuacion, Integer nivel) {
         if (nivel == 1){
             if (nivel1.size() == 10) {
@@ -105,5 +108,65 @@ public class Puntuaciones {
                 if (Integer.parseInt(usu[2]) == 3) nivel3.put(Integer.parseInt(usu[0]), usu[1]);
             }
         }
+    }
+
+    /*Set<Integer> set1 = nivel1.keySet();
+    Set<Integer> set2 = nivel2.keySet();
+    Set<Integer> set3 = nivel3.keySet();
+
+    Iterator it1 = set1.iterator();
+    Iterator it2 = set2.iterator();
+    Iterator it3 = set3.iterator();
+
+
+    private Iterator<Integer> getIterator1() {
+        return set1.iterator();
+    }
+
+    private Iterator<Integer> getIterator2() {
+        return miPuntuaciones.set2.iterator();
+    }
+
+    private Iterator<Integer> getIterator3() {
+        return miPuntuaciones.set3.iterator();
+    }*/
+
+    public TreeMap<Integer,String> imprimir(Usuario usuario) {
+        Puntuaciones.getMiPuntuaciones().anadirPuntuacion(usuario.getNombre(),usuario.getPuntuacionInt(),usuario.getNivel().getNumero());
+        int niv = usuario.getNivel().getNumero();
+        TreeMap<Integer,String> listaPuntuaciones = new TreeMap<Integer, String>();
+        if(niv==1){
+            for (Map.Entry<Integer, String> obj : nivel1.entrySet()) {
+                listaPuntuaciones.put(obj.getKey(),obj.getValue());
+            }
+        }
+        else if(niv==2){
+            for (Map.Entry<Integer, String> obj : nivel2.entrySet()) {
+                listaPuntuaciones.put(obj.getKey(),obj.getValue());
+            }
+        }
+        else if(niv==3){
+            for (Map.Entry<Integer, String> obj : nivel3.entrySet()) {
+                listaPuntuaciones.put(obj.getKey(),obj.getValue());
+            }
+        }
+
+        /*if (niv==1) {itr = miPuntuaciones.getIterator1();}
+        else if (niv==2) {itr = miPuntuaciones.getIterator2();}
+        else if (niv==3) {itr = miPuntuaciones.getIterator3();}
+
+        Integer unJugador = null;
+        int ind = 1;
+        TreeMap<Integer,String> listaPuntuaciones = new TreeMap<Integer, String>();
+        while ( itr.hasNext() ) {
+            unJugador = itr.next();
+            listaPuntuaciones.put(unJugador.getPuntuacionInt(),unJugador.getNombre());
+            ind = ind + 1;
+        }
+
+        try {miPuntuaciones.guardarPuntuaciones();}
+        catch (IOException e) {e.printStackTrace();}*/
+
+        return listaPuntuaciones;
     }
 }

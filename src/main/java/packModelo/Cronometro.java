@@ -1,8 +1,12 @@
 package packModelo;
 
+import packModelo.packCasilla.Casilla;
+import packModelo.packCasilla.NoClicada;
+
 import java.util.Observable;
 
 public class Cronometro extends Observable implements Runnable {
+
     private Thread t;
     private int minutos;
     private int segundos;
@@ -12,6 +16,9 @@ public class Cronometro extends Observable implements Runnable {
         this.t = new Thread(this, "Crono");
         this.t.start();
     }
+
+    public int getMinutos() { return minutos; }
+    public int getSegundos() { return segundos; }
 
     @Override
     public void run() {
