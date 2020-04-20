@@ -404,7 +404,7 @@ public class Buscaminas extends JFrame implements Observer {
         reiniciarButton.setBorderPainted(false);
         reiniciarButton.setContentAreaFilled(false);
         reiniciarButton.setForeground(new Color(-9999251));
-        reiniciarButton.setIcon(new ImageIcon(getClass().getResource("/facesmile.gif")));
+        reiniciarButton.setIcon(new ImageIcon(getClass().getResource("/facesmile.png")));
         reiniciarButton.setLabel("");
         reiniciarButton.setMaximumSize(new Dimension(30, 30));
         reiniciarButton.setMinimumSize(new Dimension(30, 30));
@@ -478,5 +478,4 @@ public class Buscaminas extends JFrame implements Observer {
     public JComponent $$$getRootComponent$$$() {
         return contentPane;
     }
-
 }
