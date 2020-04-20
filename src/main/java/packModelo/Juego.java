@@ -31,7 +31,7 @@ public class Juego extends Observable {
         derrota = false;
     }
     public void iniciarCrono(){
-        this.crono = new Cronometro();
+        if (this.crono == null) this.crono = new Cronometro();
     }
     public Modo getModo(){return nivel;}
     public void setModo(Modo pModo){
@@ -44,9 +44,7 @@ public class Juego extends Observable {
 
     public Tablero getTablero() { return tablero; }
 
-    public Cronometro getCrono() {
-        return crono;
-    }
+    public Cronometro getCrono() { return crono; }
 
     public boolean getDerrota() { return derrota;}
 
@@ -67,7 +65,7 @@ public class Juego extends Observable {
         setChanged();
         notifyObservers(coord);
     }
-
+    public boolean cronoInicializado(){return crono == null;}
     /*public TreeMap<Integer,String> mostrarPuntuacion() throws IOException {
         Usuario u = new Usuario(usuario.getNombre(),usuario.getNivel().getNumero());
         u.setMinutos(crono.getMinutos());
