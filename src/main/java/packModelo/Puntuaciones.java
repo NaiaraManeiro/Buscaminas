@@ -16,8 +16,13 @@ public class Puntuaciones {
         nivel1 = new TreeMap<>();
         nivel2 = new TreeMap<>();
         nivel3 = new TreeMap<>();
+        try {
+            cargarPuntuaciones();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-    public static Puntuaciones getMiPuntuaciones() {
+    public static Puntuaciones getMiPuntuaciones() throws IOException {
         if(miPuntuaciones == null) miPuntuaciones = new Puntuaciones();
         return miPuntuaciones;
     }
@@ -27,24 +32,27 @@ public class Puntuaciones {
     public void anadirPuntuacion(String nombre, Integer puntuacion, Integer nivel) {
         if (nivel == 1){
             if (nivel1.size() == 10) {
-                if (nivel1.lowerKey(puntuacion) >= puntuacion) {
-                    nivel1.replace(puntuacion, nombre);
+                if (nivel1.firstKey() >= puntuacion) {
+                    nivel1.remove(nivel1.firstKey());
+                    nivel1.put(puntuacion, nombre);
                 }
             } else if (nivel1.size() < 10) {
                 nivel1.put(puntuacion, nombre);
             }
         } else if(nivel == 2){
             if (nivel2.size() == 10) {
-                if (nivel2.lowerKey(puntuacion) >= puntuacion) {
-                    nivel2.replace(puntuacion, nombre);
+                if (nivel2.firstKey() >= puntuacion) {
+                    nivel2.remove(nivel2.firstKey());
+                    nivel2.put(puntuacion, nombre);
                 }
             } else if (nivel2.size() < 10) {
                 nivel2.put(puntuacion, nombre);
             }
         } else if(nivel == 3){
             if (nivel3.size() == 10) {
-                if (nivel3.lowerKey(puntuacion) >= puntuacion) {
-                    nivel3.replace(puntuacion, nombre);
+                if (nivel3.firstKey() >= puntuacion) {
+                    nivel3.remove(nivel3.firstKey());
+                    nivel3.put(puntuacion, nombre);
                 }
             } else if (nivel3.size() < 10) {
                 nivel3.put(puntuacion, nombre);
@@ -95,14 +103,19 @@ public class Puntuaciones {
         }
     }
     public void cargarPuntuaciones() throws IOException {
-        File archivo = new File ("puntuaciones.txt");
+        File archivo = new File ("/Users/aitorjavierperez/puntuaciones.txt");
         if (archivo.exists()) {
             FileReader fr = new FileReader(archivo);
             BufferedReader br = new BufferedReader(fr);
             String linea;
             String[] usu;
             while ((linea = br.readLine()) != null) {
-                usu = linea.split("\\s+--->\\s+");
+                usu = linea.split("--->");
+                /*for(int i = 0; i<usu.length; i++){
+                    System.out.println(i);
+                    System.out.println(usu[0]);
+                    System.out.println(usu[1]);
+                }*/
                 if (Integer.parseInt(usu[2]) == 1) nivel1.put(Integer.parseInt(usu[0]), usu[1]);
                 if (Integer.parseInt(usu[2]) == 2) nivel2.put(Integer.parseInt(usu[0]), usu[1]);
                 if (Integer.parseInt(usu[2]) == 3) nivel3.put(Integer.parseInt(usu[0]), usu[1]);
@@ -131,7 +144,7 @@ public class Puntuaciones {
         return miPuntuaciones.set3.iterator();
     }*/
 
-    public TreeMap<Integer,String> imprimir(Usuario usuario) {
+    /*public TreeMap<Integer,String> imprimir(Usuario usuario) {
         Puntuaciones.getMiPuntuaciones().anadirPuntuacion(usuario.getNombre(),usuario.getPuntuacionInt(),usuario.getNivel().getNumero());
         int niv = usuario.getNivel().getNumero();
         TreeMap<Integer,String> listaPuntuaciones = new TreeMap<Integer, String>();
@@ -167,6 +180,13 @@ public class Puntuaciones {
         try {miPuntuaciones.guardarPuntuaciones();}
         catch (IOException e) {e.printStackTrace();}*/
 
-        return listaPuntuaciones;
-    }
+       /* return listaPuntuaciones;
+    }*/
+       /*public static void main(String[]args) throws IOException {
+           Puntuaciones.getMiPuntuaciones().cargarPuntuaciones();
+           TreeMap<Integer,String> as = Puntuaciones.getMiPuntuaciones().getLista(1);
+           for (Object a: as.keySet()){
+               System.out.println("seg: " +a +" nombre: "+ as.get(a));
+           }
+       }*/
 }

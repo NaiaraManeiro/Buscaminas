@@ -53,7 +53,6 @@ public class Juego extends Observable {
         derrota = true;
         activarUpdate(coord);
     }
-
     public boolean haPerdido(){ return derrota; }
     public boolean haGanado() { return this.tablero.getMinas() == this.tablero.getnCasillasRestantes(); }
 
@@ -68,18 +67,15 @@ public class Juego extends Observable {
         notifyObservers(coord);
     }
 
-    public TreeMap<Integer,String> mostrarPuntuacion() {
+    /*public TreeMap<Integer,String> mostrarPuntuacion() throws IOException {
         Usuario u = new Usuario(usuario.getNombre(),usuario.getNivel().getNumero());
         u.setMinutos(crono.getMinutos());
         u.setSegundos(crono.getSegundos());
         return Puntuaciones.getMiPuntuaciones().imprimir(usuario);
-    }
+    }*/
 
-    private void cargarPuntuaciones(){
-        try {
-            Puntuaciones.getMiPuntuaciones().cargarPuntuaciones();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public Usuario getUsuario(){return usuario;}
+    public int getPuntuacion(){
+        return crono.getMinutos()*60+crono.getSegundos();
     }
 }
