@@ -139,7 +139,7 @@ public class Buscaminas extends JFrame implements Observer {
         finPartida = false;
         Juego.getmJuego().jugar();
         Juego.getmJuego().addObserver(this);
-        Juego.getmJuego().getCrono().addObserver(this);
+        //Juego.getmJuego().getCrono().addObserver(this);
         filas = Juego.getmJuego().getTablero().getFilas();
         columnas = Juego.getmJuego().getTablero().getColumnas();
         crearTablero(filas, columnas);
@@ -148,6 +148,7 @@ public class Buscaminas extends JFrame implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+        Juego.getmJuego().getCrono().addObserver(this);
         if (o instanceof Juego) {
             Coordenada coord = (Coordenada) arg;
             int fila = coord.getFila();
@@ -173,27 +174,20 @@ public class Buscaminas extends JFrame implements Observer {
                     asignarIcono(coord);
                 }
             }
-
             if (c.getEstado() instanceof Clicada || c.getEstado() instanceof NoClicada) {
                 minasRestantes.setText(Juego.getmJuego().getnMinasRestantes());
                 asignarIcono(coord);
             }
-
             if (Juego.getmJuego().haPerdido()) {
                 btntablero[fila][col].setBackground(new Color(252, 3, 3)); // La mina pulsada muestra otro fondo
                 mostrarMinas();
                 finPartida = true;
                 comprobarBanderas();
                 if (!mostrarPerdida) {
-                    JOptionPane.showMessageDialog(null, "Has perdido la partida!",
-                            "Información", JOptionPane.ERROR_MESSAGE);
-
+                    JOptionPane.showMessageDialog(null, "Has perdido la partida!", "Información", JOptionPane.ERROR_MESSAGE);
                     mostrarPerdida = true;
-
                 }
-
             }
-
             if (Juego.getmJuego().haGanado()) {
                 if (!mostrarGanado) {
                     JOptionPane.showMessageDialog(null,
@@ -206,17 +200,8 @@ public class Buscaminas extends JFrame implements Observer {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    /*TreeMap<Integer, String> puntuaciones = Juego.getmJuego().mostrarPuntuacion();
-                    dispose(); //Cerramos la ventana actual
-                    vPuntuaciones punt = new vPuntuaciones(puntuaciones);
-                    //vPuntuaciones punt = new vPuntuaciones();
-                    punt.setPreferredSize(new Dimension(450, 400));
-                    punt.pack();
-                    punt.setLocationRelativeTo(null);
-                    punt.setVisible(true);*/
                 }
             }
-
         } else if (o instanceof Cronometro) {
             mostrarCronometro((String) arg);
         }
