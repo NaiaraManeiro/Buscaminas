@@ -72,7 +72,7 @@ public class Puntuaciones {
         File f;
         FileWriter w;
         BufferedWriter bw;
-        PrintWriter pw = null;
+        PrintWriter pw;
 
         f = new File("puntuaciones.txt");
         w = new FileWriter(f);

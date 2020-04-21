@@ -42,10 +42,11 @@ public class Cronometro extends Observable implements Runnable {
             }
         }
     }
-
+    public boolean estaParado(){return stopped;}
     public void reset(){
         minutos = 0;
         segundos = 0;
+        stopped = true;
         setChanged();
         String tiempo = (segundos < 10) ? minutos+":0"+segundos : minutos+":"+segundos ;
         notifyObservers(tiempo);

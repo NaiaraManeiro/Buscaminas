@@ -33,6 +33,7 @@ public class Juego extends Observable {
     }
     public void iniciarCrono(){
         if (this.crono == null) this.crono = new Cronometro();
+        else if(crono.estaParado() && (crono.getMinutos() != 0 || crono.getSegundos() != 0)) this.crono = new Cronometro();
     }
     public Modo getModo(){return nivel;}
     public void setModo(Modo pModo){
