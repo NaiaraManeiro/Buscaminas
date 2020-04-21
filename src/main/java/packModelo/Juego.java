@@ -10,6 +10,7 @@ import java.util.TreeMap;
 public class Juego extends Observable {
     private static Juego mJuego;
     private Tablero tablero;
+    private Tablero tableroPrueba;
     private Modo nivel;
     private Usuario usuario;
     private Cronometro crono;
@@ -43,10 +44,9 @@ public class Juego extends Observable {
     }
 
     public Tablero getTablero() { return tablero; }
+    public Tablero getTableroPrueba() { return tableroPrueba; }
 
     public Cronometro getCrono() { return crono; }
-
-    public boolean getDerrota() { return derrota;}
 
     public void terminarPartida(Coordenada coord){
         derrota = true;
@@ -66,6 +66,7 @@ public class Juego extends Observable {
         notifyObservers(coord);
     }
     public boolean cronoInicializado(){return crono == null;}
+
     /*public TreeMap<Integer,String> mostrarPuntuacion() throws IOException {
         Usuario u = new Usuario(usuario.getNombre(),usuario.getNivel().getNumero());
         u.setMinutos(crono.getMinutos());
@@ -77,4 +78,13 @@ public class Juego extends Observable {
     public int getPuntuacion(){
         return crono.getMinutos()*60+crono.getSegundos();
     }
+
+    public void regenerarTablero(){
+        this.tablero = this.nivel.generarTablero();
+        tablero.imprimirChivato();
+    }
+
+    public void asignarTablero(Tablero tablero){ this.tableroPrueba = tablero; }
+
+    public void reiniciarVariables(){ this.tableroPrueba = null; }
 }

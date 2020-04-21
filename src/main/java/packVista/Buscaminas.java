@@ -73,6 +73,7 @@ public class Buscaminas extends JFrame implements Observer {
                 log.pack();
                 log.setLocationRelativeTo(null);
                 log.setVisible(true);
+                Juego.getmJuego().reiniciarVariables();
                 mostrarPerdida = true;
                 mostrarGanado = true;
             }
@@ -85,6 +86,7 @@ public class Buscaminas extends JFrame implements Observer {
                 bus.setLocationRelativeTo(null);
                 bus.setVisible(true);
                 Juego.getmJuego().getCrono().reset();
+                Juego.getmJuego().reiniciarVariables();
                 mostrarPerdida = true;
                 mostrarGanado = true;
             }

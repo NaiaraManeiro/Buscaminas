@@ -17,7 +17,18 @@ public class cCasilla extends MouseAdapter {
         String yString = coor[1]; int y = Integer.parseInt(yString);
 
         Casilla c = Juego.getmJuego().getTablero().devolverCasilla(x, y);
+
+        while ((c instanceof CasillaMina || (c instanceof CasillaNormal && ((CasillaNormal) c).getNumero() != 0)) && Juego.getmJuego().getTableroPrueba() == null){
+            Juego.getmJuego().regenerarTablero();
+            Casilla cNueva = Juego.getmJuego().getTablero().devolverCasilla(x, y);
+            if (cNueva instanceof CasillaNormal && ((CasillaNormal) cNueva).getNumero() == 0){
+                Juego.getmJuego().asignarTablero(Juego.getmJuego().getTablero());
+                c = cNueva;
+            }
+        }
+
         Juego.getmJuego().iniciarCrono();
+
         if (!Juego.getmJuego().haPerdido() && !Juego.getmJuego().haGanado()) {
             if (e.getButton() == MouseEvent.BUTTON1) { //Mira a ver si se ha clicado con el botón izquierdo del ratón
                 if (c.getEstado() instanceof NoClicada){
