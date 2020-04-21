@@ -64,7 +64,7 @@ public class Buscaminas extends JFrame implements Observer {
         cronometro.setDisabledTextColor(new Color(0, 0, 0));
         minasRestantes.setDisabledTextColor(new Color(0, 0, 0));
         reiniciarButton.setBounds(50, 50, 50, 50);
-
+        mostrarCronometro("0:00");
         volverAlMenuButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 dispose(); //Cerramos la ventana actual
