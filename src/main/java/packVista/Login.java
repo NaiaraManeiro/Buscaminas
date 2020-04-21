@@ -67,12 +67,7 @@ public class Login extends JDialog {
         puntuacionesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 //Object nivel = comboBoxNivel.getSelectedItem();
-                vPuntuaciones punt = null;
-                try {
-                    punt = new vPuntuaciones();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                vPuntuaciones punt = new vPuntuaciones();
                 punt.setPreferredSize(new Dimension(450, 400));
                 punt.pack();
                 punt.setLocationRelativeTo(null);

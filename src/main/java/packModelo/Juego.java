@@ -88,4 +88,8 @@ public class Juego extends Observable {
     public void asignarTablero(Tablero tablero){ this.tableroPrueba = tablero; }
 
     public void reiniciarVariables(){ this.tableroPrueba = null; }
+    public void guardarPartida(){
+        Puntuaciones.getMiPuntuaciones().anadirPuntuacion(usuario.getNombre(), getPuntuacion(), usuario.getNivel().getNumero());
+        Puntuaciones.getMiPuntuaciones().guardarPuntuaciones();
+    }
 }

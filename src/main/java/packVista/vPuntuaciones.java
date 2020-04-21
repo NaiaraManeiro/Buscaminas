@@ -3,7 +3,6 @@ package packVista;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
 import packModelo.Puntuaciones;
 
 import javax.swing.*;
@@ -13,8 +12,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.Map;
 import java.util.TreeMap;
 
 public class vPuntuaciones extends JDialog {
@@ -38,7 +35,7 @@ public class vPuntuaciones extends JDialog {
         });
     }
 
-    public vPuntuaciones() throws IOException {
+    public vPuntuaciones() {
         setTitle("Puntuaciones");
         setResizable(false);
         setContentPane(getcontentpane());
@@ -55,15 +52,9 @@ public class vPuntuaciones extends JDialog {
             }
         });
         ponerPuntuacion();
-        /*reiniciarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                txtPuntuaciones.setText(null);
-            }
-        });*/
     }
 
-    private void ponerPuntuacion() throws IOException {
+    private void ponerPuntuacion() {
         String column_names[] = {"Tiempo", "Usuario"};
         for (int i = 1; i <= 3; i++) {
             TreeMap<Integer, String> lista = Puntuaciones.getMiPuntuaciones().getLista(i);
@@ -81,7 +72,7 @@ public class vPuntuaciones extends JDialog {
         }
     }
 
-    private JPanel getcontentpane() throws IOException {
+    private JPanel getcontentpane() {
         if (contentPane == null) {
             contentPane = new JPanel();
             contentPane.add(getLblnombre());
@@ -100,7 +91,7 @@ public class vPuntuaciones extends JDialog {
         return panel2;
     }
 
-    private JTabbedPane getTabbedPane1() throws IOException {
+    private JTabbedPane getTabbedPane1() {
         if (tabbedPane1 == null) {
             tabbedPane1 = new JTabbedPane();
             tabbedPane1.addTab("Nivel 1", getNivel1());
@@ -110,7 +101,7 @@ public class vPuntuaciones extends JDialog {
         return tabbedPane1;
     }
 
-    private JPanel getNivel1() throws IOException {
+    private JPanel getNivel1() {
         if (nivel1 == null) {
             nivel1 = new JPanel();
             nivel1.add(getTable1());
@@ -118,7 +109,7 @@ public class vPuntuaciones extends JDialog {
         return nivel1;
     }
 
-    private JPanel getNivel2() throws IOException {
+    private JPanel getNivel2() {
         if (nivel2 == null) {
             nivel2 = new JPanel();
             nivel2.add(getTable2());
@@ -126,7 +117,7 @@ public class vPuntuaciones extends JDialog {
         return nivel2;
     }
 
-    private JPanel getNivel3() throws IOException {
+    private JPanel getNivel3() {
         if (nivel3 == null) {
             nivel3 = new JPanel();
             nivel3.add(getTable3());
@@ -290,4 +281,5 @@ public class vPuntuaciones extends JDialog {
     public JComponent $$$getRootComponent$$$() {
         return contentPane;
     }
+
 }

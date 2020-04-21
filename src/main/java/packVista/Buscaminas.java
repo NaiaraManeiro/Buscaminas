@@ -197,13 +197,10 @@ public class Buscaminas extends JFrame implements Observer {
                             "Has ganado la partida!", "Información",
                             JOptionPane.INFORMATION_MESSAGE);
                     mostrarGanado = true;
-                    Usuario usu = Juego.getmJuego().getUsuario();
-                    try {
-                        Puntuaciones.getMiPuntuaciones().anadirPuntuacion(usu.getNombre(), Juego.getmJuego().getPuntuacion(), usu.getNivel().getNumero());
-                        Puntuaciones.getMiPuntuaciones().guardarPuntuaciones();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    //Usuario usu = Juego.getmJuego().getUsuario();
+                    //Puntuaciones.getMiPuntuaciones().anadirPuntuacion(usu.getNombre(), Juego.getmJuego().getPuntuacion(), usu.getNivel().getNumero());
+                    //Puntuaciones.getMiPuntuaciones().guardarPuntuaciones();
+                    Juego.getmJuego().guardarPartida();
                 }
             }
         } else if (o instanceof Cronometro) {
