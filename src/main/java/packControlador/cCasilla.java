@@ -27,6 +27,10 @@ public class cCasilla extends MouseAdapter {
             }
         }
 
+        if (c instanceof CasillaNormal && ((CasillaNormal) c).getNumero() == 0){
+            Juego.getmJuego().asignarTablero(Juego.getmJuego().getTablero());
+        }
+
         Juego.getmJuego().iniciarCrono();
 
         if (!Juego.getmJuego().haPerdido() && !Juego.getmJuego().haGanado()) {
