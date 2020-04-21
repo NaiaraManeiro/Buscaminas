@@ -39,7 +39,7 @@ public class Tablero {
     public int getnCasillasRestantes(){ return nCasillasRestantes; }
     public void setnCasillasRestantes(int pCasillas) { this.nCasillasRestantes = pCasillas; }
     public void decrementarCasillasRestantes(){ nCasillasRestantes--;}
-    public void aumentarCasillasRestantes(){nCasillasRestantes++;}
+    //public void aumentarCasillasRestantes(){nCasillasRestantes++;}
 
     public void setCasillas(Casilla[][] casillas) { this.matriz = casillas; }
 

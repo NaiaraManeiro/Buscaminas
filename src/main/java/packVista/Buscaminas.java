@@ -13,10 +13,8 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.TreeMap;
 
 public class Buscaminas extends JFrame implements Observer {
 
@@ -142,7 +140,6 @@ public class Buscaminas extends JFrame implements Observer {
         finPartida = false;
         Juego.getmJuego().jugar();
         Juego.getmJuego().addObserver(this);
-        //Juego.getmJuego().getCrono().addObserver(this);
         filas = Juego.getmJuego().getTablero().getFilas();
         columnas = Juego.getmJuego().getTablero().getColumnas();
         crearTablero(filas, columnas);
@@ -197,9 +194,6 @@ public class Buscaminas extends JFrame implements Observer {
                             "Has ganado la partida!", "Información",
                             JOptionPane.INFORMATION_MESSAGE);
                     mostrarGanado = true;
-                    //Usuario usu = Juego.getmJuego().getUsuario();
-                    //Puntuaciones.getMiPuntuaciones().anadirPuntuacion(usu.getNombre(), Juego.getmJuego().getPuntuacion(), usu.getNivel().getNumero());
-                    //Puntuaciones.getMiPuntuaciones().guardarPuntuaciones();
                     Juego.getmJuego().guardarPartida();
                 }
             }

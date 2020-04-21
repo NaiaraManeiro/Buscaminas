@@ -66,16 +66,6 @@ public class Juego extends Observable {
         setChanged();
         notifyObservers(coord);
     }
-    public boolean cronoInicializado(){return crono == null;}
-
-    /*public TreeMap<Integer,String> mostrarPuntuacion() throws IOException {
-        Usuario u = new Usuario(usuario.getNombre(),usuario.getNivel().getNumero());
-        u.setMinutos(crono.getMinutos());
-        u.setSegundos(crono.getSegundos());
-        return Puntuaciones.getMiPuntuaciones().imprimir(usuario);
-    }*/
-
-    public Usuario getUsuario(){return usuario;}
     public int getPuntuacion(){
         return crono.getMinutos()*60+crono.getSegundos();
     }

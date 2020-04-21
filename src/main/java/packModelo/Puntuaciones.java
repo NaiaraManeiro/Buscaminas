@@ -1,7 +1,6 @@
 package packModelo;
 
 import java.io.*;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
@@ -94,15 +93,4 @@ public class Puntuaciones {
             }
         }
     }
-       /*public static void main(String[]args) throws IOException {
-           Puntuaciones.getMiPuntuaciones().cargarPuntuaciones();
-           TreeMap<Integer,String> as = Puntuaciones.getMiPuntuaciones().getLista(1);
-           for (Object a: as.keySet()){
-               System.out.println("seg: " +a +" nombre: "+ as.get(a));
-           }
-           Puntuaciones.getMiPuntuaciones().anadirPuntuacion("aitor",90,1);
-           Puntuaciones.getMiPuntuaciones().anadirPuntuacion("naiara",910,2);
-           Puntuaciones.getMiPuntuaciones().anadirPuntuacion("leire",920,3);
-           Puntuaciones.getMiPuntuaciones().guardarPuntuaciones();
-       }*/
 }

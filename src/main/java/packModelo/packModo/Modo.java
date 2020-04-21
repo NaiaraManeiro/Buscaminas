@@ -12,14 +12,12 @@ public class Modo {
     public Modo(int pNivel){
         this.numero = pNivel;
     }
-
     public Tablero generarTablero() {
         this.tablero = new Tablero();
         asignarParametros();
         int altura = this.tablero.getFilas();
         int anchura = this.tablero.getColumnas();
         int minas = this.tablero.getMinas();
-
         Casilla[][] matriz = new Casilla[anchura][altura];
         this.tablero.setnCasillasRestantes(altura*anchura);
         Juego.getmJuego().setnMinasRestantes(minas);
@@ -34,7 +32,6 @@ public class Modo {
         ponerNumeros();
         return tablero;
     }
-
     private void asignarParametros(){
         if (numero == 1){
             tablero.setAltura(7);
@@ -50,12 +47,10 @@ public class Modo {
             tablero.setMinas(75);
         }
     }
-
     private void ponerMinas(){
         boolean hayMina;
         int fila, columna;
         Random r = new Random();
-
         for(int i = 0 ; i < tablero.getMinas(); i++){
             do {
                 fila = r.nextInt(tablero.getFilas());
@@ -66,7 +61,6 @@ public class Modo {
             tablero.setCasilla(new CasillaMina(new NoClicada(new Coordenada(columna, fila)), new Coordenada(columna, fila)));
         }
     }
-
     private void ponerNumeros(){
         for (int i = 0; i < tablero.getFilas(); i++) {
             for (int j = 0; j < tablero.getColumnas(); j++) {
@@ -76,7 +70,6 @@ public class Modo {
             }
         }
     }
-
     private void incrementarCasilla(int pColumna, int pFila){
         // si las coordenadas están dentro del tablero, entonces
         if ((pFila >= 0 && pColumna >= 0)&&(pFila < tablero.getFilas() && pColumna < tablero.getColumnas())){
@@ -84,7 +77,6 @@ public class Modo {
             if (tablero.devolverCasilla(pColumna, pFila) instanceof CasillaNormal) ((CasillaNormal) tablero.devolverCasilla(pColumna, pFila)).incrementarNumero();
         }
     }
-
     // incrementamos o ponemos numero a la coordenada seleccionada (los parámetros son las coordenadas donde se encuentra la mina)
     private void incrementarAdyacentes(int x, int y){
         /*
@@ -95,19 +87,14 @@ public class Modo {
          *        /  |  \
          *       v   v   v
          * */
-
         incrementarCasilla(x, y+1);
         incrementarCasilla(x, y-1);
-
         incrementarCasilla(x+1, y);
         incrementarCasilla(x-1, y);
-
         incrementarCasilla(x-1, y-1);
         incrementarCasilla(x-1, y+1);
-
         incrementarCasilla(x+1, y+1);
         incrementarCasilla(x+1, y-1);
     }
-
     public int getNumero(){return numero;}
 }
