@@ -21,10 +21,12 @@ public class Puntuaciones {
             e.printStackTrace();
         }
     }
+
     public static Puntuaciones getMiPuntuaciones(){
         if(miPuntuaciones == null) miPuntuaciones = new Puntuaciones();
         return miPuntuaciones;
     }
+
     public void anadirPuntuacion(String nombre, Integer puntuacion, Integer nivel) {
         if (nivel == 1){
             if (nivel1.size() == MAX_JUGADORES) {
@@ -49,6 +51,7 @@ public class Puntuaciones {
             } else if (nivel3.size() < MAX_JUGADORES) nivel3.put(puntuacion, nombre);
         }
     }
+
     public TreeMap<Integer,String> getLista(Integer nivel){
         TreeMap <Integer,String> lista = null;
         if (nivel == 1){
@@ -60,6 +63,7 @@ public class Puntuaciones {
         }
         return lista;
     }
+
     public void guardarPuntuaciones(){
         File f;
         BufferedWriter bw;
@@ -78,6 +82,7 @@ public class Puntuaciones {
             e.printStackTrace();
         }
     }
+
     public void cargarPuntuaciones() throws IOException {
         File archivo = new File ("puntuaciones.txt");
         if (archivo.exists()) {

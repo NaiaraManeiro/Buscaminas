@@ -44,11 +44,6 @@ public class vPuntuaciones extends JDialog {
         volverAlMenuButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 dispose(); //Cerramos la ventana actual
-                //Login log = new Login(); //Abrimos la pantalla de inicio
-                //log.setPreferredSize(new Dimension(375, 350));
-                //log.pack();
-                //log.setLocationRelativeTo(null);
-                //log.setVisible(true);
             }
         });
         ponerPuntuacion();
@@ -168,11 +163,6 @@ public class vPuntuaciones extends JDialog {
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         table3.setDefaultRenderer(String.class, centerRenderer);
         return table3;
-    }
-
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 
     {

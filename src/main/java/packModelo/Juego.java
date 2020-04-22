@@ -3,9 +3,7 @@ package packModelo;
 import packModelo.packCasilla.Coordenada;
 import packModelo.packModo.Modo;
 
-import java.io.IOException;
 import java.util.Observable;
-import java.util.TreeMap;
 
 public class Juego extends Observable {
     private static Juego mJuego;
@@ -66,6 +64,7 @@ public class Juego extends Observable {
         setChanged();
         notifyObservers(coord);
     }
+
     public int getPuntuacion(){
         return crono.getMinutos()*60+crono.getSegundos();
     }
@@ -78,6 +77,7 @@ public class Juego extends Observable {
     public void asignarTablero(Tablero tablero){ this.tableroPrueba = tablero; }
 
     public void reiniciarVariables(){ this.tableroPrueba = null; }
+
     public void guardarPartida(){
         Puntuaciones.getMiPuntuaciones().anadirPuntuacion(usuario.getNombre(), getPuntuacion(), usuario.getNivel().getNumero());
         Puntuaciones.getMiPuntuaciones().guardarPuntuaciones();

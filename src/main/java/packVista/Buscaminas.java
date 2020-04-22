@@ -63,6 +63,7 @@ public class Buscaminas extends JFrame implements Observer {
         minasRestantes.setDisabledTextColor(new Color(0, 0, 0));
         reiniciarButton.setBounds(50, 50, 50, 50);
         mostrarCronometro("0:00");
+
         volverAlMenuButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 dispose(); //Cerramos la ventana actual
@@ -90,6 +91,7 @@ public class Buscaminas extends JFrame implements Observer {
                 mostrarGanado = true;
             }
         });
+
         jugar();
     }
 
@@ -435,7 +437,7 @@ public class Buscaminas extends JFrame implements Observer {
         if (panelTableroFont != null) panelTablero.setFont(panelTableroFont);
         panelTablero.setForeground(new Color(-16777216));
         contentPane.add(panelTablero, new GridConstraints(1, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        panelTablero.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        panelTablero.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         panelTablero.add(panel4, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -473,5 +475,4 @@ public class Buscaminas extends JFrame implements Observer {
     public JComponent $$$getRootComponent$$$() {
         return contentPane;
     }
-
 }

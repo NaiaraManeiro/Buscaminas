@@ -10,10 +10,9 @@ public class Usuario {
         this.nombre = pNombre;
         nivel = new Modo(pNivel);
     }
+
     public Modo getNivel(){
         return this.nivel;
     }
     public String getNombre(){ return this.nombre;}
-
-
 }

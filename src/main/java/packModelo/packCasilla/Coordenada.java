@@ -8,6 +8,7 @@ public class Coordenada {
         this.fila = pFila;
         this.columna = pColumna;
     }
+
     public int getFila() { return this.fila; }
     public int getColumna() { return this.columna; }
 }

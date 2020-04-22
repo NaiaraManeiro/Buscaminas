@@ -12,8 +12,10 @@ public class Cronometro extends Observable implements Runnable {
         this.t = new Thread(this, "Crono");
         this.t.start();
     }
+
     public int getMinutos() { return minutos; }
     public int getSegundos() { return segundos; }
+
     @Override
     public void run() {
         minutos = 0;
@@ -36,7 +38,9 @@ public class Cronometro extends Observable implements Runnable {
             }
         }
     }
+
     public boolean estaParado(){return stopped;}
+
     public void reset(){
         minutos = 0;
         segundos = 0;
