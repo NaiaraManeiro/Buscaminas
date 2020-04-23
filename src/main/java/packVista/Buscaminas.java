@@ -159,16 +159,8 @@ public class Buscaminas extends JFrame implements Observer {
 
             if (c.getEstado() instanceof Bandera) {
                 if (Integer.parseInt(Juego.getmJuego().getnMinasRestantes()) < 0) {
-                    if (Juego.getmJuego().getModo().getNumero() == 1) {
-                        JOptionPane.showMessageDialog(null, "No se pueden poner más de 10 banderitas.",
+                    JOptionPane.showMessageDialog(null, "No se pueden poner más de " + Juego.getmJuego().getTablero().getMinas() + " banderitas.",
                                 "Información", JOptionPane.ERROR_MESSAGE);
-                    } else if (Juego.getmJuego().getModo().getNumero() == 2) {
-                        JOptionPane.showMessageDialog(null, "No se pueden poner más de 30 banderitas.",
-                                "Información", JOptionPane.ERROR_MESSAGE);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "No se pueden poner más de 75 banderitas.",
-                                "Información", JOptionPane.ERROR_MESSAGE);
-                    }
                     c.setEstado(new NoClicada(coord));
                     Juego.getmJuego().incrementarMinas();
                 } else {
@@ -437,7 +429,7 @@ public class Buscaminas extends JFrame implements Observer {
         if (panelTableroFont != null) panelTablero.setFont(panelTableroFont);
         panelTablero.setForeground(new Color(-16777216));
         contentPane.add(panelTablero, new GridConstraints(1, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        panelTablero.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
+        panelTablero.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         panelTablero.add(panel4, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -475,4 +467,5 @@ public class Buscaminas extends JFrame implements Observer {
     public JComponent $$$getRootComponent$$$() {
         return contentPane;
     }
+
 }
