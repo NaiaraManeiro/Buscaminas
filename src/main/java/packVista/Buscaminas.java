@@ -150,6 +150,7 @@ public class Buscaminas extends JFrame implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+        reiniciarButton.setIcon(new ImageIcon(getClass().getResource("/facesmile.gif")));
         Juego.getmJuego().getCrono().addObserver(this);
         if (o instanceof Juego) {
             Coordenada coord = (Coordenada) arg;
@@ -160,7 +161,7 @@ public class Buscaminas extends JFrame implements Observer {
             if (c.getEstado() instanceof Bandera) {
                 if (Integer.parseInt(Juego.getmJuego().getnMinasRestantes()) < 0) {
                     JOptionPane.showMessageDialog(null, "No se pueden poner más de " + Juego.getmJuego().getTablero().getMinas() + " banderitas.",
-                                "Información", JOptionPane.ERROR_MESSAGE);
+                            "Información", JOptionPane.ERROR_MESSAGE);
                     c.setEstado(new NoClicada(coord));
                     Juego.getmJuego().incrementarMinas();
                 } else {
@@ -178,12 +179,14 @@ public class Buscaminas extends JFrame implements Observer {
                 finPartida = true;
                 comprobarBanderas();
                 if (!mostrarPerdida) {
+                    reiniciarButton.setIcon(new ImageIcon(getClass().getResource("/facedead.gif")));
                     JOptionPane.showMessageDialog(null, "Has perdido la partida!", "Información", JOptionPane.ERROR_MESSAGE);
                     mostrarPerdida = true;
                 }
             }
             if (Juego.getmJuego().haGanado()) {
                 if (!mostrarGanado) {
+                    reiniciarButton.setIcon(new ImageIcon(getClass().getResource("/facewin.gif")));
                     JOptionPane.showMessageDialog(null,
                             "Has ganado la partida!", "Información",
                             JOptionPane.INFORMATION_MESSAGE);
@@ -236,6 +239,7 @@ public class Buscaminas extends JFrame implements Observer {
             if (c.getEstado() instanceof NoClicada) {
                 imagen = new ImageIcon(getClass().getResource("/facingDown.png"));
             } else if (c.getEstado() instanceof Clicada) {
+                reiniciarButton.setIcon(new ImageIcon(getClass().getResource("/faceooh.gif")));
                 if (c instanceof CasillaMina) {
                     imagen = new ImageIcon(getClass().getResource("/bomb.png"));
                 } else if (c instanceof CasillaNormal) {
@@ -393,7 +397,7 @@ public class Buscaminas extends JFrame implements Observer {
         reiniciarButton.setBorderPainted(false);
         reiniciarButton.setContentAreaFilled(false);
         reiniciarButton.setForeground(new Color(-9999251));
-        reiniciarButton.setIcon(new ImageIcon(getClass().getResource("/facesmile.png")));
+        reiniciarButton.setIcon(new ImageIcon(getClass().getResource("/facesmile.gif")));
         reiniciarButton.setLabel("");
         reiniciarButton.setMaximumSize(new Dimension(30, 30));
         reiniciarButton.setMinimumSize(new Dimension(30, 30));
