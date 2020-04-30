@@ -290,7 +290,7 @@ public class vPuntuaciones extends JDialog {
         nivel3.setLayout(new GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1));
         nivel3.setBackground(new Color(-9999251));
         tabbedPane1.addTab("Nivel 3", nivel3);
-        nivel3.setBorder(BorderFactory.createTitledBorder(null, "", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        nivel3.setBorder(BorderFactory.createTitledBorder(""));
         table3 = new JTable();
         table3.setBackground(new Color(-12828863));
         Font table3Font = this.$$$getFont$$$("Microsoft JhengHei", Font.BOLD, 15, table3.getFont());

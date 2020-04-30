@@ -16,36 +16,15 @@ public class cCasilla extends MouseAdapter {
         String xString = coor[0]; int x = Integer.parseInt(xString);
         String yString = coor[1]; int y = Integer.parseInt(yString);
 
-        Casilla c = Juego.getmJuego().getTablero().devolverCasilla(x, y);
+        Casilla cP = Juego.getmJuego().getTablero().devolverCasilla(x, y);
 
-        while ((c instanceof CasillaMina || (c instanceof CasillaNormal && ((CasillaNormal) c).getNumero() != 0)) && Juego.getmJuego().getTableroPrueba() == null){
-            Juego.getmJuego().regenerarTablero();
-            Casilla cNueva = Juego.getmJuego().getTablero().devolverCasilla(x, y);
-            if (cNueva instanceof CasillaNormal && ((CasillaNormal) cNueva).getNumero() == 0){
-                Juego.getmJuego().asignarTablero(Juego.getmJuego().getTablero());
-                c = cNueva;
-            }
-        }
-
-        if (c instanceof CasillaNormal && ((CasillaNormal) c).getNumero() == 0){
-            Juego.getmJuego().asignarTablero(Juego.getmJuego().getTablero());
-        }
+        Casilla c = Juego.getmJuego().tableroNuevo(cP);
 
         Juego.getmJuego().iniciarCrono();
 
         if (!Juego.getmJuego().haPerdido() && !Juego.getmJuego().haGanado()) {
             if (e.getButton() == MouseEvent.BUTTON1) { //Mira a ver si se ha clicado con el botón izquierdo del ratón
-                if (c.getEstado() instanceof NoClicada){
-                    if (c instanceof CasillaMina) {
-                        ((CasillaMina) c).terminarPartida(c);
-                    } else {
-                        if (((CasillaNormal) c).getNumero() == 0) {
-                            ((CasillaNormal) c).desplegarAdyacentes(x, y);
-                        } else if (((CasillaNormal) c).getNumero() != 0) {
-                            ((CasillaNormal) c).mostrarCasilla(c);
-                        }
-                    }
-                }
+                Juego.getmJuego().marcardesmarcarCasilla(c);
             } else if (e.getButton() == MouseEvent.BUTTON3) { //Mira a ver si se ha clicado con el botón derecho del ratón
                 c.marcarDesmarcarCasilla();
             }

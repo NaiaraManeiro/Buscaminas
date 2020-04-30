@@ -1,6 +1,6 @@
 package packModelo;
 
-import packModelo.packCasilla.Coordenada;
+import packModelo.packCasilla.*;
 import packModelo.packModo.Modo;
 
 import java.util.Observable;
@@ -42,7 +42,7 @@ public class Juego extends Observable {
     }
 
     public Tablero getTablero() { return tablero; }
-    public Tablero getTableroPrueba() { return tableroPrueba; }
+    private Tablero getTableroPrueba() { return tableroPrueba; }
 
     public Cronometro getCrono() { return crono; }
 
@@ -68,17 +68,53 @@ public class Juego extends Observable {
         return crono.getMinutos()*60+crono.getSegundos();
     }
 
-    public void regenerarTablero(){
+    private void regenerarTablero(){
         this.tablero = this.nivel.generarTablero();
         tablero.imprimirChivato();
     }
 
-    public void asignarTablero(Tablero tablero){ this.tableroPrueba = tablero; }
+    private void asignarTablero(Tablero tablero){ this.tableroPrueba = tablero; }
 
     public void reiniciarVariables(){ this.tableroPrueba = null; }
 
     public void guardarPartida(){
         Puntuaciones.getMiPuntuaciones().anadirPuntuacion(usuario.getNombre(), getPuntuacion(), usuario.getNivel().getNumero());
         Puntuaciones.getMiPuntuaciones().guardarPuntuaciones();
+    }
+
+    public void marcardesmarcarCasilla(Casilla c){
+        Coordenada coord = c.getCoordenada();
+        int x = coord.getColumna();
+        int y = coord.getFila();
+        if (c.getEstado() instanceof NoClicada){
+            if (c instanceof CasillaMina) {
+                ((CasillaMina) c).terminarPartida(c);
+            } else {
+                if (((CasillaNormal) c).getNumero() == 0) {
+                    ((CasillaNormal) c).desplegarAdyacentes(x, y);
+                } else if (((CasillaNormal) c).getNumero() != 0) {
+                    ((CasillaNormal) c).mostrarCasilla(c);
+                }
+            }
+        }
+    }
+
+    public Casilla tableroNuevo(Casilla c){
+        Coordenada coord = c.getCoordenada();
+        int x = coord.getColumna();
+        int y = coord.getFila();
+        while ((c instanceof CasillaMina || (c instanceof CasillaNormal && ((CasillaNormal) c).getNumero() != 0)) && this.getTableroPrueba() == null){
+            this.regenerarTablero();
+            Casilla cNueva = this.getTablero().devolverCasilla(x, y);
+            if (cNueva instanceof CasillaNormal && ((CasillaNormal) cNueva).getNumero() == 0){
+                this.asignarTablero(this.getTablero());
+                c = cNueva;
+            }
+        }
+
+        if (c instanceof CasillaNormal && ((CasillaNormal) c).getNumero() == 0){
+            this.asignarTablero(this.getTablero());
+        }
+        return c;
     }
 }
