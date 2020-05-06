@@ -25,34 +25,20 @@ public class Buscaminas extends JFrame implements Observer {
     private JTextField cronometro;
     private JButton reiniciarButton;
     private JButton volverAlMenuButton;
-    private int filas, columnas;
-    private boolean mostrarPerdida;
-    private boolean mostrarGanado;
-    private boolean finPartida;
+    private static int filas, columnas;
+    private static boolean mostrarPerdida;
+    private static boolean mostrarGanado;
+    private static boolean finPartida;
+    private static Buscaminas mBuscaminas;
 
-
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    Buscaminas frame = new Buscaminas();
-                    frame.pack();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    public Buscaminas() {
+    private Buscaminas() {
 
         setTitle("Buscaminas");
         setResizable(false);
 
         contentPane = new JPanel();
         setContentPane(contentPane);
-        setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         contentPane.setBorder(new EmptyBorder(10, 10, 10, 10));
         contentPane.setLayout(new BorderLayout(0, 0));
         contentPane.add(getPanel(), BorderLayout.NORTH);
@@ -66,6 +52,7 @@ public class Buscaminas extends JFrame implements Observer {
 
         volverAlMenuButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
+                //Buscaminas.this.setVisible(false);
                 dispose(); //Cerramos la ventana actual
                 Login log = new Login(); //Abrimos la pantalla de inicio
                 log.setPreferredSize(new Dimension(375, 350));
@@ -77,28 +64,44 @@ public class Buscaminas extends JFrame implements Observer {
                 Juego.getmJuego().reiniciarVariables();
                 mostrarPerdida = true;
                 mostrarGanado = true;
+                //botonesANull();
             }
         });
 
         reiniciarButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
+                //Buscaminas.this.dispose();
                 dispose(); //Cerramos la ventana actual
-                Buscaminas bus = new Buscaminas(); //Abrimos la pantalla del juego con el nivel marcado
-                bus.setLocationRelativeTo(null);
-                bus.setVisible(true);
+                //Buscaminas bus = new Buscaminas(); //Abrimos la pantalla del juego con el nivel marcado
+                setLocationRelativeTo(null);
+                setVisible(true);
                 Juego.getmJuego().getCrono().reset();
                 Juego.getmJuego().reiniciarVariables();
                 mostrarPerdida = true;
                 mostrarGanado = true;
+                //botonesANull();
+                jugar();
             }
         });
-
         jugar();
     }
 
+    public static Buscaminas getmBuscaminas() {
+        if (mBuscaminas == null) mBuscaminas = new Buscaminas();
+        mBuscaminas.jugar();
+        return mBuscaminas;
+    }
+    /*public void botonesANull() {
+        for (int i = 0; i < filas; i++)
+            for (int j = 0; j < columnas; j++) {
+                btntablero[i][j] = null;
+            }
+        this.btntablero = null;
+    }*/
     public void crearTablero(int filas, int columnas) {
         if (panelTablero != null)
             contentPane.remove(panelTablero);
+
         panelTablero = new JPanel();
         panelTablero.setLayout(new GridLayout(filas, columnas, 0, 0));
         contentPane.add(panelTablero, BorderLayout.CENTER);
@@ -134,7 +137,7 @@ public class Buscaminas extends JFrame implements Observer {
 
                 casilla.setName("" + j + ";" + i + "");
                 casilla.addMouseListener(new cCasilla());
-                btntablero[i][j] = casilla;
+                this.btntablero[i][j] = casilla;
                 panelTablero.add(casilla);
                 asignarIcono(coord);
             }
@@ -142,7 +145,7 @@ public class Buscaminas extends JFrame implements Observer {
         minasRestantes.setText(Juego.getmJuego().getnMinasRestantes());
     }
 
-    public void jugar() {
+    private void jugar() {
         mostrarPerdida = false;
         mostrarGanado = false;
         finPartida = false;
@@ -184,7 +187,7 @@ public class Buscaminas extends JFrame implements Observer {
                 finPartida = true;
                 comprobarBanderas();
                 if (!mostrarPerdida) {
-                    btntablero[fila][col].setBackground(new Color(252, 3, 3)); // La mina pulsada muestra otro fondo
+                    this.btntablero[fila][col].setBackground(new Color(252, 3, 3)); // La mina pulsada muestra otro fondo
                     reiniciarButton.setIcon(new ImageIcon(getClass().getResource("/facedead.gif")));
                     JOptionPane.showMessageDialog(null, "Has perdido la partida!", "Información", JOptionPane.ERROR_MESSAGE);
                     mostrarPerdida = true;
@@ -209,7 +212,7 @@ public class Buscaminas extends JFrame implements Observer {
         getTxtCronometro().setText(tiempo);
     }
 
-    public void mostrarMinas() {
+    private void mostrarMinas() {
         for (int i = 0; i < columnas; i++) {
             for (int j = 0; j < filas; j++) {
                 Casilla c = Juego.getmJuego().getTablero().devolverCasilla(i, j);
@@ -222,11 +225,11 @@ public class Buscaminas extends JFrame implements Observer {
         }
     }
 
-    public void comprobarBanderas() {
+    private void comprobarBanderas() {
         for (int i = 0; i < columnas; i++) {
             for (int j = 0; j < filas; j++) {
                 Casilla c = Juego.getmJuego().getTablero().devolverCasilla(i, j);
-                if (c.getEstado() instanceof Bandera && c instanceof CasillaNormal) {
+                if (c != null && c.getEstado() instanceof Bandera && c instanceof CasillaNormal) {
                     asignarIcono(c.getCoordenada());
                 }
             }
@@ -236,60 +239,63 @@ public class Buscaminas extends JFrame implements Observer {
     private void asignarIcono(Coordenada pC) {
         ImageIcon imagen = null;
         Casilla c = Juego.getmJuego().getTablero().devolverCasilla(pC.getColumna(), pC.getFila());
-
-        if (finPartida) {
-            if (c.getEstado() instanceof Bandera && c instanceof CasillaNormal) {
-                imagen = new ImageIcon(getClass().getResource("/wrongFlagged.png"));
-            }
-        } else {
-            if (c.getEstado() instanceof NoClicada) {
-                imagen = new ImageIcon(getClass().getResource("/facingDown.png"));
-            } else if (c.getEstado() instanceof Clicada) {
-                reiniciarButton.setIcon(new ImageIcon(getClass().getResource("/faceooh.gif")));
-                if (c instanceof CasillaMina) {
-                    imagen = new ImageIcon(getClass().getResource("/bomb.png"));
-                } else if (c instanceof CasillaNormal) {
-                    switch (((CasillaNormal) c).getNumero()) {
-                        case 0:
-                            imagen = new ImageIcon(getClass().getResource("/0.png"));
-                            break;
-                        case 1:
-                            imagen = new ImageIcon(getClass().getResource("/1.png"));
-                            break;
-                        case 2:
-                            imagen = new ImageIcon(getClass().getResource("/2.png"));
-                            break;
-                        case 3:
-                            imagen = new ImageIcon(getClass().getResource("/3.png"));
-                            break;
-                        case 4:
-                            imagen = new ImageIcon(getClass().getResource("/4.png"));
-                            break;
-                        case 5:
-                            imagen = new ImageIcon(getClass().getResource("/5.png"));
-                            break;
-                        case 6:
-                            imagen = new ImageIcon(getClass().getResource("/6.png"));
-                            break;
-                        case 7:
-                            imagen = new ImageIcon(getClass().getResource("/7.png"));
-                            break;
-                        case 8:
-                            imagen = new ImageIcon(getClass().getResource("/8.png"));
-                            break;
-                        default:
-                            break;
-                    }
+        if (c != null) {
+            if (finPartida) {
+                if (c.getEstado() instanceof Bandera && c instanceof CasillaNormal) {
+                    imagen = new ImageIcon(getClass().getResource("/wrongFlagged.png"));
                 }
-            } else if (c.getEstado() instanceof Bandera) {
-                imagen = new ImageIcon(getClass().getResource("/flagged.png"));
+            } else {
+                if (c.getEstado() instanceof NoClicada) {
+                    imagen = new ImageIcon(getClass().getResource("/facingDown.png"));
+                } else if (c.getEstado() instanceof Clicada) {
+                    reiniciarButton.setIcon(new ImageIcon(getClass().getResource("/faceooh.gif")));
+                    if (c instanceof CasillaMina) {
+                        imagen = new ImageIcon(getClass().getResource("/bomb.png"));
+                    } else if (c instanceof CasillaNormal) {
+                        switch (((CasillaNormal) c).getNumero()) {
+                            case 0:
+                                imagen = new ImageIcon(getClass().getResource("/0.png"));
+                                break;
+                            case 1:
+                                imagen = new ImageIcon(getClass().getResource("/1.png"));
+                                break;
+                            case 2:
+                                imagen = new ImageIcon(getClass().getResource("/2.png"));
+                                break;
+                            case 3:
+                                imagen = new ImageIcon(getClass().getResource("/3.png"));
+                                break;
+                            case 4:
+                                imagen = new ImageIcon(getClass().getResource("/4.png"));
+                                break;
+                            case 5:
+                                imagen = new ImageIcon(getClass().getResource("/5.png"));
+                                break;
+                            case 6:
+                                imagen = new ImageIcon(getClass().getResource("/6.png"));
+                                break;
+                            case 7:
+                                imagen = new ImageIcon(getClass().getResource("/7.png"));
+                                break;
+                            case 8:
+                                imagen = new ImageIcon(getClass().getResource("/8.png"));
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                } else if (c.getEstado() instanceof Bandera) {
+                    imagen = new ImageIcon(getClass().getResource("/flagged.png"));
+                }
             }
-        }
 
-        if (imagen != null) {
-            ImageIcon icono = new ImageIcon(imagen.getImage().getScaledInstance(btntablero[pC.getFila()][pC.getColumna()].getWidth(), btntablero[pC.getFila()][pC.getColumna()].getHeight(), Image.SCALE_DEFAULT));
-            btntablero[pC.getFila()][pC.getColumna()].setIcon(icono);
-            btntablero[pC.getFila()][pC.getColumna()].setText("");
+            if (imagen != null) {
+                System.out.println("Fila: " + pC.getFila() + " Columna: " + pC.getColumna());
+                System.out.println("x: " + this.btntablero.length + " y: " + this.btntablero[0].length);
+                ImageIcon icono = new ImageIcon(imagen.getImage().getScaledInstance(this.btntablero[pC.getFila()][pC.getColumna()].getWidth(), this.btntablero[pC.getFila()][pC.getColumna()].getHeight(), Image.SCALE_DEFAULT));
+                this.btntablero[pC.getFila()][pC.getColumna()].setIcon(icono);
+                this.btntablero[pC.getFila()][pC.getColumna()].setText("");
+            }
         }
     }
 
@@ -438,7 +444,7 @@ public class Buscaminas extends JFrame implements Observer {
         if (panelTableroFont != null) panelTablero.setFont(panelTableroFont);
         panelTablero.setForeground(new Color(-16777216));
         contentPane.add(panelTablero, new GridConstraints(1, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        panelTablero.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
+        panelTablero.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         panelTablero.add(panel4, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -476,4 +482,5 @@ public class Buscaminas extends JFrame implements Observer {
     public JComponent $$$getRootComponent$$$() {
         return contentPane;
     }
+
 }

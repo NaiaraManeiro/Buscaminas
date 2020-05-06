@@ -54,10 +54,10 @@ public class Login extends JDialog {
                     } else if (nivel.equals(3)) {
                         Juego.getmJuego().crearUsuario(usuario, 3);
                     }
-                    dispose(); //Cerramos la ventana actual
-                    Buscaminas bus = new Buscaminas(); //Abrimos la pantalla del juego con el nivel marcado
-                    bus.setLocationRelativeTo(null);
-                    bus.setVisible(true);
+                    Login.this.dispose(); //Cerramos la ventana actual
+                     //Abrimos la pantalla del juego con el nivel marcado
+                    Buscaminas.getmBuscaminas().setLocationRelativeTo(null);
+                    Buscaminas.getmBuscaminas().setVisible(true);
                 }
             }
         });
