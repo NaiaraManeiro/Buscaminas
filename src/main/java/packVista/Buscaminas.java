@@ -52,7 +52,6 @@ public class Buscaminas extends JFrame implements Observer {
 
         volverAlMenuButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                //Buscaminas.this.setVisible(false);
                 dispose(); //Cerramos la ventana actual
                 Login log = new Login(); //Abrimos la pantalla de inicio
                 log.setPreferredSize(new Dimension(375, 350));
@@ -64,23 +63,20 @@ public class Buscaminas extends JFrame implements Observer {
                 Juego.getmJuego().reiniciarVariables();
                 mostrarPerdida = true;
                 mostrarGanado = true;
-                //botonesANull();
                 reiniciarButton.setIcon(new ImageIcon(getClass().getResource("/facesmile.gif")));
+                cronometro.setText("0:00");
             }
         });
 
         reiniciarButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                //Buscaminas.this.dispose();
                 dispose(); //Cerramos la ventana actual
-                //Buscaminas bus = new Buscaminas(); //Abrimos la pantalla del juego con el nivel marcado
                 setLocationRelativeTo(null);
                 setVisible(true);
                 Juego.getmJuego().getCrono().reset();
                 Juego.getmJuego().reiniciarVariables();
                 mostrarPerdida = true;
                 mostrarGanado = true;
-                //botonesANull();
                 reiniciarButton.setIcon(new ImageIcon(getClass().getResource("/facesmile.gif")));
                 jugar();
             }
@@ -92,13 +88,7 @@ public class Buscaminas extends JFrame implements Observer {
         mBuscaminas.jugar();
         return mBuscaminas;
     }
-    /*public void botonesANull() {
-        for (int i = 0; i < filas; i++)
-            for (int j = 0; j < columnas; j++) {
-                btntablero[i][j] = null;
-            }
-        this.btntablero = null;
-    }*/
+
     private void crearTablero(int filas, int columnas) {
         if (panelTablero != null)
             contentPane.remove(panelTablero);
@@ -113,8 +103,6 @@ public class Buscaminas extends JFrame implements Observer {
         int alto = ancho - filas * columnas / 5;
         Dimension d = new Dimension(ancho, alto);
 
-
-        //this.setSize(d);
         btntablero = new JButton[filas][columnas];
 
         for (int i = 0; i < filas; i++) {
@@ -441,7 +429,7 @@ public class Buscaminas extends JFrame implements Observer {
         if (panelTableroFont != null) panelTablero.setFont(panelTableroFont);
         panelTablero.setForeground(new Color(-16777216));
         contentPane.add(panelTablero, new GridConstraints(1, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        panelTablero.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        panelTablero.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         panelTablero.add(panel4, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -479,5 +467,4 @@ public class Buscaminas extends JFrame implements Observer {
     public JComponent $$$getRootComponent$$$() {
         return contentPane;
     }
-
 }
