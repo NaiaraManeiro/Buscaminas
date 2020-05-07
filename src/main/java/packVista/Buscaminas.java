@@ -65,6 +65,7 @@ public class Buscaminas extends JFrame implements Observer {
                 mostrarPerdida = true;
                 mostrarGanado = true;
                 //botonesANull();
+                reiniciarButton.setIcon(new ImageIcon(getClass().getResource("/facesmile.gif")));
             }
         });
 
@@ -80,10 +81,10 @@ public class Buscaminas extends JFrame implements Observer {
                 mostrarPerdida = true;
                 mostrarGanado = true;
                 //botonesANull();
+                reiniciarButton.setIcon(new ImageIcon(getClass().getResource("/facesmile.gif")));
                 jugar();
             }
         });
-        jugar();
     }
 
     public static Buscaminas getmBuscaminas() {
@@ -98,7 +99,7 @@ public class Buscaminas extends JFrame implements Observer {
             }
         this.btntablero = null;
     }*/
-    public void crearTablero(int filas, int columnas) {
+    private void crearTablero(int filas, int columnas) {
         if (panelTablero != null)
             contentPane.remove(panelTablero);
 
@@ -290,8 +291,6 @@ public class Buscaminas extends JFrame implements Observer {
             }
 
             if (imagen != null) {
-                System.out.println("Fila: " + pC.getFila() + " Columna: " + pC.getColumna());
-                System.out.println("x: " + this.btntablero.length + " y: " + this.btntablero[0].length);
                 ImageIcon icono = new ImageIcon(imagen.getImage().getScaledInstance(this.btntablero[pC.getFila()][pC.getColumna()].getWidth(), this.btntablero[pC.getFila()][pC.getColumna()].getHeight(), Image.SCALE_DEFAULT));
                 this.btntablero[pC.getFila()][pC.getColumna()].setIcon(icono);
                 this.btntablero[pC.getFila()][pC.getColumna()].setText("");
