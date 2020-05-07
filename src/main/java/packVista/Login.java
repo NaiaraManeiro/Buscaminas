@@ -21,19 +21,6 @@ public class Login extends JDialog {
     private JComboBox comboBoxNivel;
     private JButton puntuacionesButton;
 
-    public static void main(String[] args) {
-        try {
-            Login dialog = new Login();
-            dialog.setPreferredSize(new Dimension(375, 350));
-            dialog.pack();
-            dialog.setLocationRelativeTo(null);
-            dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-            dialog.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public Login() {
         setTitle("Buscaminas: Usuario");
         setResizable(false);
