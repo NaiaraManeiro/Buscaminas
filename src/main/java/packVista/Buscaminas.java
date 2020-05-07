@@ -133,9 +133,7 @@ public class Buscaminas extends JFrame implements Observer {
                     this.setMinimumSize(new Dimension(1200, 600));
                     this.setSize(new Dimension(1200, 700));
                     casilla.setBounds(i, j, 45, 45);
-
                 }
-
                 casilla.setName("" + j + ";" + i + "");
                 casilla.addMouseListener(new cCasilla());
                 this.btntablero[i][j] = casilla;
