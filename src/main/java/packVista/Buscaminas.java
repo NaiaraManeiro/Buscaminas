@@ -194,9 +194,10 @@ public class Buscaminas extends JFrame implements Observer {
             if (GestorBuscaminas.getMiGB().haPerdido()) {
                 mostrarMinas();
                 finPartida = true;
+                asignarIcono(fila, col);
                 comprobarBanderas();
                 if (!mostrarPerdida) {
-                    this.btntablero[fila][col].setBackground(new Color(252, 3, 3)); // La mina pulsada muestra otro fondo
+                    //this.btntablero[fila][col].setBackground(new Color(252, 3, 3)); // La mina pulsada muestra otro fondo
                     reiniciarButton.setIcon(new ImageIcon(getClass().getResource("/facedead.gif")));
                     mostrarPerdida = true;
                     //reproducirSonido(pathSonidoGameOver);
@@ -287,6 +288,9 @@ public class Buscaminas extends JFrame implements Observer {
             if (finPartida) {
                 if (estado.equals("Bandera") && tipo.equals("CasillaNormal")) {
                     imagen = new ImageIcon(getClass().getResource("/Casillas/CasillaNoBandera.png"));
+                }
+                if (estado.equals("Clicada") && tipo.equals("CasillaMinaNormal")){
+                    imagen = new ImageIcon(getClass().getResource("/Casillas/CasillaPrimeraMina.png"));
                 }
             } else {
                 if (estado.equals("NoClicada"))  {

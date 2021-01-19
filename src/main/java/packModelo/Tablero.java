@@ -106,12 +106,16 @@ public class Tablero {
 
     public void imprimirChivato() {
         Casilla casilla;
-        for (int i = 0; i < getFilas(); i++) {
-            for (int j = 0; j < getColumnas(); j++) {
+        for (int i = 0; i < altura; i++) {
+            for (int j = 0; j < anchura; j++) {
                 Coordenada c = new Coordenada(j,i);
                 casilla = devolverCasilla(c.getColumna(),c.getFila());
-                if(casilla instanceof CasillaMina) {
+                if(casilla instanceof CasillaMinaNormal) {
                     System.out.print(" * ");
+                } else if (casilla instanceof CasillaMinaReset) {
+                    System.out.print(" r ");
+                } else if (casilla instanceof CasillaMina50) {
+                    System.out.print(" % ");
                 } else if(casilla instanceof CasillaNormal && ((CasillaNormal) casilla).getNumero() != 0) {
                     System.out.print(" " + ((CasillaNormal) casilla).getNumero() + " ");
                 } else if(casilla instanceof CasillaNormal && ((CasillaNormal) casilla).getNumero() == 0){
