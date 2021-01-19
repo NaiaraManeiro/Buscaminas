@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="packVista.Login">
   <grid id="27dc6" binding="rootpanel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="72" y="62" width="380" height="293"/>
+      <xy x="72" y="62" width="410" height="319"/>
     </constraints>
     <properties>
       <background color="-9999251"/>
@@ -15,7 +15,7 @@
       <title-color color="-590081"/>
     </border>
     <children>
-      <grid id="a185b" binding="panel1" layout-manager="GridLayoutManager" row-count="6" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="a185b" binding="panel1" layout-manager="GridLayoutManager" row-count="6" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints border-constraint="Center"/>
         <properties>
@@ -26,7 +26,7 @@
         <children>
           <component id="483cb" class="javax.swing.JLabel" binding="lblnombre">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-16777216"/>
@@ -38,7 +38,7 @@
           </component>
           <component id="ce469" class="javax.swing.JTextField" binding="textusuario">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
+              <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
@@ -49,7 +49,7 @@
           </component>
           <component id="25150" class="javax.swing.JLabel" binding="lblnivel">
             <constraints>
-              <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-16777216"/>
@@ -60,7 +60,7 @@
           </component>
           <component id="e5782" class="javax.swing.JComboBox" binding="comboBoxNivel">
             <constraints>
-              <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="Microsoft JhengHei" size="14"/>
@@ -79,10 +79,10 @@
           </component>
           <component id="16bcd" class="javax.swing.JRadioButton" binding="minasSi">
             <constraints>
-              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="2147483647"/>
+              <background color="-1"/>
               <font name="Microsoft JhengHei" size="12"/>
               <foreground color="-16777216"/>
               <text value="Si"/>
@@ -90,13 +90,25 @@
           </component>
           <component id="b5fec" class="javax.swing.JRadioButton" binding="minasNo">
             <constraints>
-              <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="5" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="2147483647"/>
+              <background color="-1"/>
               <font name="Microsoft JhengHei" size="12"/>
               <foreground color="-16777216"/>
               <text value="No"/>
+            </properties>
+          </component>
+          <component id="a73dd" class="javax.swing.JButton" binding="ayuda">
+            <constraints>
+              <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+              <foreground color="-1"/>
+              <horizontalAlignment value="2"/>
+              <icon value="interrogracion.png"/>
+              <text value=""/>
             </properties>
           </component>
         </children>

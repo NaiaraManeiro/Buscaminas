@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static java.awt.Cursor.HAND_CURSOR;
+
 public class Login extends JDialog {
     private JPanel rootpanel;
     private JButton aceptarButton;
@@ -17,6 +19,7 @@ public class Login extends JDialog {
     private JLabel minasEspeciales;
     private JRadioButton minasSi;
     private JRadioButton minasNo;
+    private JButton ayuda;
 
     public Login() {
         setTitle("Buscaminas: Usuario");
@@ -29,8 +32,16 @@ public class Login extends JDialog {
         group.add(minasSi);
         group.add(minasNo);
         minasSi.setSelected(true);
-        aceptarButton.addActionListener(new ActionListener() {
 
+        ayuda.setBorderPainted(false);
+        ayuda.setBorder(null);
+        ayuda.setMargin(new Insets(0, 0, 0, 0));
+        ayuda.setContentAreaFilled(false);
+        ayuda.setCursor(new Cursor(HAND_CURSOR));
+        aceptarButton.setCursor(new Cursor(HAND_CURSOR));
+        puntuacionesButton.setCursor(new Cursor(HAND_CURSOR));
+
+        aceptarButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 String usuario = textusuario.getText();
                 Object nivel = comboBoxNivel.getSelectedItem();
@@ -57,6 +68,16 @@ public class Login extends JDialog {
                 punt.pack();
                 punt.setLocationRelativeTo(null);
                 punt.setVisible(true);
+            }
+        });
+
+        ayuda.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                AyudaMinas ayuda = new AyudaMinas();
+                ayuda.setPreferredSize(new Dimension(480, 350));
+                ayuda.pack();
+                ayuda.setLocationRelativeTo(null);
+                ayuda.setVisible(true);
             }
         });
     }
