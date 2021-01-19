@@ -12,7 +12,22 @@ public class Tablero {
     private int minas;
     private int nCasillasRestantes;
 
-    public Tablero(){}
+    public Tablero(int pFilas, int pColumnas, int pMinas){
+        altura = pFilas;
+        anchura = pColumnas;
+        minas = pMinas;
+        matriz = new Casilla[anchura][altura];
+        nCasillasRestantes = altura*anchura;
+        Juego.getmJuego().setnMinasRestantes(minas);
+        for (int i = 0; i < anchura; i++){
+            for(int j = 0; j < altura; j++){
+                matriz[i][j] = new CasillaNormal(new NoClicada(new Coordenada(i,j)), new Coordenada(i, j));
+            }
+        }
+        ponerMinas();
+        ponerNumeros();
+    }
+
     public Casilla devolverCasilla(int x, int y) {
         try{
             return this.matriz[x][y];
@@ -22,25 +37,13 @@ public class Tablero {
     }
 
     public int getMinas(){return minas;}
-    public void setMinas(int pMinas){
-        this.minas = pMinas;
-    }
 
     public int getFilas(){ return altura; }
-    public void setAltura(int pAltura){
-        this.altura = pAltura;
-    }
 
     public int getColumnas() { return anchura; }
-    public void setAnchura(int pAnchura){
-        this.anchura = pAnchura;
-    }
 
     public int getnCasillasRestantes(){ return nCasillasRestantes; }
-    public void setnCasillasRestantes(int pCasillas) { this.nCasillasRestantes = pCasillas; }
     public void decrementarCasillasRestantes(){ nCasillasRestantes--;}
-
-    public void setCasillas(Casilla[][] casillas) { this.matriz = casillas; }
 
     public void setCasilla(Casilla pCasilla){
         Coordenada coord = pCasilla.getCoordenada();
@@ -118,5 +121,65 @@ public class Tablero {
             System.out.println("");
         }
         System.out.println("");
+    }
+
+    private void ponerMinas(){
+        boolean hayMina;
+        int fila, columna;
+        Random r = new Random();
+        for(int i = 0 ; i < minas; i++){
+            do {
+                fila = r.nextInt(altura);
+                columna = r.nextInt(anchura);
+                if(devolverCasilla(columna, fila) instanceof CasillaMina) hayMina = true;
+                else hayMina = false;
+            } while (hayMina);
+            int numMina = r.nextInt(3);
+            if (numMina == 0) {
+                setCasilla(new CasillaMinaNormal(new NoClicada(new Coordenada(columna, fila)), new Coordenada(columna, fila)));
+            } else if (numMina == 1) {
+                setCasilla(new CasillaMinaReset(new NoClicada(new Coordenada(columna, fila)), new Coordenada(columna, fila)));
+            } else if (numMina == 2) {
+                setCasilla(new CasillaMina50(new NoClicada(new Coordenada(columna, fila)), new Coordenada(columna, fila)));
+            }
+        }
+    }
+
+    private void ponerNumeros(){
+        for (int i = 0; i < altura; i++) {
+            for (int j = 0; j < anchura; j++) {
+                if(devolverCasilla(j,i) instanceof CasillaMinaNormal) incrementarAdyacentes(j,i);
+                if(devolverCasilla(j,i) instanceof CasillaMinaReset) incrementarAdyacentes(j,i);
+                if(devolverCasilla(j,i) instanceof CasillaMina50) incrementarAdyacentes(j,i);
+            }
+        }
+    }
+
+    private void incrementarCasilla(int pColumna, int pFila){
+        // si las coordenadas están dentro del tablero, entonces
+        if ((pFila >= 0 && pColumna >= 0)&&(pFila < altura && pColumna < anchura)){
+            //si es una instancia de CasillaVacia, entonces se le cambia el tipo de casilla, y le incrementamos el número
+            if (devolverCasilla(pColumna, pFila) instanceof CasillaNormal) ((CasillaNormal) devolverCasilla(pColumna, pFila)).incrementarNumero();
+        }
+    }
+
+    // incrementamos o ponemos numero a la coordenada seleccionada (los parámetros son las coordenadas donde se encuentra la mina)
+    private void incrementarAdyacentes(int x, int y){
+        /*
+         *
+         *       ^   ^   ^
+         *        \  |  /
+         *      < –  ▀  –  >
+         *        /  |  \
+         *       v   v   v
+         * */
+        incrementarCasilla(x, y+1);
+        incrementarCasilla(x, y-1);
+        incrementarCasilla(x+1, y);
+        incrementarCasilla(x-1, y);
+        incrementarCasilla(x-1, y-1);
+        incrementarCasilla(x-1, y+1);
+        incrementarCasilla(x+1, y+1);
+        incrementarCasilla(x+1, y-1);
     }
 }
