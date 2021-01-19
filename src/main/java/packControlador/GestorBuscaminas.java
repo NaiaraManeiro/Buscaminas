@@ -63,6 +63,9 @@ public class GestorBuscaminas {
         return GestorPartidas.getMiGestorPartidas().getMinasRestantes();
     }
 
+    public void setMinasRestantes(int minas){ GestorPartidas.getMiGestorPartidas().setMinasRestantes(minas);
+    }
+
     public void incrementarMinas(){
         GestorPartidas.getMiGestorPartidas().incrementarMinas();
     }

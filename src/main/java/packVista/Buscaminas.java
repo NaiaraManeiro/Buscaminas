@@ -265,6 +265,7 @@ public class Buscaminas extends JFrame implements Observer {
             }
         }
         minasRestantes.setText("" + minasSinDescubrir + "");
+        GestorBuscaminas.getMiGB().setMinasRestantes(minasSinDescubrir);
     }
 
     private void comprobarBanderas() {

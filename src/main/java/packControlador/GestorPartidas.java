@@ -40,6 +40,8 @@ public class GestorPartidas {
         return Juego.getmJuego().getnMinasRestantes();
     }
 
+    public void setMinasRestantes(int minas){ Juego.getmJuego().setnMinasRestantes(minas); }
+
     public void incrementarMinas(){
         Juego.getmJuego().incrementarMinas();
     }
