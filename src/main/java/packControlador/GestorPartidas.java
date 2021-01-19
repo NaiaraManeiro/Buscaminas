@@ -14,8 +14,8 @@ public class GestorPartidas {
         return miGP;
     }
 
-    public void jugar(int pFilas, int pColumnas, int pMinas){
-        Juego.getmJuego().jugar(pFilas, pColumnas, pMinas);
+    public void jugar(int pFilas, int pColumnas, int pMinas, String minas){
+        Juego.getmJuego().jugar(pFilas, pColumnas, pMinas, minas);
     }
 
     public void addObserver(Buscaminas b){

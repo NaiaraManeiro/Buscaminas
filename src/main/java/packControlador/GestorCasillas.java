@@ -26,7 +26,7 @@ public class GestorCasillas extends MouseAdapter {
 
         Casilla cP = Juego.getmJuego().getTablero().devolverCasilla(x, y);
 
-        Casilla c = Juego.getmJuego().tableroNuevo(cP,Juego.getmJuego().getTablero().getFilas(),Juego.getmJuego().getTablero().getColumnas(), Juego.getmJuego().getTablero().getMinas());
+        Casilla c = Juego.getmJuego().tableroNuevo(cP,Juego.getmJuego().getTablero().getFilas(),Juego.getmJuego().getTablero().getColumnas(), Juego.getmJuego().getTablero().getMinas(), Juego.getmJuego().getTablero().getMinasEspeciales());
 
         Juego.getmJuego().iniciarCrono();
 

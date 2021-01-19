@@ -11,11 +11,13 @@ public class Tablero {
     private int anchura;
     private int minas;
     private int nCasillasRestantes;
+    private String minasEspeciales;
 
-    public Tablero(int pFilas, int pColumnas, int pMinas){
+    public Tablero(int pFilas, int pColumnas, int pMinas, String pMinasEspeciales){
         altura = pFilas;
         anchura = pColumnas;
         minas = pMinas;
+        minasEspeciales = pMinasEspeciales;
         matriz = new Casilla[anchura][altura];
         nCasillasRestantes = altura*anchura;
         Juego.getmJuego().setnMinasRestantes(minas);
@@ -24,7 +26,7 @@ public class Tablero {
                 matriz[i][j] = new CasillaNormal(new NoClicada(new Coordenada(i,j)), new Coordenada(i, j));
             }
         }
-        ponerMinas();
+        ponerMinas(minasEspeciales);
         ponerNumeros();
     }
 
@@ -41,6 +43,8 @@ public class Tablero {
     public int getFilas(){ return altura; }
 
     public int getColumnas() { return anchura; }
+
+    public String getMinasEspeciales() { return minasEspeciales; }
 
     public int getnCasillasRestantes(){ return nCasillasRestantes; }
     public void decrementarCasillasRestantes(){ nCasillasRestantes--;}
@@ -127,7 +131,7 @@ public class Tablero {
         System.out.println("");
     }
 
-    private void ponerMinas(){
+    private void ponerMinas(String minasEspeciales){
         boolean hayMina;
         int fila, columna;
         Random r = new Random();
@@ -138,13 +142,18 @@ public class Tablero {
                 if(devolverCasilla(columna, fila) instanceof CasillaMina) hayMina = true;
                 else hayMina = false;
             } while (hayMina);
-            int numMina = r.nextInt(3);
-            if (numMina == 0) {
+
+            if (minasEspeciales.equals("no")) {
                 setCasilla(new CasillaMinaNormal(new NoClicada(new Coordenada(columna, fila)), new Coordenada(columna, fila)));
-            } else if (numMina == 1) {
-                setCasilla(new CasillaMinaReset(new NoClicada(new Coordenada(columna, fila)), new Coordenada(columna, fila)));
-            } else if (numMina == 2) {
-                setCasilla(new CasillaMina50(new NoClicada(new Coordenada(columna, fila)), new Coordenada(columna, fila)));
+            } else if (minasEspeciales.equals("si")) {
+                int numMina = r.nextInt(3);
+                if (numMina == 0) {
+                    setCasilla(new CasillaMinaNormal(new NoClicada(new Coordenada(columna, fila)), new Coordenada(columna, fila)));
+                } else if (numMina == 1) {
+                    setCasilla(new CasillaMinaReset(new NoClicada(new Coordenada(columna, fila)), new Coordenada(columna, fila)));
+                } else if (numMina == 2) {
+                    setCasilla(new CasillaMina50(new NoClicada(new Coordenada(columna, fila)), new Coordenada(columna, fila)));
+                }
             }
         }
     }

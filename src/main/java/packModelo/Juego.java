@@ -22,8 +22,8 @@ public class Juego extends Observable {
         return mJuego;
     }
 
-    public void jugar(int pFilas, int pColumnas, int pMinas){
-        this.tablero = new Tablero(pFilas, pColumnas, pMinas);
+    public void jugar(int pFilas, int pColumnas, int pMinas, String minas){
+        this.tablero = new Tablero(pFilas, pColumnas, pMinas, minas);
         derrota = false;
     }
 
@@ -58,8 +58,8 @@ public class Juego extends Observable {
         notifyObservers(coordenada);
     }
 
-    private void regenerarTablero(int pFilas, int pColumnas, int pMinas){
-        this.tablero = new Tablero(pFilas, pColumnas, pMinas);
+    private void regenerarTablero(int pFilas, int pColumnas, int pMinas, String minasEspeciales){
+        this.tablero = new Tablero(pFilas, pColumnas, pMinas, minasEspeciales);
         tablero.imprimirChivato();
     }
 
@@ -93,12 +93,12 @@ public class Juego extends Observable {
         }
     }
 
-    public Casilla tableroNuevo(Casilla c, int pFilas, int pColumnas, int pMinas){
+    public Casilla tableroNuevo(Casilla c, int pFilas, int pColumnas, int pMinas, String minasEspeciales){
         Coordenada coord = c.getCoordenada();
         int x = coord.getColumna();
         int y = coord.getFila();
         while ((c instanceof CasillaMinaNormal || c instanceof CasillaMinaReset || c instanceof CasillaMina50 || (c instanceof CasillaNormal && ((CasillaNormal) c).getNumero() != 0)) && this.getTableroPrueba() == null){
-            this.regenerarTablero(pFilas, pColumnas, pMinas);
+            this.regenerarTablero(pFilas, pColumnas, pMinas, minasEspeciales);
             Casilla cNueva = this.getTablero().devolverCasilla(x, y);
             if (cNueva instanceof CasillaNormal && ((CasillaNormal) cNueva).getNumero() == 0){
                 this.asignarTablero(this.getTablero());

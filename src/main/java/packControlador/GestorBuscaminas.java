@@ -39,8 +39,8 @@ public class GestorBuscaminas {
 
     //Todo lo relacionado con la partida
 
-    public void jugar(int pFilas, int pColumnas, int pMinas){
-        GestorPartidas.getMiGestorPartidas().jugar(pFilas, pColumnas, pMinas);
+    public void jugar(int pFilas, int pColumnas, int pMinas, String minas){
+        GestorPartidas.getMiGestorPartidas().jugar(pFilas, pColumnas, pMinas, minas);
     }
 
     public void addObserver(Buscaminas b){

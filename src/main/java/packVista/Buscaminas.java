@@ -32,12 +32,13 @@ public class Buscaminas extends JFrame implements Observer {
     private static boolean mostrarGanado;
     private static boolean finPartida;
     private static Buscaminas mBuscaminas;
-    private String idJug;
+    private String idJug, minas;
     private int nivel;
 
-    private Buscaminas(String idJugador, int pNivel) {
+    private Buscaminas(String idJugador, int pNivel, String pMinas) {
         idJug = idJugador;
         nivel = pNivel;
+        minas = pMinas;
         setTitle("Buscaminas");
         setResizable(false);
 
@@ -98,8 +99,8 @@ public class Buscaminas extends JFrame implements Observer {
         minasSinDescubrir = columnas*nivel;
     }
 
-    public static Buscaminas getmBuscaminas(String idJugador, int pNivel) {
-        if (mBuscaminas == null) mBuscaminas = new Buscaminas(idJugador,pNivel);
+    public static Buscaminas getmBuscaminas(String idJugador, int pNivel, String minas) {
+        if (mBuscaminas == null) mBuscaminas = new Buscaminas(idJugador,pNivel,minas);
         mBuscaminas.jugar();
         return mBuscaminas;
     }
@@ -154,7 +155,7 @@ public class Buscaminas extends JFrame implements Observer {
         mostrarGanado = false;
         finPartida = false;
         minasSinDescubrir = columnas*nivel;
-        GestorBuscaminas.getMiGB().jugar(filas,columnas,minasSinDescubrir);
+        GestorBuscaminas.getMiGB().jugar(filas,columnas,minasSinDescubrir, minas);
         GestorBuscaminas.getMiGB().addObserver(this);
         crearTablero(filas, columnas);
         GestorBuscaminas.getMiGB().imprimirChivato();
@@ -197,7 +198,6 @@ public class Buscaminas extends JFrame implements Observer {
                 asignarIcono(fila, col);
                 comprobarBanderas();
                 if (!mostrarPerdida) {
-                    //this.btntablero[fila][col].setBackground(new Color(252, 3, 3)); // La mina pulsada muestra otro fondo
                     reiniciarButton.setIcon(new ImageIcon(getClass().getResource("/facedead.gif")));
                     mostrarPerdida = true;
                     //reproducirSonido(pathSonidoGameOver);
