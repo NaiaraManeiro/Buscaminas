@@ -48,11 +48,11 @@ public class IU_Consultarinfojuego extends JDialog {
             }
         });
 
-        volverAlMenuButton.addActionListener(new ActionListener() {
+        /*volverAlMenuButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 volverAlMenu();
             }
-        });
+        });*/
 
         guardarDatosButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
