@@ -17,7 +17,6 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
-import java.net.URLConnection;
 
 public class IU_Personalizar extends JDialog {
     private JPanel contentPane;
@@ -41,6 +40,8 @@ public class IU_Personalizar extends JDialog {
     private JSONArray sonidosWin;
     private JSONArray sonidosGameOver;
     private JSONArray iconosTablero;
+    private String pathSonidosWin;
+    private String pathSonidosGameOver;
 
 
     public IU_Personalizar() {
@@ -98,7 +99,33 @@ public class IU_Personalizar extends JDialog {
                 }
             });
             sonido = new JRadioButton((String) sonidoObjeto.getString("nombre"));
+            JRadioButton finalSonido = sonido;
             win.add(sonido);
+            sonido.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String nombreSonidoSeleccionado = finalSonido.getText();
+                    boolean enc = false;
+                    int i = 0;
+                    if (tipoSonido) { //si sonidosWin
+                        while (!enc && i < sonidosWin.length()) {
+                            JSONObject iconoTablero = (JSONObject) sonidosWin.get(i);
+                            if (iconoTablero.getString("nombre").equals(nombreSonidoSeleccionado)) {
+                                enc = true;
+                                pathSonidosWin= iconoTablero.getString("path");
+                            } else i++;
+                        }
+                    } else {
+                        while (!enc && i < sonidosGameOver.length()) {
+                            JSONObject iconoTablero = (JSONObject) sonidosGameOver.get(i);
+                            if (iconoTablero.getString("nombre").equals(nombreSonidoSeleccionado)) {
+                                enc = true;
+                                pathSonidosGameOver = iconoTablero.getString("path");
+                            } else i++;
+                        }
+                    }
+                }
+            });
             if (idSonidoJugador.equals(sonidoObjeto.getString("id"))) sonido.setSelected(true);
             Box hori = Box.createHorizontalBox();
             hori.add(sonido);
@@ -107,17 +134,6 @@ public class IU_Personalizar extends JDialog {
             panel.add(verticalBox);
         }
         jsp.setViewportView(panel);
-    }
-
-    private boolean hayConexionInternet() {
-        try {
-            URL url = new URL("https://www.google.com/");
-            URLConnection connection = url.openConnection();
-            connection.connect();
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
     }
 
     private void getIconosDeTablero() {
@@ -168,7 +184,7 @@ public class IU_Personalizar extends JDialog {
         //añadir la imagen de previews de los packs de iconos
         Image dimg = null;
         try {
-            URL pppp = new URL(String.valueOf(getClass().getResource(path)) + "/preview.png");
+            URL pppp = new URL(getClass().getResource(path) + "/preview.png");
             BufferedImage img = ImageIO.read(pppp);
             dimg = img.getScaledInstance(320, 180, Image.SCALE_SMOOTH);
         } catch (IOException e2) {
@@ -195,20 +211,66 @@ public class IU_Personalizar extends JDialog {
 
     private void onGuardar() {
         //obtener la seleccion de sonido win, sonido gameover y iconos tablero
-
+        GestorBuscaminas.getMiGB().ponerPaths(buscarPathSonido(pathSonidosWin,true),buscarPathSonido(pathSonidosGameOver,false),"");
         volverAlMenu();
     }
+    private String buscarPathIconos(String pNombre){
+        String path = "it000";
+        if(!pNombre.equals("")){
+            int i = 0;
+            boolean enc = false;
+            while (!enc && i < iconosTablero.length()) {
+                JSONObject sonido = (JSONObject) iconosTablero.get(i);
+                if (sonido.get("nombre").equals(pNombre)) {
+                    enc = true;
+                    path = (String) sonido.get("path");
+                } else i++;
+            }
+        }
+        return path;
+    }
+    private String buscarPathSonido(String pNombre,boolean swg){
+        String path;
+        if(swg){ //true sonidos win
+            path = "sw000";
+            if(!pNombre.equals("")) {
+                //buscar sonido win
+                int i = 0;
+                boolean enc = false;
+                while (!enc && i < sonidosWin.length()) {
+                    JSONObject sonido = (JSONObject) sonidosWin.get(i);
+                    if (sonido.get("nombre").equals(pNombre)) {
+                        enc = true;
+                        path = (String) sonido.get("path");
+                    } else i++;
+                }
+            }
+        }else{
+            path = "sg000";
+            if(!pNombre.equals("")) {
+                int i = 0;
+                boolean enc = false;
+                while (!enc && i < sonidosGameOver.length()) {
+                    JSONObject sonido = (JSONObject) sonidosGameOver.get(i);
+                    if (sonido.get("nombre").equals(pNombre)) {
+                        enc = true;
+                        path = (String) sonido.get("path");
+                    } else i++;
+                }
+            }else path = "sg000";
+        }
+        return path;
+    }
     private void volverAlMenu() {
-        if (hayConexionInternet()) {
-            dispose();
-            Login ppj = new Login();
-            ppj.pack();
-            ppj.setPreferredSize(new Dimension(500, 400));
-            ppj.setLocationRelativeTo(null);
-            ppj.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-            //setVisible(false);
-            ppj.setVisible(true);
-        } else JOptionPane.showInputDialog("No hay conexión a internet, reinténtelo de nuevo más tarde");
+        dispose();
+        Login ppj = new Login();
+        ppj.pack();
+        ppj.setPreferredSize(new Dimension(500, 400));
+        ppj.setLocationRelativeTo(null);
+        ppj.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        //setVisible(false);
+        ppj.setVisible(true);
+
     }
 
     private void onCancel() {

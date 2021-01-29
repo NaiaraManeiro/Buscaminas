@@ -12,6 +12,9 @@ public class Juego extends Observable {
     private Cronometro crono;
     private int nMinasRestantes;
     private boolean derrota;
+    private String pathSonidosWin;
+    private String pathSonidosGameOver;
+    private String pathIconosTablero;
 
     private Juego(){}
 
@@ -110,5 +113,10 @@ public class Juego extends Observable {
             this.asignarTablero(this.getTablero());
         }
         return c;
+    }
+    public void ponerPaths(String pPathSonidosWin, String pPathSonidosGameOver, String pPathIconosTablero){
+        pathSonidosWin = pPathSonidosWin;
+        pathSonidosGameOver = pPathSonidosGameOver;
+        pathIconosTablero = pPathIconosTablero;
     }
 }
