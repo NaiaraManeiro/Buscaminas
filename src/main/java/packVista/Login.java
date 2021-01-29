@@ -23,6 +23,7 @@ public class Login extends JDialog {
     private JRadioButton minasSi;
     private JRadioButton minasNo;
     private JButton ayuda;
+    private JButton personalizar;
 
     public Login() {
         setTitle("Buscaminas: Usuario");
@@ -46,6 +47,7 @@ public class Login extends JDialog {
         ayuda.setCursor(new Cursor(HAND_CURSOR));
         aceptarButton.setCursor(new Cursor(HAND_CURSOR));
         puntuacionesButton.setCursor(new Cursor(HAND_CURSOR));
+        personalizar.setCursor(new Cursor(HAND_CURSOR));
 
         aceptarButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
@@ -86,6 +88,11 @@ public class Login extends JDialog {
                 ayuda.setVisible(true);
             }
         });
-    }
 
+        personalizar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+
+            }
+        });
+    }
 }
