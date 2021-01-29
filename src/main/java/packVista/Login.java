@@ -91,7 +91,12 @@ public class Login extends JDialog {
 
         personalizar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-
+                IU_Personalizar pers = new IU_Personalizar();
+                pers.setPreferredSize(new Dimension(600, 440));
+                pers.setLocationRelativeTo(null);
+                pers.pack();
+                setVisible(false);
+                pers.setVisible(true);
             }
         });
     }

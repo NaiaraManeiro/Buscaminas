@@ -16,7 +16,11 @@ public class Juego extends Observable {
     private String pathSonidosGameOver;
     private String pathIconosTablero;
 
-    private Juego(){}
+    private Juego(){
+        pathIconosTablero = "/pack_iconos_tablero/pack1";
+        pathSonidosGameOver = "/sonidos_gameover/lose.wav";
+        pathSonidosWin = "/sonidos_win/win.wav";
+    }
 
     public static Juego getmJuego(){
         if (mJuego == null){
@@ -114,9 +118,16 @@ public class Juego extends Observable {
         }
         return c;
     }
-    public void ponerPaths(String pPathSonidosWin, String pPathSonidosGameOver, String pPathIconosTablero){
+    public void ponerPersonalizables(String pPathSonidosWin, String pPathSonidosGameOver, String pPathIconosTablero){
         pathSonidosWin = pPathSonidosWin;
         pathSonidosGameOver = pPathSonidosGameOver;
         pathIconosTablero = pPathIconosTablero;
+    }
+    public JSONObject getPersonalizables(){
+        JSONObject resultado = new JSONObject();
+        resultado.put("pathSonidoWin",pathSonidosWin);
+        resultado.put("pathSonidoGameOver",pathSonidosGameOver);
+        resultado.put("pathIconosTablero",pathIconosTablero);
+        return resultado;
     }
 }

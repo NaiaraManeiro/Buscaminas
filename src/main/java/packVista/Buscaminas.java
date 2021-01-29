@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import packControlador.GestorBuscaminas;
 import packModelo.*;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
@@ -15,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -44,7 +46,11 @@ public class Buscaminas extends JFrame implements Observer {
         minas = pMinas;
         setTitle("Buscaminas");
         setResizable(false);
-
+        JSONObject personalizables = GestorBuscaminas.getMiGB().getPersonalizables();
+        System.out.println(personalizables);
+        pathSonidoGameOver = personalizables.getString("pathSonidoGameOver");
+        pathSonidoWin = personalizables.getString("pathSonidoWin");
+        pathPackIconos = personalizables.getString("pathIconosTablero");
         contentPane = new JPanel();
         setContentPane(contentPane);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -62,10 +68,11 @@ public class Buscaminas extends JFrame implements Observer {
         volverAlMenuButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 dispose(); //Cerramos la ventana actual
-                Login log = new Login(); //Abrimos la pantalla de inicio
-                log.setPreferredSize(new Dimension(375, 350));
+                Login log = new Login();
+                log.setPreferredSize(new Dimension(450, 350));
                 log.pack();
                 log.setLocationRelativeTo(null);
+                log.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                 log.setVisible(true);
                 GestorBuscaminas.getMiGB().iniciarCrono();
                 GestorBuscaminas.getMiGB().resetCrono();
@@ -191,14 +198,14 @@ public class Buscaminas extends JFrame implements Observer {
                 if (!mostrarPerdida) {
                     reiniciarButton.setIcon(new ImageIcon(getClass().getResource("/facedead.gif")));
                     mostrarPerdida = true;
-                    //reproducirSonido(pathSonidoGameOver);
+                    reproducirSonido(pathSonidoGameOver);
                     JOptionPane.showMessageDialog(null, "Has perdido la partida!", "Información", JOptionPane.ERROR_MESSAGE);
                 }
             }
             if (GestorBuscaminas.getMiGB().haGanado()) {
                 if (!mostrarGanado) {
                     reiniciarButton.setIcon(new ImageIcon(getClass().getResource("/facewin.gif")));
-                    //reproducirSonido(pathSonidoWin);
+                    reproducirSonido(pathSonidoWin);
                     JOptionPane.showMessageDialog(null,
                             "Has ganado la partida!", "Información",
                             JOptionPane.INFORMATION_MESSAGE);
@@ -207,6 +214,17 @@ public class Buscaminas extends JFrame implements Observer {
             }
         } else if (o instanceof Cronometro) {
             mostrarCronometro((String) arg);
+        }
+    }
+
+    private void reproducirSonido(String pathSonido){
+        try {
+            AudioInputStream ais = AudioSystem.getAudioInputStream(getClass().getResource(pathSonido));
+            Clip clip = AudioSystem.getClip();
+            clip.open(ais);
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
         }
     }
 
@@ -285,7 +303,7 @@ public class Buscaminas extends JFrame implements Observer {
                 if (estado.equals("NoClicada")) {
                     imagen = new ImageIcon(getClass().getResource(pathPackIconos + "/Casilla.png"));
                 } else if (estado.equals("Clicada")) {
-                    reiniciarButton.setIcon(new ImageIcon(getClass().getResource("/faceooh.gif")));
+                    reiniciarButton.setIcon(new ImageIcon(getClass().getResource(  "/faceooh.gif")));
                     if (tipo.equals("CasillaMinaNormal")) {
                         imagen = new ImageIcon(getClass().getResource(pathPackIconos + "/CasillaPrimeraMina.png"));
                     } else if (tipo.equals("CasillaMinaReset")) {

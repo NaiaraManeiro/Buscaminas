@@ -2,6 +2,7 @@ package packControlador;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import packModelo.Juego;
 import packVista.Buscaminas;
 
 import javax.swing.*;
@@ -209,5 +210,11 @@ public class GestorBuscaminas {
             GestorBD.getGestorBD().cerrarConexion();
         }
         return opciones;
+    }
+    public void ponerPersonalizables(String pPathSonidosWin, String pPathSonidosGameOver, String pPathIconosTablero){
+        Juego.getmJuego().ponerPersonalizables(pPathSonidosWin, pPathSonidosGameOver, pPathIconosTablero);
+    }
+    public JSONObject getPersonalizables(){
+        return Juego.getmJuego().getPersonalizables();
     }
 }
