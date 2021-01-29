@@ -34,6 +34,9 @@ public class Buscaminas extends JFrame implements Observer {
     private static Buscaminas mBuscaminas;
     private String idJug, minas;
     private int nivel;
+    private String pathPackIconos;
+    private String pathSonidoWin;
+    private String pathSonidoGameOver;
 
     private Buscaminas(String idJugador, int pNivel, String pMinas) {
         idJug = idJugador;
@@ -288,57 +291,54 @@ public class Buscaminas extends JFrame implements Observer {
         if (estado != null && tipo != null) {
             if (finPartida) {
                 if (estado.equals("Bandera") && tipo.equals("CasillaNormal")) {
-                    imagen = new ImageIcon(getClass().getResource("/Casillas/CasillaNoBandera.png"));
-                }
-                if (estado.equals("Clicada") && tipo.equals("CasillaMinaNormal")){
-                    imagen = new ImageIcon(getClass().getResource("/Casillas/CasillaPrimeraMina.png"));
+                    imagen = new ImageIcon(getClass().getResource(pathPackIconos + "/CasillaNoBandera.png"));
                 }
             } else {
-                if (estado.equals("NoClicada"))  {
-                    imagen = new ImageIcon(getClass().getResource("/Casillas/Casilla.png"));
+                if (estado.equals("NoClicada")) {
+                    imagen = new ImageIcon(getClass().getResource(pathPackIconos + "/Casilla.png"));
                 } else if (estado.equals("Clicada")) {
                     reiniciarButton.setIcon(new ImageIcon(getClass().getResource("/faceooh.gif")));
                     if (tipo.equals("CasillaMinaNormal")) {
-                        imagen = new ImageIcon(getClass().getResource("/Casillas/CasillaMina.png"));
+                        imagen = new ImageIcon(getClass().getResource(pathPackIconos + "/CasillaPrimeraMina.png"));
                     } else if (tipo.equals("CasillaMinaReset")) {
-                        imagen = new ImageIcon(getClass().getResource("/Casillas/CasillaMinaReset.png"));
+                        imagen = new ImageIcon(getClass().getResource(pathPackIconos + "/CasillaMinaReset.png"));
                     } else if (tipo.equals("CasillaMina50")) {
-                        imagen = new ImageIcon(getClass().getResource("/Casillas/CasillaMina50.png"));
-                    } else if (tipo.equals("CasillaNormal"))  {
+                        imagen = new ImageIcon(getClass().getResource(pathPackIconos + "/CasillaMina50.png"));
+                    } else if (tipo.equals("CasillaNormal")) {
                         switch (GestorBuscaminas.getMiGB().getNumero(pColumna,pFila)) {
                             case 0:
-                                imagen = new ImageIcon(getClass().getResource("/Casillas/CasillaVacia.png"));
+                                imagen = new ImageIcon(getClass().getResource(pathPackIconos + "/CasillaVacia.png"));
                                 break;
                             case 1:
-                                imagen = new ImageIcon(getClass().getResource("/Casillas/Casilla1.png"));
+                                imagen = new ImageIcon(getClass().getResource(pathPackIconos + "/Casilla1.png"));
                                 break;
                             case 2:
-                                imagen = new ImageIcon(getClass().getResource("/Casillas/Casilla2.png"));
+                                imagen = new ImageIcon(getClass().getResource(pathPackIconos + "/Casilla2.png"));
                                 break;
                             case 3:
-                                imagen = new ImageIcon(getClass().getResource("/Casillas/Casilla3.png"));
+                                imagen = new ImageIcon(getClass().getResource(pathPackIconos + "/Casilla3.png"));
                                 break;
                             case 4:
-                                imagen = new ImageIcon(getClass().getResource("/Casillas/Casilla4.png"));
+                                imagen = new ImageIcon(getClass().getResource(pathPackIconos + "/Casilla4.png"));
                                 break;
                             case 5:
-                                imagen = new ImageIcon(getClass().getResource("/Casillas/Casilla5.png"));
+                                imagen = new ImageIcon(getClass().getResource(pathPackIconos + "/Casilla5.png"));
                                 break;
                             case 6:
-                                imagen = new ImageIcon(getClass().getResource("/Casillas/Casilla6.png"));
+                                imagen = new ImageIcon(getClass().getResource(pathPackIconos + "/Casilla6.png"));
                                 break;
                             case 7:
-                                imagen = new ImageIcon(getClass().getResource("/Casillas/Casilla7.png"));
+                                imagen = new ImageIcon(getClass().getResource(pathPackIconos + "/Casilla7.png"));
                                 break;
                             case 8:
-                                imagen = new ImageIcon(getClass().getResource("/Casillas/Casilla8.png"));
+                                imagen = new ImageIcon(getClass().getResource(pathPackIconos + "/Casilla8.png"));
                                 break;
                             default:
                                 break;
                         }
                     }
-                } else if (estado.equals("Bandera"))  {
-                    imagen = new ImageIcon(getClass().getResource("/Casillas/CasillaBandera.png"));
+                } else if (estado.equals("Bandera")) {
+                    imagen = new ImageIcon(getClass().getResource(pathPackIconos + "/CasillaBandera.png"));
                 }
             }
 
