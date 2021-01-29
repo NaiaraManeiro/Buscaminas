@@ -85,20 +85,8 @@ public class Buscaminas extends JFrame implements Observer {
             }
         });
 
-        //Quitar cuando esté la base de datos
-        if (nivel == 1){
-            filas = 7;
-            columnas = 10;
-        } else if (nivel == 2){
-            filas = 10;
-            columnas = 15;
-        } else if (nivel == 3){
-            filas = 12;
-            columnas = 25;
-        }
-
-        //filas = GestorBuscaminas.getMiGB().obtenerfilasnivel(nivel);
-        //columnas = GestorBuscaminas.getMiGB().obtenercolumnasnivel(nivel);
+        filas = GestorBuscaminas.getMiGB().obtenerfilasnivel(nivel);
+        columnas = GestorBuscaminas.getMiGB().obtenercolumnasnivel(nivel);
         minasSinDescubrir = columnas*nivel;
     }
 
