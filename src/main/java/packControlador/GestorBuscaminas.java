@@ -161,7 +161,6 @@ public class GestorBuscaminas {
      * Obtiene toda la información de los personalizables que hay en el sistema (iconos de usuario, iconos de tablero, sonidos...)
      * @return devuelve un JSONObject con la siguiente forma:
      * {
-     * IconosUsuario:[{id:string, nombre: string, path:string},...,{...}],
      * IconosTablero:[{id:string, nombre: string, path:string},...,{...}],
      * SonidoGameOver:[{id:string, nombre: string, path:string},...,{...}],
      * SonidoWin:[{id:string, nombre: string, path:string},...,{...}]
@@ -172,7 +171,6 @@ public class GestorBuscaminas {
         resultado.put("SonidoWin", obtenerTodosPersonalizablesPorTabla("SonidoWin"));
         resultado.put("SonidoGameOver", obtenerTodosPersonalizablesPorTabla("SonidoGameOver"));
         resultado.put("IconosTablero", obtenerTodosPersonalizablesPorTabla("IconosTablero"));
-        resultado.put("IconosUsuario", obtenerTodosPersonalizablesPorTabla("IconosUsuario"));
         return resultado;
     }
 
