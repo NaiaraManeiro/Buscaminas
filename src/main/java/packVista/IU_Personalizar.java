@@ -211,7 +211,7 @@ public class IU_Personalizar extends JDialog {
 
     private void onGuardar() {
         //obtener la seleccion de sonido win, sonido gameover y iconos tablero
-        GestorBuscaminas.getMiGB().ponerPaths(buscarPathSonido(pathSonidosWin,true),buscarPathSonido(pathSonidosGameOver,false),"");
+        //GestorBuscaminas.getMiGB().ponerPaths(buscarPathSonido(pathSonidosWin,true),buscarPathSonido(pathSonidosGameOver,false),"");
         volverAlMenu();
     }
     private String buscarPathIconos(String pNombre){
