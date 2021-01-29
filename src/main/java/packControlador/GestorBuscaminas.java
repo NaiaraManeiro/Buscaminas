@@ -1,8 +1,12 @@
 package packControlador;
 
+import org.json.JSONArray;
 import packVista.Buscaminas;
 
+import javax.swing.*;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class GestorBuscaminas {
 
@@ -13,6 +17,72 @@ public class GestorBuscaminas {
     public static GestorBuscaminas getMiGB() {
         if (miGB == null) miGB = new GestorBuscaminas();
         return miGB;
+    }
+
+    //Todo lo relacionado con los niveles
+
+    /**
+     * Método encargado de obtener todos los niveles posibles para jugar
+     *
+     * @return Un JSONArray con el id de los niveles existentes en la db
+     * */
+    public JSONArray obtenerNiveles() {
+        Integer resultado;
+        JSONArray niveles = new JSONArray();
+        try {
+            ResultSet res = GestorBD.getGestorBD().ejecutarConsulta("SELECT idNivel FROM Nivel;");
+            while (res.next()) {
+                resultado = res.getInt("idNivel");
+                niveles.put(resultado);
+            }
+        } catch (SQLException e) {
+            System.out.println("No se han podido obtener los niveles del juego");
+            e.printStackTrace();
+        }
+        GestorBD.getGestorBD().cerrarConexion();
+        return niveles;
+    }
+
+    /**
+     * Método encargado de obtener el número de filas de un nivel determinado.
+     *@param pNivel es el nivel del que se desea obtener la información.
+     * @return Devuelve el número de filas del nivel que se introduce como parámetro.
+     * */
+    public int obtenerfilasnivel(int pNivel){
+        int filas = 0;
+        if (pNivel==1 || pNivel ==2 || pNivel ==3){
+            try {
+                ResultSet rs = GestorBD.getGestorBD().ejecutarConsulta("SELECT numFilas FROM Nivel WHERE idNivel='" + pNivel + "';");
+                rs.next();
+                filas = rs.getInt("numFilas");
+                GestorBD.getGestorBD().cerrarConexion();
+            }catch (SQLException throwables) {
+                System.out.println("No se ha podido obtener el numero de filas");
+                JOptionPane.showMessageDialog(null, "No se ha podido obtener el número de filas del nivel " + pNivel);
+            }
+        }
+        return filas;
+    }
+
+    /**
+     * Método encargado de obtener el número de columnas de un nivel determinado.
+     *@param pNivel es el nivel del que se desea obtener la información.
+     * @return Devuelve el número de columnas del nivel que se introduce como parámetro.
+     * */
+    public int obtenercolumnasnivel(int pNivel){
+        int columnas = 0;
+        if (pNivel==1 || pNivel ==2 || pNivel ==3) {
+            try {
+                ResultSet rs = GestorBD.getGestorBD().ejecutarConsulta("SELECT numColumnas FROM Nivel WHERE idNivel='" + pNivel + "';");
+                rs.next();
+                columnas = rs.getInt("numColumnas");
+                GestorBD.getGestorBD().cerrarConexion();
+            } catch (SQLException throwables) {
+                JOptionPane.showMessageDialog(null, "No se ha podido obtener el número de columnas del nivel " + pNivel);
+                throwables.printStackTrace();
+            }
+        }
+        return columnas;
     }
 
     //Todo lo relacionado con las casillas

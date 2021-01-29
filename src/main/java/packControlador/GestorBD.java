@@ -10,10 +10,10 @@ public class GestorBD {
     private static GestorBD mGestorBD;
     private final String host = "localhost";
     private final String puerto = "3306";
-    private final String nombreBD = "buscaminas";
-    private final String usuarioBD = "admin";
-    private final String contrasenaBD = "buscaminas";
-    private final String url = "jdbc:mysql://" + host + ":" + puerto + "/" + nombreBD + "?useSSL=false";
+    private final String nombreBD = "Buscaminas";
+    private final String usuarioBD = "root";
+    private final String contrasenaBD = "root";
+    private final String url = "jdbc:mysql://" + host + ":" + puerto + "/" + nombreBD + "?allowPublicKeyRetrieval=true&useSSL=false&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private final String driver = "com.mysql.cj.jdbc.Driver";
     private Connection con;
 

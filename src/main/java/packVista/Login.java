@@ -1,5 +1,8 @@
 package packVista;
 
+import org.json.JSONArray;
+import packControlador.GestorBuscaminas;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -25,9 +28,12 @@ public class Login extends JDialog {
         setTitle("Buscaminas: Usuario");
         setResizable(false);
         setContentPane(rootpanel);
-        comboBoxNivel.addItem(1);
-        comboBoxNivel.addItem(2);
-        comboBoxNivel.addItem(3);
+
+        JSONArray niveles = GestorBuscaminas.getMiGB().obtenerNiveles();
+        for (int i = 0; i < niveles.length(); i++) {
+            comboBoxNivel.addItem(niveles.get(i));
+        }
+
         ButtonGroup group = new ButtonGroup();
         group.add(minasSi);
         group.add(minasNo);
