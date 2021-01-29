@@ -58,12 +58,17 @@ INSERT INTO IconosTablero (idIcoTablero, nombre, path) VALUES ('it003','Classic2
 --Tabla Ranking
 CREATE TABLE Ranking(
   idRanking char(5) not null,
+  nivel int not null,
   nombreJugador varchar(60) not null,
   puntuacion int not null,
   CONSTRAINT PK_Jugador PRIMARY KEY (idRanking)
 );
-Insert Into Ranking (idRanking, nombreJugador, puntuacion) VALUES ('02','alain',12)
-Insert Into Ranking (idRanking, nombreJugador, puntuacion) VALUES ('03','asier',11)
-Insert Into Ranking (idRanking, nombreJugador, puntuacion) VALUES ('01','alvaro',15)
+
+Insert Into Ranking (idRanking, nivel, nombreJugador, puntuacion) VALUES ('1',1,'alvaro',15);
+Insert Into Ranking (idRanking, nivel, nombreJugador, puntuacion) VALUES ('2',2,'alain',12);
+Insert Into Ranking (idRanking, nivel, nombreJugador, puntuacion) VALUES ('3',3,'asier',11);
+Insert Into Ranking (idRanking, nivel, nombreJugador, puntuacion) VALUES ('4',1,'alvaro2',15);
+Insert Into Ranking (idRanking, nivel, nombreJugador, puntuacion) VALUES ('5',2,'alain2',12);
+Insert Into Ranking (idRanking, nivel, nombreJugador, puntuacion) VALUES ('6',3,'asier2',11);
 
 

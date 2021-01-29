@@ -1,5 +1,6 @@
 package packControlador;
 
+import org.json.JSONArray;
 import packVista.Buscaminas;
 
 import java.awt.event.MouseEvent;
@@ -85,5 +86,9 @@ public class GestorBuscaminas {
     public void imprimirChivato(){
         GestorPartidas.getMiGestorPartidas().imprimirChivato();
     }
+
+    //Todo lo relacionado con las puntuaciones
+
+    public JSONArray obtenerPuntuaciones(int nivel){ return GestorPuntuaciones.getMiGestorPuntuaciones().obtenerPuntuaciones(nivel);}
 
 }
