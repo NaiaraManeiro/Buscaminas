@@ -1,6 +1,7 @@
 package packControlador;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 import packVista.Buscaminas;
 
 import javax.swing.*;
@@ -156,4 +157,55 @@ public class GestorBuscaminas {
         GestorPartidas.getMiGestorPartidas().imprimirChivato();
     }
 
+    /**
+     * Obtiene toda la información de los personalizables que hay en el sistema (iconos de usuario, iconos de tablero, sonidos...)
+     * @return devuelve un JSONObject con la siguiente forma:
+     * {
+     * IconosUsuario:[{id:string, nombre: string, path:string},...,{...}],
+     * IconosTablero:[{id:string, nombre: string, path:string},...,{...}],
+     * SonidoGameOver:[{id:string, nombre: string, path:string},...,{...}],
+     * SonidoWin:[{id:string, nombre: string, path:string},...,{...}]
+     * }
+     */
+    public JSONObject obtenerTodosPersonalizables(){
+        JSONObject resultado = new JSONObject();
+        resultado.put("SonidoWin", obtenerTodosPersonalizablesPorTabla("SonidoWin"));
+        resultado.put("SonidoGameOver", obtenerTodosPersonalizablesPorTabla("SonidoGameOver"));
+        resultado.put("IconosTablero", obtenerTodosPersonalizablesPorTabla("IconosTablero"));
+        resultado.put("IconosUsuario", obtenerTodosPersonalizablesPorTabla("IconosUsuario"));
+        return resultado;
+    }
+
+    /**
+     * Es un método auxiliar que se usa para obtenerTodosPersonalizables(), para no repetir código.
+     * @param tabla es la tabla de personalizables de la que se desea obtener la información.
+     * @return devuelve un JSONArray con esta forma:
+     * [{id:string, nombre: string, path:string},...,{...}]
+     */
+    private JSONArray obtenerTodosPersonalizablesPorTabla(String tabla) {
+        JSONArray opciones = new JSONArray();
+        try {
+            ResultSet resconsulta = GestorBD.getGestorBD().ejecutarConsulta("SELECT * FROM "+ tabla);
+            if (resconsulta != null) {
+                int columnas = resconsulta.getMetaData().getColumnCount();
+                int i = 1;
+                while (resconsulta.next()) {
+                    JSONObject informacion = new JSONObject();
+                    while (i <= columnas) {
+                        if (i == 1) informacion.put("id", resconsulta.getString(i));
+                        else if (i == 2) informacion.put("nombre", resconsulta.getString(i));
+                        else if (i == 3) informacion.put("path", resconsulta.getString(i));
+                        i++;
+                    }
+                    opciones.put(informacion);
+                    i = 1;
+                }
+                resconsulta.close();
+            }
+        }catch (SQLException e){e.printStackTrace(); System.out.println("No se han podido obtener los personalizables");}
+        finally {
+            GestorBD.getGestorBD().cerrarConexion();
+        }
+        return opciones;
+    }
 }

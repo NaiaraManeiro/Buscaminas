@@ -1,24 +1,21 @@
 package packControlador;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class GestorBD {
 
     private static GestorBD mGestorBD;
     private final String host = "localhost";
     private final String puerto = "3306";
-    private final String nombreBD = "Buscaminas";
+    private final String nombreBD = "buscaminas";
     private final String usuarioBD = "root";
     private final String contrasenaBD = "root";
     private final String url = "jdbc:mysql://" + host + ":" + puerto + "/" + nombreBD + "?allowPublicKeyRetrieval=true&useSSL=false&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private final String driver = "com.mysql.cj.jdbc.Driver";
     private Connection con;
+    private Statement stmt;
 
-    private GestorBD() {
-    }
+    private GestorBD() {}
 
     public static GestorBD getGestorBD() {
         if (mGestorBD == null) {
@@ -42,7 +39,8 @@ public class GestorBD {
     public ResultSet ejecutarConsulta(String consulta) {
         this.con= this.conn();
         try {
-            return con.createStatement().executeQuery(consulta);
+            stmt = con.createStatement();
+            return stmt.executeQuery(consulta);
         } catch (SQLException e) {
             return null;
         }
@@ -50,13 +48,15 @@ public class GestorBD {
     public void ejecutarCambio(String pSentencia) {
         this.con = this.conn();
         try {
-            con.createStatement().executeUpdate(pSentencia);
+            stmt = con.createStatement();
+            stmt.executeUpdate(pSentencia);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
     public void cerrarConexion(){
         try {
+            stmt.close();
             con.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
