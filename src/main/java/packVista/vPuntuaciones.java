@@ -51,6 +51,9 @@ public class vPuntuaciones extends JDialog {
             JSONArray puntuaciones = GestorBuscaminas.getMiGB().obtenerPuntuaciones(i);
             DefaultTableModel model = new DefaultTableModel();
 
+            model.addColumn("Puntuacion");
+            model.addColumn("Nombre");
+
             for (int j = 0; j < puntuaciones.length(); j++){
 
                 Object[] ob = new Object[2];
@@ -63,7 +66,7 @@ public class vPuntuaciones extends JDialog {
                 table1.setModel(model);
             } else if (i == 2) {
                 table2.setModel(model);
-            } else if (i == 3) {
+            } else {
                 table3.setModel(model);
             }
         }
