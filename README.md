@@ -59,6 +59,11 @@ Se ofrecen tres niveles para jugar:
 ![ventana-nivel-3]
   
 
+### Autores
+* [Leire](https://github.com/leiregonzalez11)
+* [Naiara](https://github.com/NaiaraManeiro)
+* [Aitor](https://github.com/aitorjus)
+
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [ventana-iconos]: images/ventana_iconos.png
