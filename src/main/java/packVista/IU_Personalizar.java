@@ -1,7 +1,5 @@
 package packVista;
 
-import com.intellij.uiDesigner.core.GridConstraints;
-import com.intellij.uiDesigner.core.GridLayoutManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import packControlador.GestorBuscaminas;
@@ -11,7 +9,6 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -40,11 +37,11 @@ public class IU_Personalizar extends JDialog {
     private JSONArray sonidosWin;
     private JSONArray sonidosGameOver;
     private JSONArray iconosTablero;
-    private String pathSonidosWin;
-    private String pathSonidosGameOver;
-
+    private JSONObject personalizablesJugador;
+    private String idJug;
 
     public IU_Personalizar() {
+
         getPersonalizables();
         setContentPane(contentPane);
         setModal(true);
@@ -52,8 +49,8 @@ public class IU_Personalizar extends JDialog {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Personaliza tu buscaminas");
         getIconosDeTablero();
-        ponerSonidos(sonidosWin, jpanelwin, jspsonidoswin,"sw000", true);
-        ponerSonidos(sonidosGameOver, jpanellose, jspsonidosgo,"sg000", false);
+        ponerSonidos(sonidosWin, jpanelwin, jspsonidoswin, (String) personalizablesJugador.get("pathSonidoWin"), true);
+        ponerSonidos(sonidosGameOver, jpanellose, jspsonidosgo, (String) personalizablesJugador.get("pathSonidoGameOver"), false);
         guardar.addActionListener(e -> onGuardar());
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -112,7 +109,7 @@ public class IU_Personalizar extends JDialog {
                             JSONObject iconoTablero = (JSONObject) sonidosWin.get(i);
                             if (iconoTablero.getString("nombre").equals(nombreSonidoSeleccionado)) {
                                 enc = true;
-                                pathSonidosWin= iconoTablero.getString("path");
+                                personalizablesJugador.put("pathSonidoWin", iconoTablero.getString("path"));
                             } else i++;
                         }
                     } else {
@@ -120,13 +117,13 @@ public class IU_Personalizar extends JDialog {
                             JSONObject iconoTablero = (JSONObject) sonidosGameOver.get(i);
                             if (iconoTablero.getString("nombre").equals(nombreSonidoSeleccionado)) {
                                 enc = true;
-                                pathSonidosGameOver = iconoTablero.getString("path");
+                                personalizablesJugador.put("pathSonidoGameOver", iconoTablero.getString("path"));
                             } else i++;
                         }
                     }
                 }
             });
-            if (idSonidoJugador.equals(sonidoObjeto.getString("id"))) sonido.setSelected(true);
+            if (idSonidoJugador.equals(sonidoObjeto.getString("path"))) sonido.setSelected(true);
             Box hori = Box.createHorizontalBox();
             hori.add(sonido);
             hori.add(reproducir);
@@ -145,13 +142,13 @@ public class IU_Personalizar extends JDialog {
             JSONObject nombreIcono = (JSONObject) iconosTablero.get(i);
             iconosTableroModel.addElement(nombreIcono.get("nombre"));
         }
-        // actualizamos las previews de las imagenes de lo seleccionado por el usuario antes de guardar
-        String idIcoTableroJugador = "it000";
+        //marcamos lo que tenga seleccionado el usuario
+        String idIcoTableroJugador = (String) personalizablesJugador.get("pathIconosTablero");
         boolean enc = false;
         int i = 0;
         while (!enc && i < iconosTablero.length()) {
             JSONObject iconoTablero = (JSONObject) iconosTablero.get(i);
-            String idiconoTablero = iconoTablero.getString("id");
+            String idiconoTablero = iconoTablero.getString("path");
             if (idiconoTablero.equals(idIcoTableroJugador)) {
                 enc = true;
                 ponerPreview(iconoTablero.getString("nombre"));
@@ -163,6 +160,15 @@ public class IU_Personalizar extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ponerPreview(String.valueOf(opcionesIcoTablero.getSelectedItem()));
+                boolean enc = false;
+                int i = 0;
+                while (!enc && i < iconosTablero.length()) {
+                    JSONObject iconoUsuario = (JSONObject) iconosTablero.get(i);
+                    if (iconoUsuario.getString("nombre").equals(String.valueOf(opcionesIcoTablero.getSelectedItem()))) {
+                        enc = true;
+                        personalizablesJugador.put("pathIconosTablero", iconoUsuario.getString("path"));
+                    } else i++;
+                }
             }
         });
     }
@@ -184,7 +190,7 @@ public class IU_Personalizar extends JDialog {
         //añadir la imagen de previews de los packs de iconos
         Image dimg = null;
         try {
-            URL pppp = new URL(getClass().getResource(path) + "/preview.png");
+            URL pppp = new URL(String.valueOf(getClass().getResource(path)) + "/preview.png");
             BufferedImage img = ImageIO.read(pppp);
             dimg = img.getScaledInstance(320, 180, Image.SCALE_SMOOTH);
         } catch (IOException e2) {
@@ -207,60 +213,15 @@ public class IU_Personalizar extends JDialog {
         sonidosWin = (JSONArray) personalizables.get("SonidoWin");
         sonidosGameOver = (JSONArray) personalizables.get("SonidoGameOver");
         iconosTablero = (JSONArray) personalizables.get("IconosTablero");
+        personalizablesJugador = GestorBuscaminas.getMiGB().getPersonalizables();
     }
 
+
     private void onGuardar() {
-        //obtener la seleccion de sonido win, sonido gameover y iconos tablero
-        GestorBuscaminas.getMiGB().ponerPersonalizables(buscarPathSonido(pathSonidosWin,true),buscarPathSonido(pathSonidosGameOver,false),buscarPathIconos(opcionesIcoTablero.getSelectedItem().toString()));
+        GestorBuscaminas.getMiGB().ponerPersonalizables((String) personalizablesJugador.get("pathSonidoWin"), (String) personalizablesJugador.get("pathSonidoGameOver"), (String) personalizablesJugador.get("pathIconosTablero"));
         volverAlMenu();
     }
-    private String buscarPathIconos(String pNombre){
-        String path = "/pack_iconos_tablero/pack1";
-        if(!pNombre.equals("")){
-            int i = 0;
-            boolean enc = false;
-            while (!enc && i < iconosTablero.length()) {
-                JSONObject sonido = (JSONObject) iconosTablero.get(i);
-                if (sonido.get("nombre").equals(pNombre)) {
-                    enc = true;
-                    path = (String) sonido.get("path");
-                } else i++;
-            }
-        }
-        return path;
-    }
-    private String buscarPathSonido(String pNombre,boolean swg){
-        String path;
-        if(swg){ //true sonidos win
-            path = "/sonidos_win/win.wav";
-            if(!pNombre.equals("")) {
-                //buscar sonido win
-                int i = 0;
-                boolean enc = false;
-                while (!enc && i < sonidosWin.length()) {
-                    JSONObject sonido = (JSONObject) sonidosWin.get(i);
-                    if (sonido.get("nombre").equals(pNombre)) {
-                        enc = true;
-                        path = (String) sonido.get("path");
-                    } else i++;
-                }
-            }
-        }else{
-            path = "/sonidos_gameover/lose.wav";
-            if(!pNombre.equals("")) {
-                int i = 0;
-                boolean enc = false;
-                while (!enc && i < sonidosGameOver.length()) {
-                    JSONObject sonido = (JSONObject) sonidosGameOver.get(i);
-                    if (sonido.get("nombre").equals(pNombre)) {
-                        enc = true;
-                        path = (String) sonido.get("path");
-                    } else i++;
-                }
-            }
-        }
-        return path;
-    }
+
     private void volverAlMenu() {
         dispose();
         Login ppj = new Login();
@@ -270,7 +231,6 @@ public class IU_Personalizar extends JDialog {
         ppj.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         //setVisible(false);
         ppj.setVisible(true);
-
     }
 
     private void onCancel() {
