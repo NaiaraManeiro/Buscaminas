@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="packVista.Login">
   <grid id="27dc6" binding="rootpanel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="72" y="62" width="625" height="341"/>
+      <xy x="72" y="62" width="649" height="421"/>
     </constraints>
     <properties>
       <background color="-9999251"/>
@@ -15,234 +15,216 @@
       <title-color color="-590081"/>
     </border>
     <children>
-      <grid id="a185b" binding="panel1" layout-manager="GridLayoutManager" row-count="6" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="18109" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints border-constraint="Center"/>
-        <properties>
-          <background color="-590081"/>
-          <enabled value="true"/>
-        </properties>
+        <properties/>
         <border type="none"/>
         <children>
-          <component id="483cb" class="javax.swing.JLabel" binding="lblnombre">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-16777216"/>
-              <enabled value="true"/>
-              <font name="Microsoft JhengHei" size="14"/>
-              <foreground color="-16777216"/>
-              <text value="Introduzca un nombre de usuario:"/>
-            </properties>
-          </component>
-          <component id="ce469" class="javax.swing.JTextField" binding="textusuario">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <font name="Microsoft JhengHei" size="14"/>
-              <horizontalAlignment value="0"/>
-            </properties>
-          </component>
-          <component id="25150" class="javax.swing.JLabel" binding="lblnivel">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-16777216"/>
-              <font name="Microsoft JhengHei" size="14"/>
-              <foreground color="-16777216"/>
-              <text value="Seleccione un nivel para jugar:"/>
-            </properties>
-          </component>
-          <component id="e5782" class="javax.swing.JComboBox" binding="comboBoxNivel">
-            <constraints>
-              <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font name="Microsoft JhengHei" size="14"/>
-            </properties>
-          </component>
-          <component id="4f28d" class="javax.swing.JLabel" binding="minasEspeciales">
-            <constraints>
-              <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-16777216"/>
-              <font name="Microsoft JhengHei" size="14"/>
-              <foreground color="-16777216"/>
-              <text value="¿Quiere que aparezcan minas especiales?"/>
-            </properties>
-          </component>
-          <component id="16bcd" class="javax.swing.JRadioButton" binding="minasSi">
-            <constraints>
-              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-1"/>
-              <font name="Microsoft JhengHei" size="12"/>
-              <foreground color="-16777216"/>
-              <text value="Si"/>
-            </properties>
-          </component>
-          <component id="b5fec" class="javax.swing.JRadioButton" binding="minasNo">
-            <constraints>
-              <grid row="5" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-1"/>
-              <font name="Microsoft JhengHei" size="12"/>
-              <foreground color="-16777216"/>
-              <text value="No"/>
-            </properties>
-          </component>
-          <component id="a73dd" class="javax.swing.JButton" binding="ayuda">
-            <constraints>
-              <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-1"/>
-              <foreground color="-1"/>
-              <horizontalAlignment value="2"/>
-              <icon value="interrogracion.png"/>
-              <text value=""/>
-            </properties>
-          </component>
-        </children>
-      </grid>
-      <grid id="14275" layout-manager="GridLayoutManager" row-count="4" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints border-constraint="South"/>
-        <properties>
-          <background color="-590081"/>
-        </properties>
-        <border type="none"/>
-        <children>
-          <grid id="43d9e" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="7e9c8" binding="jPanelNombreUsuario" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children/>
-          </grid>
-          <component id="ab67a" class="javax.swing.JButton" binding="puntuacionesButton">
-            <constraints>
-              <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-590081"/>
-              <font name="Microsoft JhengHei" size="14"/>
-              <foreground color="-16777216"/>
-              <text value="Puntuaciones"/>
-            </properties>
-          </component>
-          <component id="885ea" class="javax.swing.JButton" binding="personalizar">
-            <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-1"/>
-              <font name="Microsoft JhengHei" size="14"/>
-              <foreground color="-16777216"/>
-              <text value="Personalizar"/>
-            </properties>
-          </component>
-          <grid id="a123f" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="0" left="0" bottom="0" right="0"/>
-            <constraints>
-              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties/>
             <border type="none"/>
             <children>
-              <component id="54bbb" class="javax.swing.JLabel">
+              <component id="483cb" class="javax.swing.JLabel" binding="lblnombre">
                 <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <background color="-590081"/>
-                  <foreground color="-590081"/>
-                  <text value="."/>
-                </properties>
-              </component>
-              <vspacer id="99140">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                </constraints>
-              </vspacer>
-            </children>
-          </grid>
-          <component id="ca0cc" class="javax.swing.JButton" binding="infoButton">
-            <constraints>
-              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-590081"/>
-              <font name="Microsoft JhengHei" size="14"/>
-              <text value="Información"/>
-            </properties>
-          </component>
-          <grid id="2e902" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="0" left="0" bottom="0" right="0"/>
-            <constraints>
-              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children>
-              <component id="dfe18" class="javax.swing.JButton" binding="aceptarButton">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <background color="-590081"/>
+                  <background color="-16777216"/>
                   <enabled value="true"/>
                   <font name="Microsoft JhengHei" size="14"/>
                   <foreground color="-16777216"/>
-                  <hideActionText value="false"/>
-                  <text value="Jugar"/>
+                  <text value="Introduzca un nombre de usuario:"/>
                 </properties>
-                <clientProperties>
-                  <hideActionText class="java.lang.Boolean" value="false"/>
-                </clientProperties>
               </component>
-              <component id="84e04" class="javax.swing.JButton" binding="salirButton">
+              <component id="ce469" class="javax.swing.JTextField" binding="textusuario">
                 <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
                 </constraints>
                 <properties>
-                  <background color="-590081"/>
                   <font name="Microsoft JhengHei" size="14"/>
-                  <text value="Salir"/>
+                  <horizontalAlignment value="0"/>
                 </properties>
               </component>
             </children>
           </grid>
-          <component id="c4c92" class="javax.swing.JLabel">
+          <grid id="4efe2" binding="jPanelNivel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties>
-              <background color="-590081"/>
-              <foreground color="-590081"/>
-              <text value="."/>
-            </properties>
-          </component>
-          <component id="6df8a" class="javax.swing.JLabel">
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="25150" class="javax.swing.JLabel" binding="lblnivel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-16777216"/>
+                  <font name="Microsoft JhengHei" size="14"/>
+                  <foreground color="-16777216"/>
+                  <text value="Seleccione un nivel para jugar:"/>
+                </properties>
+              </component>
+              <component id="e5782" class="javax.swing.JComboBox" binding="comboBoxNivel">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Microsoft JhengHei" size="14"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="b1571" binding="jPanelMinasEspeciales" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties>
-              <background color="-590081"/>
-              <foreground color="-590081"/>
-              <text value="."/>
-            </properties>
-          </component>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="4f28d" class="javax.swing.JLabel" binding="minasEspeciales">
+                <constraints/>
+                <properties>
+                  <background color="-16777216"/>
+                  <font name="Microsoft JhengHei" size="14"/>
+                  <foreground color="-16777216"/>
+                  <text value="¿Quiere que aparezcan minas especiales?"/>
+                </properties>
+              </component>
+              <component id="16bcd" class="javax.swing.JRadioButton" binding="minasSi">
+                <constraints/>
+                <properties>
+                  <background color="-1"/>
+                  <font name="Microsoft JhengHei" size="12"/>
+                  <foreground color="-16777216"/>
+                  <text value="Si"/>
+                </properties>
+              </component>
+              <component id="b5fec" class="javax.swing.JRadioButton" binding="minasNo">
+                <constraints/>
+                <properties>
+                  <background color="-1"/>
+                  <font name="Microsoft JhengHei" size="12"/>
+                  <foreground color="-16777216"/>
+                  <text value="No"/>
+                </properties>
+              </component>
+              <component id="a73dd" class="javax.swing.JButton" binding="ayuda">
+                <constraints/>
+                <properties>
+                  <background color="-1"/>
+                  <foreground color="-1"/>
+                  <horizontalAlignment value="2"/>
+                  <icon value="interrogracion.png"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="d9573" binding="jPanelBotones" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="988fd" binding="jPanelMasInfo" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="ab67a" class="javax.swing.JButton" binding="puntuacionesButton">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-590081"/>
+                      <font name="Microsoft JhengHei" size="14"/>
+                      <foreground color="-16777216"/>
+                      <text value="Puntuaciones"/>
+                    </properties>
+                  </component>
+                  <component id="ca0cc" class="javax.swing.JButton" binding="infoButton">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-590081"/>
+                      <font name="Microsoft JhengHei" size="14"/>
+                      <text value="Información"/>
+                    </properties>
+                  </component>
+                  <component id="885ea" class="javax.swing.JButton" binding="personalizar">
+                    <constraints>
+                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-1"/>
+                      <font name="Microsoft JhengHei" size="14"/>
+                      <foreground color="-16777216"/>
+                      <text value="Personalizar"/>
+                    </properties>
+                  </component>
+                  <component id="e7067" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Alguna cosa más..."/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="2490f" binding="jPanelBotonJugar" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="84e04" class="javax.swing.JButton" binding="salirButton">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-590081"/>
+                      <font name="Microsoft JhengHei" size="14"/>
+                      <text value="Salir"/>
+                    </properties>
+                  </component>
+                  <component id="dfe18" class="javax.swing.JButton" binding="jugarButton">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-590081"/>
+                      <enabled value="true"/>
+                      <font name="Microsoft JhengHei" size="14"/>
+                      <foreground color="-16777216"/>
+                      <hideActionText value="false"/>
+                      <text value="Jugar"/>
+                    </properties>
+                    <clientProperties>
+                      <hideActionText class="java.lang.Boolean" value="false"/>
+                    </clientProperties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
         </children>
       </grid>
     </children>

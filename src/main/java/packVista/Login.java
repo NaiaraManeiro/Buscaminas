@@ -12,11 +12,10 @@ import static java.awt.Cursor.HAND_CURSOR;
 
 public class Login extends JDialog {
     private JPanel rootpanel;
-    private JButton aceptarButton;
+    private JButton jugarButton;
     private JTextField textusuario;
     private JLabel lblnombre;
     private JLabel lblnivel;
-    private JPanel panel1;
     private JComboBox comboBoxNivel;
     private JButton puntuacionesButton;
     private JLabel minasEspeciales;
@@ -26,6 +25,12 @@ public class Login extends JDialog {
     private JButton personalizar;
     private JButton infoButton;
     private JButton salirButton;
+    private JPanel jPanelNombreUsuario;
+    private JPanel jPanelNivel;
+    private JPanel jPanelMinasEspeciales;
+    private JPanel jPanelBotones;
+    private JPanel jPanelMasInfo;
+    private JPanel jPanelBotonJugar;
 
     public Login() {
         setTitle("Buscaminas: Usuario");
@@ -47,12 +52,12 @@ public class Login extends JDialog {
         ayuda.setMargin(new Insets(0, 0, 0, 0));
         ayuda.setContentAreaFilled(false);
         ayuda.setCursor(new Cursor(HAND_CURSOR));
-        aceptarButton.setCursor(new Cursor(HAND_CURSOR));
+        jugarButton.setCursor(new Cursor(HAND_CURSOR));
         infoButton.setCursor(new Cursor(HAND_CURSOR));
         puntuacionesButton.setCursor(new Cursor(HAND_CURSOR));
         personalizar.setCursor(new Cursor(HAND_CURSOR));
 
-        aceptarButton.addActionListener(new ActionListener() {
+        jugarButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 String usuario = textusuario.getText();
                 Object nivel = comboBoxNivel.getSelectedItem();
