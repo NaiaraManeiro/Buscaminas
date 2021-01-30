@@ -74,11 +74,6 @@ public class Juego extends Observable {
 
     public void reiniciarVariables(){ this.tableroPrueba = null; }
 
-    public void guardarPartida(){
-//        Puntuaciones.getMiPuntuaciones().anadirPuntuacion(usuario.getNombre(), getPuntuacion(), usuario.getNivel().getNumero());
-//        Puntuaciones.getMiPuntuaciones().guardarPuntuaciones();
-    }
-
     public void marcardesmarcarCasilla(Casilla c){
         Coordenada coord = c.getCoordenada();
         int x = coord.getColumna();
