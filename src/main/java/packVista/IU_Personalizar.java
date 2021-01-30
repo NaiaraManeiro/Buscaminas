@@ -28,7 +28,6 @@ public class IU_Personalizar extends JDialog {
     private JPanel jpiconostablero;
     private JPanel jpiconosusuario;
     private JPanel jpButtonContainer;
-    private JScrollPane jspIcoUsuario;
     private JPanel pestanaIcoTablero;
     private JPanel wrapper;
     private JPanel jpanelPreview;
@@ -38,7 +37,6 @@ public class IU_Personalizar extends JDialog {
     private JSONArray sonidosGameOver;
     private JSONArray iconosTablero;
     private JSONObject personalizablesJugador;
-    private String idJug;
 
     public IU_Personalizar() {
 
