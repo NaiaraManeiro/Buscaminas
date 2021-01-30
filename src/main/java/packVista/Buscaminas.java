@@ -34,14 +34,13 @@ public class Buscaminas extends JFrame implements Observer {
     private static boolean mostrarPerdida;
     private static boolean mostrarGanado;
     private static boolean finPartida;
-    private static Buscaminas mBuscaminas;
     private String idJug, minas;
     private int nivel;
     private String pathPackIconos;
     private String pathSonidoWin;
     private String pathSonidoGameOver;
 
-    private Buscaminas(String idJugador, int pNivel, String pMinas) {
+    public Buscaminas(String idJugador, int pNivel, String pMinas) {
         idJug = idJugador;
         nivel = pNivel;
         minas = pMinas;
@@ -82,7 +81,6 @@ public class Buscaminas extends JFrame implements Observer {
                 mostrarGanado = true;
                 reiniciarButton.setIcon(new ImageIcon(getClass().getResource("/facesmile.gif")));
                 cronometro.setText("0:00");
-                mBuscaminas = null;
             }
         });
 
@@ -96,12 +94,7 @@ public class Buscaminas extends JFrame implements Observer {
         filas = GestorBuscaminas.getMiGB().obtenerfilasnivel(nivel);
         columnas = GestorBuscaminas.getMiGB().obtenercolumnasnivel(nivel);
         minasSinDescubrir = columnas*nivel;
-    }
-
-    public static Buscaminas getmBuscaminas(String idJugador, int pNivel, String minas) {
-        if (mBuscaminas == null) mBuscaminas = new Buscaminas(idJugador,pNivel,minas);
-        mBuscaminas.jugar();
-        return mBuscaminas;
+        jugar();
     }
 
     private void crearTablero(int filas, int columnas) {
@@ -185,11 +178,14 @@ public class Buscaminas extends JFrame implements Observer {
                 minasRestantes.setText(GestorBuscaminas.getMiGB().getMinasRestantes());
                 asignarIcono(fila,col);
             }
-            if (tipo.equals("CasillaMina50") && !estado.equals("Bandera")) {
-                mostrarMinas50();
+            if (tipo.equals("CasillaMina50") && estado.equals("NoClicada") ) {
+                mostrarMinas50(fila,col);
+                GestorBuscaminas.getMiGB().cambiarEstado(col,fila,"Clicada");
+                asignarIcono(fila,col);
             }
-            if (tipo.equals("CasillaMinaReset")&& !estado.equals("Bandera")) {
+            if (tipo.equals("CasillaMinaReset")&& estado.equals("NoClicada")) {
                 reiniciarJuego();
+                GestorBuscaminas.getMiGB().cambiarEstado(col,fila,"Clicada");
             }
             if (GestorBuscaminas.getMiGB().haPerdido()) {
                 mostrarMinas();
@@ -261,7 +257,7 @@ public class Buscaminas extends JFrame implements Observer {
         }
     }
 
-    private void mostrarMinas50() {
+    private void mostrarMinas50(int fila, int col) {
         minasSinDescubrir--;
         int cont = 0;
         int destapar = minasSinDescubrir / 2;
@@ -270,7 +266,7 @@ public class Buscaminas extends JFrame implements Observer {
                 if (minasSinDescubrir > 0 && destapar > cont) {
                     String estado = GestorBuscaminas.getMiGB().getEstadoCasilla(i,j);
                     String tipo = GestorBuscaminas.getMiGB().getTipoCasilla(i,j);
-                    if ((tipo.equals("CasillaMina50") || tipo.equals("CasillaMinaReset")|| tipo.equals("CasillaMinaNormal")) && estado.equals("NoClicada")) {
+                    if ((fila != j && col != i)&&(tipo.equals("CasillaMina50") || tipo.equals("CasillaMinaReset")|| tipo.equals("CasillaMinaNormal")) && estado.equals("NoClicada")) {
                         GestorBuscaminas.getMiGB().cambiarEstado(i,j,"Clicada");
                         asignarIcono(j,i);
                         cont++;

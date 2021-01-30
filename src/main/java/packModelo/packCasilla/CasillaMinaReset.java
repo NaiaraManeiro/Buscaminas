@@ -9,7 +9,6 @@ public class CasillaMinaReset extends CasillaMina {
     }
 
     public void reiniciarJuego(Casilla c) {
-        c.setEstado(new Clicada(c.getCoordenada()));
         Juego.getmJuego().activarUpdate(c.getCoordenada());
     }
 

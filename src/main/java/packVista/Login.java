@@ -63,7 +63,7 @@ public class Login extends JDialog {
 
                 Login.this.dispose(); //Cerramos la ventana actual
                 //Abrimos la pantalla del juego con el nivel marcado
-                Buscaminas bus = Buscaminas.getmBuscaminas(usuario, (int) nivel, minas);
+                Buscaminas bus = new Buscaminas(usuario, (int) nivel, minas);
                 bus.setLocationRelativeTo(null);
                 bus.setVisible(true);
             }
