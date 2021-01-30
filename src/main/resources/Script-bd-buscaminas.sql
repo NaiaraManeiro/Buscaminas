@@ -1,7 +1,7 @@
 CREATE DATABASE Buscaminas;
 USE Buscaminas;
 
---TABLA NIVEL
+-- TABLA NIVEL
 
 CREATE TABLE Nivel
 (
@@ -16,7 +16,7 @@ INSERT INTO Nivel (idNivel, numFilas, numColumnas) VALUES (1,7,10);
 INSERT INTO Nivel (idNivel, numFilas, numColumnas) VALUES (2,10,15);
 INSERT INTO Nivel (idNivel, numFilas, numColumnas) VALUES (3,12,25);
 
---Tabla sonidosWin
+-- Tabla sonidosWin
 CREATE TABLE SonidoWin(
   idSonidoWin char(5) not null,
   nombre varchar(15) not null,
@@ -28,7 +28,7 @@ INSERT INTO SonidoWin (idSonidoWin, nombre, path) VALUES ('sw000','Win','/sonido
 INSERT INTO SonidoWin (idSonidoWin, nombre, path) VALUES ('sw001','Triunfal','/sonidos_win/win-triunfal.wav');
 INSERT INTO SonidoWin (idSonidoWin, nombre, path) VALUES ('sw002','Ta-Da','/sonidos_win/win-ta-da.wav');
 
---Tabla sonidosGameOver
+-- Tabla sonidosGameOver
 CREATE TABLE SonidoGameOver(
   idSonidoGameOver char(5) not null,
   nombre varchar(15) not null,
@@ -41,7 +41,7 @@ INSERT INTO SonidoGameOver (idSonidoGameOver, nombre, path) VALUES ('sg001','Gam
 INSERT INTO SonidoGameOver (idSonidoGameOver, nombre, path) VALUES ('sg002','Pacman','/sonidos_gameover/pacman.wav');
 
 
---Tabla IconosTablero
+-- Tabla IconosTablero
 CREATE TABLE IconosTablero(
   idIcoTablero char(5) not null,
   nombre varchar(15) not null,
@@ -55,15 +55,20 @@ INSERT INTO IconosTablero (idIcoTablero, nombre, path) VALUES ('it002','Emoji','
 INSERT INTO IconosTablero (idIcoTablero, nombre, path) VALUES ('it003','Classic2','/pack_iconos_tablero/pack4');
 
 
---Tabla Ranking
+-- Tabla Ranking
 CREATE TABLE Ranking(
-  idRanking char(5) not null,
+  idRanking int not null AUTO_INCREMENT,
+  nivel int not null,
   nombreJugador varchar(60) not null,
   puntuacion int not null,
   CONSTRAINT PK_Jugador PRIMARY KEY (idRanking)
 );
-Insert Into Ranking (idRanking, nombreJugador, puntuacion) VALUES ('02','alain',12)
-Insert Into Ranking (idRanking, nombreJugador, puntuacion) VALUES ('03','asier',11)
-Insert Into Ranking (idRanking, nombreJugador, puntuacion) VALUES ('01','alvaro',15)
+
+Insert Into Ranking (idRanking, nivel, nombreJugador, puntuacion) VALUES (1,1,'alvaro',15);
+Insert Into Ranking (idRanking, nivel, nombreJugador, puntuacion) VALUES (2,2,'alain',12);
+Insert Into Ranking (idRanking, nivel, nombreJugador, puntuacion) VALUES (3,3,'asier',11);
+Insert Into Ranking (idRanking, nivel, nombreJugador, puntuacion) VALUES (4,1,'alvaro2',15);
+Insert Into Ranking (idRanking, nivel, nombreJugador, puntuacion) VALUES (5,2,'alain2',12);
+Insert Into Ranking (idRanking, nivel, nombreJugador, puntuacion) VALUES (6,3,'asier2',11);
 
 

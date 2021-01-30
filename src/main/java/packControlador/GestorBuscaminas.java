@@ -1,6 +1,8 @@
 package packControlador;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
+import packModelo.Juego;
 import packVista.Buscaminas;
 
 import javax.swing.*;
@@ -19,7 +21,7 @@ public class GestorBuscaminas {
         return miGB;
     }
 
-    //Métodos del Buscaminas (Juego)
+    //Todo lo relacionado con los niveles
 
     /**
      * Método encargado de obtener todos los niveles posibles para jugar
@@ -83,43 +85,6 @@ public class GestorBuscaminas {
             }
         }
         return columnas;
-    }
-
-    /**
-     * Método encargado de modificar un nivel determinado.
-     *@param pLevel es el nivel del que se desea obtener la información.
-     * @param pFilas  es el numero de filas introducido por el usuario
-     * @param pColumnas es el número de columnas introducido por el usaurio.
-     * */
-    public void modificarDatos (int pLevel, int pFilas, int pColumnas){
-        boolean valido = false;
-        if (pLevel == 1) {
-            if (pFilas > 1 && pFilas <8) {
-                if (pColumnas > 0 && pColumnas <11) {
-                    valido = true;
-                }else{ System.out.println("El número de columnas tiene que estar entre 1 y 10 columnas");}
-            }else{ System.out.println("El número de filas tiene que estar entre 2 y 7 filas");}
-
-        }else if (pLevel == 2) {
-            if (pFilas > 4 && pFilas <11) {
-                if (pColumnas > 5 && pColumnas <16) {
-                    valido = true;
-                }else{ System.out.println("El número de columnas tiene que estar entre 6 y 15 columnas");}
-            }else{ System.out.println("El número de filas tiene que estar entre 5 y 10 filas");}
-        }else if (pLevel ==3){
-            if (pFilas > 7 && pFilas <13) {
-                if (pColumnas > 9 && pColumnas <26) {
-                    valido = true;
-                }else{ System.out.println("El número de columnas tiene que estar entre 10 y 25 columnas");}
-            }else{ System.out.println("El número de filas tiene que estar entre 8 y 12 filas");}
-        }
-        else{System.out.println("El nivel que desea modificar no existe");}
-
-        if (valido == true){
-            GestorBD.getGestorBD().ejecutarCambio("UPDATE Nivel SET numFilas='" + pFilas + "' , numColumnas='"
-                    + pColumnas + "' WHERE idNivel='" + pLevel + "';");
-            GestorBD.getGestorBD().cerrarConexion();
-        }
     }
 
     //Todo lo relacionado con las casillas
@@ -193,4 +158,67 @@ public class GestorBuscaminas {
         GestorPartidas.getMiGestorPartidas().imprimirChivato();
     }
 
+    //Todo lo relacionado con las puntuaciones
+
+    public JSONArray obtenerPuntuaciones(int nivel){ return GestorPuntuaciones.getMiGestorPuntuaciones().obtenerPuntuaciones(nivel);}
+
+    public void guardarPuntuacion(int puntuacion, String jugador, int nivel) {GestorPuntuaciones.getMiGestorPuntuaciones().guardarPuntuacion(puntuacion, jugador, nivel);}
+
+    //Todo lo relacionado con los objetos a personalizar
+
+    /**
+     * Obtiene toda la información de los personalizables que hay en el sistema (iconos de usuario, iconos de tablero, sonidos...)
+     * @return devuelve un JSONObject con la siguiente forma:
+     * {
+     * IconosTablero:[{id:string, nombre: string, path:string},...,{...}],
+     * SonidoGameOver:[{id:string, nombre: string, path:string},...,{...}],
+     * SonidoWin:[{id:string, nombre: string, path:string},...,{...}]
+     * }
+     */
+    public JSONObject obtenerTodosPersonalizables(){
+        JSONObject resultado = new JSONObject();
+        resultado.put("SonidoWin", obtenerTodosPersonalizablesPorTabla("SonidoWin"));
+        resultado.put("SonidoGameOver", obtenerTodosPersonalizablesPorTabla("SonidoGameOver"));
+        resultado.put("IconosTablero", obtenerTodosPersonalizablesPorTabla("IconosTablero"));
+        return resultado;
+    }
+
+    /**
+     * Es un método auxiliar que se usa para obtenerTodosPersonalizables(), para no repetir código.
+     * @param tabla es la tabla de personalizables de la que se desea obtener la información.
+     * @return devuelve un JSONArray con esta forma:
+     * [{id:string, nombre: string, path:string},...,{...}]
+     */
+    private JSONArray obtenerTodosPersonalizablesPorTabla(String tabla) {
+        JSONArray opciones = new JSONArray();
+        try {
+            ResultSet resconsulta = GestorBD.getGestorBD().ejecutarConsulta("SELECT * FROM "+ tabla);
+            if (resconsulta != null) {
+                int columnas = resconsulta.getMetaData().getColumnCount();
+                int i = 1;
+                while (resconsulta.next()) {
+                    JSONObject informacion = new JSONObject();
+                    while (i <= columnas) {
+                        if (i == 1) informacion.put("id", resconsulta.getString(i));
+                        else if (i == 2) informacion.put("nombre", resconsulta.getString(i));
+                        else if (i == 3) informacion.put("path", resconsulta.getString(i));
+                        i++;
+                    }
+                    opciones.put(informacion);
+                    i = 1;
+                }
+                resconsulta.close();
+            }
+        }catch (SQLException e){e.printStackTrace(); System.out.println("No se han podido obtener los personalizables");}
+        finally {
+            GestorBD.getGestorBD().cerrarConexion();
+        }
+        return opciones;
+    }
+    public void ponerPersonalizables(String pPathSonidosWin, String pPathSonidosGameOver, String pPathIconosTablero){
+        Juego.getmJuego().ponerPersonalizables(pPathSonidosWin, pPathSonidosGameOver, pPathIconosTablero);
+    }
+    public JSONObject getPersonalizables(){
+        return Juego.getmJuego().getPersonalizables();
+    }
 }
