@@ -52,6 +52,7 @@ public class IU_Personalizar extends JDialog {
         guardar.addActionListener(e -> onGuardar());
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+
         volverAlMenuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -224,7 +225,7 @@ public class IU_Personalizar extends JDialog {
         dispose();
         Login ppj = new Login();
         ppj.pack();
-        ppj.setPreferredSize(new Dimension(500, 400));
+        ppj.setPreferredSize(new Dimension(475, 350));
         ppj.setLocationRelativeTo(null);
         ppj.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         //setVisible(false);
@@ -234,6 +235,7 @@ public class IU_Personalizar extends JDialog {
     private void onCancel() {
         dispose();
     }
+
 
     public static void main(String[] args) {
         IU_Personalizar dialog = new IU_Personalizar();

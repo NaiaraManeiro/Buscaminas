@@ -46,6 +46,18 @@ public class GestorBuscaminas {
     }
 
     /**
+     * Método encargado de comprobar si existe el nivel personalizado
+     *
+     * @return True, si existe el nivel personalizado, false en caso contrario.
+     * */
+    public boolean existePersonalizable() throws SQLException {
+        Integer resultado;
+        boolean existe = false;
+        ResultSet res = GestorBD.getGestorBD().ejecutarConsulta("SELECT idNivel FROM Nivel WHERE idNivel = '4';");
+        if (res.next()) {existe = true;}
+        return existe;
+    }
+        /**
      * Método encargado de obtener el número de filas de un nivel determinado.
      *@param pNivel es el nivel del que se desea obtener la información.
      * @return Devuelve el número de filas del nivel que se introduce como parámetro.

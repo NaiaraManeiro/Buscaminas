@@ -24,6 +24,8 @@ public class Login extends JDialog {
     private JRadioButton minasNo;
     private JButton ayuda;
     private JButton personalizar;
+    private JButton infoButton;
+    private JButton salirButton;
 
     public Login() {
         setTitle("Buscaminas: Usuario");
@@ -46,6 +48,7 @@ public class Login extends JDialog {
         ayuda.setContentAreaFilled(false);
         ayuda.setCursor(new Cursor(HAND_CURSOR));
         aceptarButton.setCursor(new Cursor(HAND_CURSOR));
+        infoButton.setCursor(new Cursor(HAND_CURSOR));
         puntuacionesButton.setCursor(new Cursor(HAND_CURSOR));
         personalizar.setCursor(new Cursor(HAND_CURSOR));
 
@@ -86,6 +89,24 @@ public class Login extends JDialog {
                 ayuda.pack();
                 ayuda.setLocationRelativeTo(null);
                 ayuda.setVisible(true);
+            }
+        });
+
+        salirButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
+        infoButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                IU_InfoJuego info = new IU_InfoJuego();
+                info.setPreferredSize(new Dimension(720, 630));
+                info.pack();
+                info.setLocationRelativeTo(null);
+                setVisible(false);
+                info.setVisible(true);
             }
         });
 

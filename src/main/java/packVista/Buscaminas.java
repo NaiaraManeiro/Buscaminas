@@ -69,7 +69,7 @@ public class Buscaminas extends JFrame implements Observer {
             public void actionPerformed(ActionEvent actionEvent) {
                 dispose(); //Cerramos la ventana actual
                 Login log = new Login();
-                log.setPreferredSize(new Dimension(450, 350));
+                log.setPreferredSize(new Dimension(475, 350));
                 log.pack();
                 log.setLocationRelativeTo(null);
                 log.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
