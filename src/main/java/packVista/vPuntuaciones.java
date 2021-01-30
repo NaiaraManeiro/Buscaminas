@@ -38,8 +38,13 @@ public class vPuntuaciones extends JDialog {
         setLocationRelativeTo(null);
 
         volverAlMenuButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                dispose(); //Cerramos la ventana actual
+            public void actionPerformed(ActionEvent actionEvent){
+                Login log = new Login();
+                log.setPreferredSize(new Dimension(475, 350));
+                log.pack();
+                log.setLocationRelativeTo(null);
+                log.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                log.setVisible(true);
             }
         });
 
