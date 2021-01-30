@@ -37,6 +37,7 @@ public class IU_Personalizar extends JDialog {
     private JPanel jpanelPreview;
     private JScrollPane jspIcoTablero;
     private JButton volverAlMenuButton;
+    private JButton modificarJuegoButton;
     private JSONArray sonidosWin;
     private JSONArray sonidosGameOver;
     private JSONArray iconosTablero;
@@ -57,6 +58,12 @@ public class IU_Personalizar extends JDialog {
         guardar.addActionListener(e -> onGuardar());
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+
+        modificarJuegoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {modJuego();}
+        });
+
         volverAlMenuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -275,6 +282,16 @@ public class IU_Personalizar extends JDialog {
 
     private void onCancel() {
         dispose();
+    }
+
+    private void modJuego(){
+        dispose();
+        IU_Consultarinfojuego log = new IU_Consultarinfojuego();
+        log.setPreferredSize(new Dimension(590, 320));
+        log.pack();
+        log.setLocationRelativeTo(null);
+        log.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        log.setVisible(true);
     }
 
     public static void main(String[] args) {

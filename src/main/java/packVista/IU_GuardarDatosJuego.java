@@ -3,7 +3,7 @@ package packVista;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import packControlador.GestorBuscaminas;
-import packVista.packFuncionalidad2.packModificarJuego.IU_Consultarinfojuego;
+import packVista.IU_Consultarinfojuego;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;

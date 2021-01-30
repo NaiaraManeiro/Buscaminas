@@ -87,6 +87,43 @@ public class GestorBuscaminas {
         return columnas;
     }
 
+    /**
+     * Método encargado de modificar un nivel determinado.
+     *@param pLevel es el nivel del que se desea obtener la información.
+     * @param pFilas  es el numero de filas introducido por el usuario
+     * @param pColumnas es el número de columnas introducido por el usaurio.
+     * */
+    public void modificarDatos (int pLevel, int pFilas, int pColumnas){
+        boolean valido = false;
+        if (pLevel == 1) {
+            if (pFilas > 1 && pFilas <8) {
+                if (pColumnas > 0 && pColumnas <11) {
+                    valido = true;
+                }else{ System.out.println("El número de columnas tiene que estar entre 1 y 10 columnas");}
+            }else{ System.out.println("El número de filas tiene que estar entre 2 y 7 filas");}
+
+        }else if (pLevel == 2) {
+            if (pFilas > 4 && pFilas <11) {
+                if (pColumnas > 5 && pColumnas <16) {
+                    valido = true;
+                }else{ System.out.println("El número de columnas tiene que estar entre 6 y 15 columnas");}
+            }else{ System.out.println("El número de filas tiene que estar entre 5 y 10 filas");}
+        }else if (pLevel ==3){
+            if (pFilas > 7 && pFilas <13) {
+                if (pColumnas > 9 && pColumnas <26) {
+                    valido = true;
+                }else{ System.out.println("El número de columnas tiene que estar entre 10 y 25 columnas");}
+            }else{ System.out.println("El número de filas tiene que estar entre 8 y 12 filas");}
+        }
+        else{System.out.println("El nivel que desea modificar no existe");}
+
+        if (valido == true){
+            GestorBD.getGestorBD().ejecutarCambio("UPDATE Nivel SET numFilas='" + pFilas + "' , numColumnas='"
+                    + pColumnas + "' WHERE idNivel='" + pLevel + "';");
+            GestorBD.getGestorBD().cerrarConexion();
+        }
+    }
+
     //Todo lo relacionado con las casillas
 
     public void clicarCasilla(MouseEvent e) {
