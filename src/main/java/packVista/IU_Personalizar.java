@@ -215,7 +215,7 @@ public class IU_Personalizar extends JDialog {
         volverAlMenu();
     }
     private String buscarPathIconos(String pNombre){
-        String path = "it000";
+        String path = "/pack_iconos_tablero/pack1";
         if(!pNombre.equals("")){
             int i = 0;
             boolean enc = false;
@@ -232,7 +232,7 @@ public class IU_Personalizar extends JDialog {
     private String buscarPathSonido(String pNombre,boolean swg){
         String path;
         if(swg){ //true sonidos win
-            path = "sw000";
+            path = "/sonidos_win/win.wav";
             if(!pNombre.equals("")) {
                 //buscar sonido win
                 int i = 0;
@@ -246,7 +246,7 @@ public class IU_Personalizar extends JDialog {
                 }
             }
         }else{
-            path = "sg000";
+            path = "/sonidos_gameover/lose.wav";
             if(!pNombre.equals("")) {
                 int i = 0;
                 boolean enc = false;
@@ -257,7 +257,7 @@ public class IU_Personalizar extends JDialog {
                         path = (String) sonido.get("path");
                     } else i++;
                 }
-            }else path = "sg000";
+            }
         }
         return path;
     }

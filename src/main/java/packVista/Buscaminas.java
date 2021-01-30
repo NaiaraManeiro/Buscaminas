@@ -34,14 +34,13 @@ public class Buscaminas extends JFrame implements Observer {
     private static boolean mostrarPerdida;
     private static boolean mostrarGanado;
     private static boolean finPartida;
-    private static Buscaminas mBuscaminas;
     private String idJug, minas;
     private int nivel;
     private String pathPackIconos;
     private String pathSonidoWin;
     private String pathSonidoGameOver;
 
-    private Buscaminas(String idJugador, int pNivel, String pMinas) {
+    public Buscaminas(String idJugador, int pNivel, String pMinas) {
         idJug = idJugador;
         nivel = pNivel;
         minas = pMinas;
@@ -82,7 +81,6 @@ public class Buscaminas extends JFrame implements Observer {
                 mostrarGanado = true;
                 reiniciarButton.setIcon(new ImageIcon(getClass().getResource("/facesmile.gif")));
                 cronometro.setText("0:00");
-                mBuscaminas = null;
             }
         });
 
@@ -96,12 +94,7 @@ public class Buscaminas extends JFrame implements Observer {
         filas = GestorBuscaminas.getMiGB().obtenerfilasnivel(nivel);
         columnas = GestorBuscaminas.getMiGB().obtenercolumnasnivel(nivel);
         minasSinDescubrir = columnas*nivel;
-    }
-
-    public static Buscaminas getmBuscaminas(String idJugador, int pNivel, String minas) {
-        if (mBuscaminas == null) mBuscaminas = new Buscaminas(idJugador,pNivel,minas);
-        mBuscaminas.jugar();
-        return mBuscaminas;
+        jugar();
     }
 
     private void crearTablero(int filas, int columnas) {
