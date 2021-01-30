@@ -58,10 +58,10 @@ public class AyudaMinas extends JDialog {
         minaNormal.setText("- Mina normal: Actúa con la mina que conocemos, una vez\n" +
                 "clicada la mina, la partida se acaba y se muestran todas las minas\n" +
                 " del tablero.");
-        mina50.setText("- Mina reset: Se reiniciará el tablero cubriendo de nuevo todas\n" +
+        minaReset.setText("- Mina reset: Se reiniciará el tablero cubriendo de nuevo todas\n" +
                 "las casillas y redistribuyendo las minas de nuevo. El tiempo de la\n" +
                 "partida seguirá corriendo.");
-        minaReset.setText("- Mina 50%: Se marcará la posición del 50% de las minas que\n" +
+        mina50.setText("- Mina 50%: Se marcará la posición del 50% de las minas que\n" +
                 "todavía estén sin marcar.");
     }
 
