@@ -1,17 +1,12 @@
 package packVista;
 
-import com.intellij.uiDesigner.core.GridConstraints;
-import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
 import org.json.JSONObject;
 import packControlador.GestorBuscaminas;
-import packControlador.GestorPuntuaciones;
 import packModelo.*;
 
 import javax.sound.sampled.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -47,7 +42,6 @@ public class Buscaminas extends JFrame implements Observer {
         setTitle("Buscaminas");
         setResizable(false);
         JSONObject personalizables = GestorBuscaminas.getMiGB().getPersonalizables();
-        System.out.println(personalizables);
         pathSonidoGameOver = personalizables.getString("pathSonidoGameOver");
         pathSonidoWin = personalizables.getString("pathSonidoWin");
         pathPackIconos = personalizables.getString("pathIconosTablero");
