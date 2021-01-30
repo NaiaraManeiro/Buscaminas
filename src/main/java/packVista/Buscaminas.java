@@ -300,14 +300,14 @@ public class Buscaminas extends JFrame implements Observer {
             if (finPartida) {
                 if (estado.equals("Bandera") && tipo.equals("CasillaNormal")) {
                     imagen = new ImageIcon(getClass().getResource(pathPackIconos + "/CasillaNoBandera.png"));
-                }
+                } else if (tipo.equals("CasillaMinaNormal")) imagen = new ImageIcon(getClass().getResource(pathPackIconos + "/CasillaPrimeraMina.png"));
             } else {
                 if (estado.equals("NoClicada")) {
                     imagen = new ImageIcon(getClass().getResource(pathPackIconos + "/Casilla.png"));
                 } else if (estado.equals("Clicada")) {
                     reiniciarButton.setIcon(new ImageIcon(getClass().getResource(  "/faceooh.gif")));
                     if (tipo.equals("CasillaMinaNormal")) {
-                        imagen = new ImageIcon(getClass().getResource(pathPackIconos + "/CasillaPrimeraMina.png"));
+                        imagen = new ImageIcon(getClass().getResource(pathPackIconos + "/CasillaMina.png"));
                     } else if (tipo.equals("CasillaMinaReset")) {
                         imagen = new ImageIcon(getClass().getResource(pathPackIconos + "/CasillaMinaReset.png"));
                     } else if (tipo.equals("CasillaMina50")) {
