@@ -21,14 +21,12 @@ public class GestorPuntuaciones {
     }
 
     public JSONArray obtenerPuntuaciones(int nivel){
-
-        ResultSet rs = GestorBD.getGestorBD().ejecutarConsulta("SELECT nombreJugador, puntuacion FROM Ranking WHERE nivel='"+nivel+"' ORDER BY puntuacion DESC;");
-
         ArrayList<JSONObject> l = new ArrayList<JSONObject>();
         JSONArray puntuaciones = new JSONArray();
         int puntuacion;
         String nombre;
         try {
+            ResultSet rs = GestorBD.getGestorBD().ejecutarConsulta("SELECT nombreJugador, puntuacion FROM Ranking WHERE nivel='"+nivel+"' ORDER BY puntuacion ASC;");
             while(rs.next()) {
                 puntuacion = rs.getInt(2);
                 nombre = rs.getString(1);
@@ -51,5 +49,10 @@ public class GestorPuntuaciones {
         GestorBD.getGestorBD().cerrarConexion();
 
         return puntuaciones;
+    }
+
+    public void guardarPuntuacion(int puntuacion, String jugador, int nivel){
+        GestorBD.getGestorBD().ejecutarCambio("INSERT INTO Ranking (nivel, nombreJugador, puntuacion) VALUES ("+nivel+",'"+jugador+"',"+puntuacion+");");
+        GestorBD.getGestorBD().cerrarConexion();
     }
 }

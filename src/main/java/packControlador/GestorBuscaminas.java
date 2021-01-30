@@ -162,6 +162,10 @@ public class GestorBuscaminas {
 
     public JSONArray obtenerPuntuaciones(int nivel){ return GestorPuntuaciones.getMiGestorPuntuaciones().obtenerPuntuaciones(nivel);}
 
+    public void guardarPuntuacion(int puntuacion, String jugador, int nivel) {GestorPuntuaciones.getMiGestorPuntuaciones().guardarPuntuacion(puntuacion, jugador, nivel);}
+
+    //Todo lo relacionado con los objetos a personalizar
+
     /**
      * Obtiene toda la información de los personalizables que hay en el sistema (iconos de usuario, iconos de tablero, sonidos...)
      * @return devuelve un JSONObject con la siguiente forma:

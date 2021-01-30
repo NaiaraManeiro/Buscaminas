@@ -5,6 +5,7 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import org.json.JSONObject;
 import packControlador.GestorBuscaminas;
+import packControlador.GestorPuntuaciones;
 import packModelo.*;
 
 import javax.sound.sampled.*;
@@ -210,6 +211,11 @@ public class Buscaminas extends JFrame implements Observer {
                             "Has ganado la partida!", "Información",
                             JOptionPane.INFORMATION_MESSAGE);
                     mostrarGanado = true;
+                    String[] crono = cronometro.getText().split(":");
+                    int min = Integer.parseInt(crono[0]);
+                    int seg = Integer.parseInt(crono[1]);
+                    int puntuacion = (min*60)+seg;
+                    GestorBuscaminas.getMiGB().guardarPuntuacion(puntuacion, idJug, nivel);
                 }
             }
         } else if (o instanceof Cronometro) {
