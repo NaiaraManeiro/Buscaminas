@@ -25,7 +25,7 @@ Frameworks y programas usados para hacer esta aplicación:
 
 Se necesita tener la versión de MySQL Server. Está testeado con MySQL 8.0. Una vez que se tenga instalado, 
 se debe ejecutar en la base de datos, el script que está en la carpeta _Resources_, llamado [Script-bd-buscaminas.sql](https://github.com/NaiaraManeiro/BuscaminasSimple/blob/master/src/main/resources/Script-bd-buscaminas.sql).
-Cuando se ejecute, se debe ir a la clase [GestorBD](https://github.com/NaiaraManeiro/BuscaminasSimple/blob/master/src/main/java/packControlador/GestorBD.java), y cambiar, usuario, contraseña y host.
+Cuando se ejecute, se debe ir a la clase [GestorBD](https://github.com/NaiaraManeiro/BuscaminasSimple/blob/master/src/main/java/packControlador/GestorBD.java), y cambiar los atributos, _nombreBD_, _usuarioBD_, _contrasenaBD_, _host_ y _puerto_.
 
 ### Prerequesitos
 Se necesita tener instalado IntelliJ IDEA y descargar del mismo programa el openJDK-15 que se usa para ejecutar esta aplicación.
@@ -35,23 +35,28 @@ Se necesita tener instalado IntelliJ IDEA y descargar del mismo programa el open
 
 ### Personalización del buscaminas
 Se pueden personalizar los **iconos del tablero** y los sonidos de **ganar** y de **perder**.
+display: block;
 
-![ventana-iconos]
+margin-right: auto;
+width: 50%;
+<div style="display:block; margin-left:auto; margin-right:auto; width:50%;">
+    <img src="images/ventana_iconos.png">
+</div>
+
+<!-- ![ventana-iconos] -->
 
 #### Los iconos del tablero
 Se puede elegir entre:
 - Emojis
 
 ![ventana-buscaminas-emoji]
-  
 - Los clásicos
 
 ![ventana-buscaminas-classic2]
 
 ![ventana-nivel-1-jugada]
-  
 #### Los sonidos
-Se pueden reproducción para facilitar la elección.
+Se puede escuchar una preview para facilitar la elección.
 
 ![ventana-sonidos]
 
