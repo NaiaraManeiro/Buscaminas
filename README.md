@@ -122,7 +122,10 @@ Se ofrecen tres niveles para jugar:
 <img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ventana_nivel_3.png?token=AKRAPACD7VQO34XF4M35G2DAD7H2I" />
 </p>
 
-  
+### Ayuda sobre el juego
+Se ofrecen varias interfaces de ayuda para entender el funcionamiento del juego, así como las diferentes posibilidades que hay.
+
+
 
 ## Autores
 * [Leire - GitHub](https://github.com/leiregonzalez11)
