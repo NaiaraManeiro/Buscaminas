@@ -122,7 +122,7 @@ public class Buscaminas extends JFrame implements Observer {
                 } else if (nivel == 2) {
                     this.setMinimumSize(new Dimension(800, 600));
                     this.setSize(800, 500);
-                    casilla.setBounds(i, j, 45, 45);
+                    casilla.setBounds(i, j, 50, 50);
                 } else {
                     this.setMinimumSize(new Dimension(1200, 600));
                     this.setSize(new Dimension(1200, 700));
