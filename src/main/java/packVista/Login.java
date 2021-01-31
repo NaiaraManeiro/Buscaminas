@@ -33,6 +33,7 @@ public class Login extends JDialog {
         for (int i = 0; i < niveles.length(); i++) {
             comboBoxNivel.addItem(niveles.get(i));
         }
+        comboBoxNivel.addItem("Pers.");
 
         ButtonGroup group = new ButtonGroup();
         group.add(minasSi);
@@ -53,17 +54,30 @@ public class Login extends JDialog {
                 Object nivel = comboBoxNivel.getSelectedItem();
                 String minas = " ";
 
-                if (minasSi.isSelected()){
-                    minas = "si";
-                } else if (minasNo.isSelected()) {
-                    minas = "no";
-                }
-
-                Login.this.dispose(); //Cerramos la ventana actual
-                //Abrimos la pantalla del juego con el nivel marcado
-                Buscaminas bus = new Buscaminas(usuario, (int) nivel, minas);
-                bus.setLocationRelativeTo(null);
-                bus.setVisible(true);
+                if (validarDatos(usuario)){
+                    if (minasSi.isSelected()){
+                        minas = "si";
+                    } else if (minasNo.isSelected()) {
+                        minas = "no";
+                    }
+                    if (!nivel.equals("Pers.")) {
+                        int filas = GestorBuscaminas.getMiGB().obtenerfilasnivel((int)nivel);
+                        int columnas = GestorBuscaminas.getMiGB().obtenercolumnasnivel((int)nivel);
+                        Login.this.dispose(); //Cerramos la ventana actual
+                        //Abrimos la pantalla del juego con el nivel marcado
+                        Buscaminas bus = new Buscaminas(usuario, (int) nivel, filas, columnas, minas);
+                        bus.setLocationRelativeTo(null);
+                        bus.setVisible(true);
+                    } else{
+                        Login.this.dispose();
+                        IU_PersonalizarNivel perslevel = new IU_PersonalizarNivel(usuario,4, minas);
+                        perslevel.pack();
+                        perslevel.setPreferredSize(new Dimension(325, 350));
+                        perslevel.setLocationRelativeTo(null);
+                        perslevel.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                        perslevel.setVisible(true);
+                    }
+                    }
             }
         });
 
@@ -89,4 +103,21 @@ public class Login extends JDialog {
             }
         });
     }
+    private boolean validarDatos(String usuario) {
+        boolean valido = false;
+        if ((!usuario.equals(""))) {
+            String pattern = "^[a-zA-Z0-9]*$";
+            if (textusuario.getText().matches(pattern)) {
+                valido = true;
+            } else {
+                JOptionPane.showMessageDialog(textusuario, "Nombre de usuario no valido");
+                textusuario.setText(null);
+            }
+        } else {
+            JOptionPane.showMessageDialog(textusuario, "Introduzca un nombre de usuario para jugar");
+            textusuario.setText(null);
+        }
+        return valido;
+    }
+
 }
