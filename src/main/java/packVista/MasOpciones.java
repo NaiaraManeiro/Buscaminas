@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static java.awt.Cursor.HAND_CURSOR;
+
 public class MasOpciones extends JDialog{
     private JButton puntuaciones;
     private JPanel panel1;
@@ -17,6 +19,11 @@ public class MasOpciones extends JDialog{
         setTitle("Más Opciones");
         setResizable(false);
         setContentPane(panel1);
+
+        puntuaciones.setCursor(new Cursor(HAND_CURSOR));
+        información.setCursor(new Cursor(HAND_CURSOR));
+        personalizar.setCursor(new Cursor(HAND_CURSOR));
+        volver.setCursor(new Cursor(HAND_CURSOR));
 
         puntuaciones.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
@@ -54,11 +61,6 @@ public class MasOpciones extends JDialog{
         volver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 dispose();
-                Login log = new Login();
-                log.setPreferredSize(new Dimension(475, 350));
-                log.pack();
-                log.setLocationRelativeTo(null);
-                log.setVisible(true);
             }
         });
 
