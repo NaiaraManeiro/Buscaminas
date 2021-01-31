@@ -63,17 +63,19 @@ public class Login extends JDialog {
                 Object nivel = comboBoxNivel.getSelectedItem();
                 String minas = " ";
 
-                if (minasSi.isSelected()){
-                    minas = "si";
-                } else if (minasNo.isSelected()) {
-                    minas = "no";
-                }
+                if (validarDatos(usuario)) {
+                    if (minasSi.isSelected()){
+                        minas = "si";
+                    } else if (minasNo.isSelected()) {
+                        minas = "no";
+                    }
 
-                Login.this.dispose(); //Cerramos la ventana actual
-                //Abrimos la pantalla del juego con el nivel marcado
-                Buscaminas bus = new Buscaminas(usuario, (int) nivel, minas);
-                bus.setLocationRelativeTo(null);
-                bus.setVisible(true);
+                    Login.this.dispose(); //Cerramos la ventana actual
+                    //Abrimos la pantalla del juego con el nivel marcado
+                    Buscaminas bus = new Buscaminas(usuario, (int) nivel, minas);
+                    bus.setLocationRelativeTo(null);
+                    bus.setVisible(true);
+                }
             }
         });
 
@@ -125,5 +127,22 @@ public class Login extends JDialog {
                 pers.setVisible(true);
             }
         });
+    }
+
+    private boolean validarDatos(String usuario) {
+        boolean valido = false;
+        if ((!usuario.equals(""))) {
+            String pattern = "^[a-zA-Z0-9]*$";
+            if (textusuario.getText().matches(pattern)) {
+                valido = true;
+            } else {
+                JOptionPane.showMessageDialog(textusuario, "Nombre de usuario no valido");
+                textusuario.setText(null);
+            }
+        } else {
+            JOptionPane.showMessageDialog(textusuario, "Introduzca un nombre de usuario para jugar");
+            textusuario.setText(null);
+        }
+        return valido;
     }
 }
