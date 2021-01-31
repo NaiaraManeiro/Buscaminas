@@ -1,5 +1,38 @@
 ![logo]
 
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary><h2 style="display: inline-block">Tabla de contenidos</h2></summary>
+  <ol>
+    <li>
+      <a href="#descripcion">Sobre el Proyecto</a>
+      <ul>
+        <li><a href="#desarrollado-con">Desarrollado con</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#configurando-este-buscaminas">Configurando este Buscaminas</a>
+      <ul>
+        <li><a href="#prerequesitos">Prerequesitos</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li>
+        <a href="#usos">Usos</a>
+        <ul>
+            <li><a href="#personalizacion-del-buscaminas">Personalización del buscaminas</a>
+                <ul>
+                    <li><a href="#los-iconos-del-tablero">Los iconos del tablero</a></li>
+                    <li><a href="#los-sonidos">Los sonidos</a></li>
+                </ul>
+            </li>
+            <li><a href="#niveles">Niveles</a></li>
+        </ul>
+    </li>
+    <li><a href="#autores">Autores</a></li>
+  </ol>
+</details>
+
 ## Descripción
 
 Os presentamos el clásico juego del *Buscaminas* con mejoras añadidas:
@@ -12,7 +45,7 @@ Os presentamos el clásico juego del *Buscaminas* con mejoras añadidas:
 
 ![ventana-nivel-1-jugada]
 
-### Hecho con
+### Desarrollado con
 Frameworks y programas usados para hacer esta aplicación:
 * [Maven](https://maven.apache.org)
 * [Java](https://www.java.com)
@@ -21,7 +54,7 @@ Frameworks y programas usados para hacer esta aplicación:
 
 
 <!-- GETTING STARTED -->
-## Configurando este Buscaminas...
+## Configurando este Buscaminas
 
 Se necesita tener la versión de MySQL Server. Está testeado con MySQL 8.0. Una vez que se tenga instalado, 
 se debe ejecutar en la base de datos, el script que está en la carpeta _Resources_, llamado [Script-bd-buscaminas.sql](https://github.com/NaiaraManeiro/BuscaminasSimple/blob/master/src/main/resources/Script-bd-buscaminas.sql).
@@ -31,9 +64,9 @@ Cuando se ejecute, se debe ir a la clase [GestorBD](https://github.com/NaiaraMan
 Se necesita tener instalado IntelliJ IDEA y descargar del mismo programa el openJDK-15 que se usa para ejecutar esta aplicación.
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## Usos
 
-### Personalización del buscaminas
+### Personalización del Buscaminas
 Se pueden personalizar los **iconos del tablero** y los sonidos de **ganar** y de **perder**.
 
 ![ventana-iconos]
@@ -69,10 +102,10 @@ Se ofrecen tres niveles para jugar:
 ![ventana-nivel-3]
   
 
-### Autores
-* [Leire](https://github.com/leiregonzalez11)
-* [Naiara](https://github.com/NaiaraManeiro)
-* [Aitor](https://github.com/aitorjus)
+## Autores
+* [Leire - GitHub](https://github.com/leiregonzalez11)
+* [Naiara - GitHub](https://github.com/NaiaraManeiro)
+* [Aitor - GitHub](https://github.com/aitorjus)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
