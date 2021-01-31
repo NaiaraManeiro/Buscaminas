@@ -26,6 +26,7 @@
                 </ul>
             </li>
             <li><a href="#niveles">Niveles</a></li>
+            <li><a href="#ayuda-sobre-el-juego">Ayuda sobre el juego</a></li>
         </ul>
     </li>
     <li><a href="#autores">Autores</a></li>
@@ -123,7 +124,23 @@ Se ofrecen tres niveles para jugar:
 </p>
 
 ### Ayuda sobre el juego
+
 Se ofrecen varias interfaces de ayuda para entender el funcionamiento del juego, así como las diferentes posibilidades que hay.
+- Una descripción del juego, así como un mensaje de bienvenida.
+<p align="center">
+<img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ayuda-info-juego.png?token=AKRAPADZU5RQPJD6LGW4FBLAD755S" />
+</p>
+
+- Información sobre qué son las minas especiales.
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ayuda-minas-especiales.png?token=AKRAPAEOOV5MI2I6YC77IP3AD755U" />
+</p>
+
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ayuda-como-jugar.png?token=AKRAPAACPP6G2SH2IC7DNA3AD755O" />
+</p>
 
 
 
