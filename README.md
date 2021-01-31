@@ -46,7 +46,7 @@ Os presentamos el clásico juego del *Buscaminas* con mejoras añadidas:
 
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ventana_nivel1_jugada.png">
+  <img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ventana_nivel1_jugada.png?token=AKRAPAFXK4SPQ2AKZMCE3ALAD7H2O">
 </p>
 
 ### Desarrollado con
@@ -73,22 +73,33 @@ Se necesita tener instalado IntelliJ IDEA y descargar del mismo programa el open
 ### Personalización del Buscaminas
 Se pueden personalizar los **iconos del tablero** y los sonidos de **ganar** y de **perder**.
 
-![ventana-iconos]
+<p align="center">
+  <img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ventana_iconos.png?token=AKRAPAGICXCA5JY45ZP3JJ3AD7H2O">
+</p>
 
 #### Los iconos del tablero
 Se puede elegir entre:
 - Emojis
 
-![ventana-buscaminas-emoji]
+<p align="center">
+  <img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ventana_buscaminas_emoji.png?token=AKRAPAHSN2J2QYEJIN7ZWOLAD7H2W"/>
+</p>
 - Los clásicos
 
-![ventana-buscaminas-classic2]
+<p align="center">
+  <img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ventana_buscaminas_classic2.png?token=AKRAPACFG6GKMPXXRUKD2MTAD7H2Y"/>
+</p>
 
-![ventana-nivel-1-jugada]
+<p align="center">
+  <img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ventana_nivel1_jugada.png?token=AKRAPAFXK4SPQ2AKZMCE3ALAD7H2O"/>
+</p>
+
 #### Los sonidos
 Se puede escuchar una preview para facilitar la elección.
 
-![ventana-sonidos]
+<p align="center">
+<img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ventana_sonidos.png?token=AKRAPAHUCJC55B5KE6ELYYDAD7H2G" />
+</p>
 
 
 ### Niveles
@@ -97,13 +108,22 @@ Se ofrecen tres niveles para jugar:
 
 - Nivel 1
 
-![ventana-nivel-1-jugada]
+<p align="center">
+<img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ventana_nivel1_jugada.png?token=AKRAPAFXK4SPQ2AKZMCE3ALAD7H2O" />
+</p>
+
 - Nivel 2
 
-![ventana-nivel-2]
+<p align="center">
+<img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ventana_nivel_2.png?token=AKRAPAF5TNORHEEFUYUJYADAD7H2K" />
+</p>
+
 - Nivel 3
 
-![ventana-nivel-3]
+<p align="center">
+<img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ventana_nivel_3.png?token=AKRAPACD7VQO34XF4M35G2DAD7H2I" />
+</p>
+
   
 
 ## Autores
@@ -113,11 +133,4 @@ Se ofrecen tres niveles para jugar:
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[ventana-iconos]: images/ventana_iconos.png
-[ventana-sonidos]: images/ventana_sonidos.png
-[ventana-buscaminas-classic2]: images/ventana_buscaminas_classic2.png
-[ventana-buscaminas-emoji]: images/ventana_buscaminas_emoji.png
-[ventana-nivel-1-jugada]: images/ventana_nivel1_jugada.png
-[ventana-nivel-2]: images/ventana_nivel_2.png
-[ventana-nivel-3]: images/ventana_nivel_3.png
 [logo]: images/logo.png
