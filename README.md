@@ -11,6 +11,7 @@ Os presentamos el clásico juego del *Buscaminas* con mejoras añadidas:
 - Instrucciones de las nuevas minas y del funcionamiento del juego.
 
 ![ventana-nivel-1-jugada]
+
 ### Hecho con
 Frameworks y programas usados para hacer esta aplicación:
 * [Maven](https://maven.apache.org)
@@ -34,28 +35,39 @@ Se necesita tener instalado IntelliJ IDEA y descargar del mismo programa el open
 
 ### Personalización del buscaminas
 Se pueden personalizar los **iconos del tablero** y los sonidos de **ganar** y de **perder**.
+
 ![ventana-iconos]
+
 #### Los iconos del tablero
 Se puede elegir entre:
 - Emojis
+
 ![ventana-buscaminas-emoji]
+  
 - Los clásicos
+
 ![ventana-buscaminas-classic2]
+
 ![ventana-nivel-1-jugada]
   
 #### Los sonidos
 Se pueden reproducción para facilitar la elección.
+
 ![ventana-sonidos]
 
 
 ### Niveles
 
 Se ofrecen tres niveles para jugar:
+
 - Nivel 1
+
 ![ventana-nivel-1-jugada]
 - Nivel 2
+
 ![ventana-nivel-2]
 - Nivel 3
+
 ![ventana-nivel-3]
   
 
