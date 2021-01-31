@@ -35,15 +35,8 @@ Se necesita tener instalado IntelliJ IDEA y descargar del mismo programa el open
 
 ### Personalización del buscaminas
 Se pueden personalizar los **iconos del tablero** y los sonidos de **ganar** y de **perder**.
-display: block;
 
-margin-right: auto;
-width: 50%;
-<div style="display:block; margin-left:auto; margin-right:auto; width:50%;">
-    <img src="images/ventana_iconos.png">
-</div>
-
-<!-- ![ventana-iconos] -->
+![ventana-iconos]
 
 #### Los iconos del tablero
 Se puede elegir entre:
