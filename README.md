@@ -1,7 +1,6 @@
 ![logo]
 
 <!-- TABLE OF CONTENTS -->
-<details open="open">
   <summary><h2 style="display: inline-block">Tabla de contenidos</h2></summary>
   <ol>
     <li>
@@ -31,7 +30,6 @@
     </li>
     <li><a href="#autores">Autores</a></li>
   </ol>
-</details>
 
 ## Descripción
 
