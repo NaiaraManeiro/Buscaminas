@@ -12,7 +12,6 @@ public class MasOpciones extends JDialog{
     private JPanel panel1;
     private JButton información;
     private JButton personalizar;
-    private JButton volver;
 
     public MasOpciones(){
 
@@ -23,10 +22,10 @@ public class MasOpciones extends JDialog{
         puntuaciones.setCursor(new Cursor(HAND_CURSOR));
         información.setCursor(new Cursor(HAND_CURSOR));
         personalizar.setCursor(new Cursor(HAND_CURSOR));
-        volver.setCursor(new Cursor(HAND_CURSOR));
 
         puntuaciones.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
+                dispose();
                 vPuntuaciones punt = new vPuntuaciones();
                 punt.setPreferredSize(new Dimension(450, 400));
                 punt.pack();
@@ -38,6 +37,7 @@ public class MasOpciones extends JDialog{
 
         información.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                dispose();
                 IU_InfoJuego info = new IU_InfoJuego();
                 info.setPreferredSize(new Dimension(720, 630));
                 info.pack();
@@ -49,18 +49,13 @@ public class MasOpciones extends JDialog{
 
         personalizar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
+                dispose();
                 IU_Personalizar pers = new IU_Personalizar();
                 pers.setPreferredSize(new Dimension(600, 440));
                 pers.setLocationRelativeTo(null);
                 pers.pack();
                 pers.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                 pers.setVisible(true);
-            }
-        });
-
-        volver.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                dispose();
             }
         });
 

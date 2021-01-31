@@ -61,7 +61,6 @@ public class IU_InfoJuego extends JDialog {
                 cij.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                 cij.setVisible(true);
             }
-
         });
 
     }
