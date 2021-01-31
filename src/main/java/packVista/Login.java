@@ -18,14 +18,11 @@ public class Login extends JDialog {
     private JLabel lblnivel;
     private JPanel panel1;
     private JComboBox comboBoxNivel;
-    private JButton puntuacionesButton;
     private JLabel minasEspeciales;
     private JRadioButton minasSi;
     private JRadioButton minasNo;
     private JButton ayuda;
-    private JButton personalizar;
-    private JButton infoButton;
-    private JButton salirButton;
+    private JButton masOpciones;
 
     public Login() {
         setTitle("Buscaminas: Usuario");
@@ -48,9 +45,7 @@ public class Login extends JDialog {
         ayuda.setContentAreaFilled(false);
         ayuda.setCursor(new Cursor(HAND_CURSOR));
         aceptarButton.setCursor(new Cursor(HAND_CURSOR));
-        infoButton.setCursor(new Cursor(HAND_CURSOR));
-        puntuacionesButton.setCursor(new Cursor(HAND_CURSOR));
-        personalizar.setCursor(new Cursor(HAND_CURSOR));
+        masOpciones.setCursor(new Cursor(HAND_CURSOR));
 
         aceptarButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
@@ -72,52 +67,25 @@ public class Login extends JDialog {
             }
         });
 
-        puntuacionesButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                vPuntuaciones punt = new vPuntuaciones();
-                punt.setPreferredSize(new Dimension(450, 400));
-                punt.pack();
-                punt.setLocationRelativeTo(null);
-                punt.setVisible(true);
-            }
-        });
-
         ayuda.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 AyudaMinas ayuda = new AyudaMinas();
                 ayuda.setPreferredSize(new Dimension(480, 350));
                 ayuda.pack();
                 ayuda.setLocationRelativeTo(null);
+                ayuda.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                 ayuda.setVisible(true);
             }
         });
 
-        salirButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-
-        infoButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                IU_InfoJuego info = new IU_InfoJuego();
-                info.setPreferredSize(new Dimension(720, 630));
-                info.pack();
-                info.setLocationRelativeTo(null);
-                setVisible(false);
-                info.setVisible(true);
-            }
-        });
-
-        personalizar.addActionListener(new ActionListener() {
+        masOpciones.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                IU_Personalizar pers = new IU_Personalizar();
-                pers.setPreferredSize(new Dimension(600, 440));
-                pers.setLocationRelativeTo(null);
-                pers.pack();
-                setVisible(false);
-                pers.setVisible(true);
+                MasOpciones mo = new MasOpciones();
+                mo.setPreferredSize(new Dimension(250, 250));
+                mo.pack();
+                mo.setLocationRelativeTo(null);
+                mo.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                mo.setVisible(true);
             }
         });
     }

@@ -32,49 +32,33 @@ public class IU_InfoJuego extends JDialog {
         volveralmenuButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                Login log = new Login();
-                log.pack();
-                log.setPreferredSize(new Dimension(475, 350));
-                log.setLocationRelativeTo(null);
-                log.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-                log.setVisible(true);
             }
         });
 
         volverAlMenuButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                Login log = new Login();
-                log.pack();
-                log.setPreferredSize(new Dimension(475, 350));
-                log.setLocationRelativeTo(null);
-                log.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-                log.setVisible(true);
             }
         });
 
         infonivelesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dispose();
                 IU_Consultarinfojuego cij = new IU_Consultarinfojuego();
                 cij.pack();
                 cij.setPreferredSize(new Dimension(300, 200));
                 cij.setLocationRelativeTo(null);
                 cij.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-                //setVisible(false);
                 cij.setVisible(true);
                 }
         });
 
         infoNivelesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dispose();
                 IU_Consultarinfojuego cij = new IU_Consultarinfojuego();
                 cij.pack();
                 cij.setPreferredSize(new Dimension(300, 250));
                 cij.setLocationRelativeTo(null);
                 cij.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-                //setVisible(false);
                 cij.setVisible(true);
             }
 
@@ -82,12 +66,6 @@ public class IU_InfoJuego extends JDialog {
 
     }
 
-    public JPanel getRootPanel(){
-        if (rootPanel == null){
-            rootPanel = new JPanel();
-        }
-        return rootPanel;
-    }
     private void anadirExplicaciones() {
 
         lblwelcome.setText("         ¡¡Bienvenido al Buscaminas!!");
