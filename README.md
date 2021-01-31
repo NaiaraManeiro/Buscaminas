@@ -43,7 +43,11 @@ Os presentamos el clásico juego del *Buscaminas* con mejoras añadidas:
 - Opción de personalizar iconos del tablero y sonidos del juego.
 - Instrucciones de las nuevas minas y del funcionamiento del juego.
 
-![ventana-nivel-1-jugada]
+
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ventana_nivel1_jugada.png">
+</p>
 
 ### Desarrollado con
 Frameworks y programas usados para hacer esta aplicación:
