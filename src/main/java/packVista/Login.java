@@ -12,25 +12,17 @@ import static java.awt.Cursor.HAND_CURSOR;
 
 public class Login extends JDialog {
     private JPanel rootpanel;
-    private JButton jugarButton;
+    private JButton aceptarButton;
     private JTextField textusuario;
     private JLabel lblnombre;
     private JLabel lblnivel;
+    private JPanel panel1;
     private JComboBox comboBoxNivel;
-    private JButton puntuacionesButton;
     private JLabel minasEspeciales;
     private JRadioButton minasSi;
     private JRadioButton minasNo;
     private JButton ayuda;
-    private JButton personalizar;
-    private JButton infoButton;
-    private JButton salirButton;
-    private JPanel jPanelNombreUsuario;
-    private JPanel jPanelNivel;
-    private JPanel jPanelMinasEspeciales;
-    private JPanel jPanelBotones;
-    private JPanel jPanelMasInfo;
-    private JPanel jPanelBotonJugar;
+    private JButton masOpciones;
 
     public Login() {
         setTitle("Buscaminas: Usuario");
@@ -41,6 +33,7 @@ public class Login extends JDialog {
         for (int i = 0; i < niveles.length(); i++) {
             comboBoxNivel.addItem(niveles.get(i));
         }
+        //comboBoxNivel.addItem("Pers.");
 
         ButtonGroup group = new ButtonGroup();
         group.add(minasSi);
@@ -52,40 +45,39 @@ public class Login extends JDialog {
         ayuda.setMargin(new Insets(0, 0, 0, 0));
         ayuda.setContentAreaFilled(false);
         ayuda.setCursor(new Cursor(HAND_CURSOR));
-        jugarButton.setCursor(new Cursor(HAND_CURSOR));
-        infoButton.setCursor(new Cursor(HAND_CURSOR));
-        puntuacionesButton.setCursor(new Cursor(HAND_CURSOR));
-        personalizar.setCursor(new Cursor(HAND_CURSOR));
+        aceptarButton.setCursor(new Cursor(HAND_CURSOR));
+        masOpciones.setCursor(new Cursor(HAND_CURSOR));
 
-        jugarButton.addActionListener(new ActionListener() {
+        aceptarButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 String usuario = textusuario.getText();
                 Object nivel = comboBoxNivel.getSelectedItem();
                 String minas = " ";
 
-                if (validarDatos(usuario)) {
+                if (validarDatos(usuario)){
                     if (minasSi.isSelected()){
                         minas = "si";
                     } else if (minasNo.isSelected()) {
                         minas = "no";
                     }
-
-                    Login.this.dispose(); //Cerramos la ventana actual
-                    //Abrimos la pantalla del juego con el nivel marcado
-                    Buscaminas bus = new Buscaminas(usuario, (int) nivel, minas);
-                    bus.setLocationRelativeTo(null);
-                    bus.setVisible(true);
-                }
-            }
-        });
-
-        puntuacionesButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                vPuntuaciones punt = new vPuntuaciones();
-                punt.setPreferredSize(new Dimension(450, 400));
-                punt.pack();
-                punt.setLocationRelativeTo(null);
-                punt.setVisible(true);
+                    if (!nivel.equals("Pers.")) {
+                        int filas = GestorBuscaminas.getMiGB().obtenerfilasnivel((int)nivel);
+                        int columnas = GestorBuscaminas.getMiGB().obtenercolumnasnivel((int)nivel);
+                        Login.this.dispose(); //Cerramos la ventana actual
+                        //Abrimos la pantalla del juego con el nivel marcado
+                        Buscaminas bus = new Buscaminas(usuario, (int) nivel, filas, columnas, minas);
+                        bus.setLocationRelativeTo(null);
+                        bus.setVisible(true);
+                    } else{
+                        Login.this.dispose();
+                        IU_PersonalizarNivel perslevel = new IU_PersonalizarNivel(usuario,4, minas);
+                        perslevel.pack();
+                        perslevel.setPreferredSize(new Dimension(325, 350));
+                        perslevel.setLocationRelativeTo(null);
+                        perslevel.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                        perslevel.setVisible(true);
+                    }
+                    }
             }
         });
 
@@ -95,40 +87,22 @@ public class Login extends JDialog {
                 ayuda.setPreferredSize(new Dimension(480, 350));
                 ayuda.pack();
                 ayuda.setLocationRelativeTo(null);
+                ayuda.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                 ayuda.setVisible(true);
             }
         });
 
-        salirButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-
-        infoButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                IU_InfoJuego info = new IU_InfoJuego();
-                info.setPreferredSize(new Dimension(720, 630));
-                info.pack();
-                info.setLocationRelativeTo(null);
-                setVisible(false);
-                info.setVisible(true);
-            }
-        });
-
-        personalizar.addActionListener(new ActionListener() {
+        masOpciones.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                IU_Personalizar pers = new IU_Personalizar();
-                pers.setPreferredSize(new Dimension(600, 440));
-                pers.setLocationRelativeTo(null);
-                pers.pack();
-                setVisible(false);
-                pers.setVisible(true);
+                MasOpciones mo = new MasOpciones();
+                mo.setPreferredSize(new Dimension(250, 250));
+                mo.pack();
+                mo.setLocationRelativeTo(null);
+                mo.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                mo.setVisible(true);
             }
         });
     }
-
     private boolean validarDatos(String usuario) {
         boolean valido = false;
         if ((!usuario.equals(""))) {
@@ -145,4 +119,5 @@ public class Login extends JDialog {
         }
         return valido;
     }
+
 }
