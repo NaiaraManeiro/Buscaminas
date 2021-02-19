@@ -33,7 +33,7 @@ public class Login extends JDialog {
         for (int i = 0; i < niveles.length(); i++) {
             comboBoxNivel.addItem(niveles.get(i));
         }
-        comboBoxNivel.addItem("Pers.");
+        //comboBoxNivel.addItem("Pers.");
 
         ButtonGroup group = new ButtonGroup();
         group.add(minasSi);
