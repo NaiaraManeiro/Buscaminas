@@ -56,7 +56,7 @@ public class IU_Personalizar extends JDialog {
         volverAlMenuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                volverAlMenu();
+                dispose();
             }
         });
         addWindowListener(new WindowAdapter() {
@@ -218,18 +218,7 @@ public class IU_Personalizar extends JDialog {
 
     private void onGuardar() {
         GestorBuscaminas.getMiGB().ponerPersonalizables((String) personalizablesJugador.get("pathSonidoWin"), (String) personalizablesJugador.get("pathSonidoGameOver"), (String) personalizablesJugador.get("pathIconosTablero"));
-        volverAlMenu();
-    }
-
-    private void volverAlMenu() {
         dispose();
-        Login ppj = new Login();
-        ppj.pack();
-        ppj.setPreferredSize(new Dimension(475, 350));
-        ppj.setLocationRelativeTo(null);
-        ppj.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        //setVisible(false);
-        ppj.setVisible(true);
     }
 
     private void onCancel() {
