@@ -12,10 +12,11 @@ import static java.awt.Cursor.HAND_CURSOR;
 
 public class Login extends JDialog {
     private JPanel rootpanel;
-    private JButton jugarButton;
+    private JButton aceptarButton;
     private JTextField textusuario;
     private JLabel lblnombre;
     private JLabel lblnivel;
+    private JPanel panel1;
     private JComboBox comboBoxNivel;
     private JLabel minasEspeciales;
     private JRadioButton minasSi;
@@ -47,7 +48,7 @@ public class Login extends JDialog {
         aceptarButton.setCursor(new Cursor(HAND_CURSOR));
         masOpciones.setCursor(new Cursor(HAND_CURSOR));
 
-        jugarButton.addActionListener(new ActionListener() {
+        aceptarButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 String usuario = textusuario.getText();
                 Object nivel = comboBoxNivel.getSelectedItem();
