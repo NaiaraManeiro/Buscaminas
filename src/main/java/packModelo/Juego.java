@@ -1,7 +1,7 @@
 package packModelo;
 
+import org.json.JSONObject;
 import packModelo.packCasilla.*;
-import packModelo.packModo.Modo;
 
 import java.util.Observable;
 
@@ -9,13 +9,18 @@ public class Juego extends Observable {
     private static Juego mJuego;
     private Tablero tablero;
     private Tablero tableroPrueba;
-    private Modo nivel;
-    private Usuario usuario;
     private Cronometro crono;
     private int nMinasRestantes;
     private boolean derrota;
+    private String pathSonidosWin;
+    private String pathSonidosGameOver;
+    private String pathIconosTablero;
 
-    private Juego(){}
+    private Juego(){
+        pathIconosTablero = "/pack_iconos_tablero/pack1";
+        pathSonidosGameOver = "/sonidos_gameover/lose.wav";
+        pathSonidosWin = "/sonidos_win/win.wav";
+    }
 
     public static Juego getmJuego(){
         if (mJuego == null){
@@ -24,22 +29,15 @@ public class Juego extends Observable {
         return mJuego;
     }
 
-    public void jugar(){
-        setModo(this.usuario.getNivel());
-        this.tablero = this.nivel.generarTablero();
+    public void jugar(int pFilas, int pColumnas, int pMinas, String minas){
+        this.tablero = new Tablero(pFilas, pColumnas, pMinas, minas);
         derrota = false;
     }
+
     public void iniciarCrono(){
         if (this.crono == null || crono.estaParado()) this.crono = new Cronometro();
     }
-    public Modo getModo(){return nivel;}
-    public void setModo(Modo pModo){
-        this.nivel = pModo;
-    }
 
-    public void crearUsuario(String pNombre, int pNivel) {
-        this.usuario = new Usuario(pNombre, pNivel);
-    }
 
     public Tablero getTablero() { return tablero; }
     private Tablero getTableroPrueba() { return tableroPrueba; }
@@ -61,15 +59,14 @@ public class Juego extends Observable {
 
     public void activarUpdate(Coordenada coord){
         setChanged();
-        notifyObservers(coord);
+        JSONObject coordenada = new JSONObject();
+        coordenada.put("fila", coord.getFila());
+        coordenada.put("columna",coord.getColumna());
+        notifyObservers(coordenada);
     }
 
-    public int getPuntuacion(){
-        return crono.getMinutos()*60+crono.getSegundos();
-    }
-
-    private void regenerarTablero(){
-        this.tablero = this.nivel.generarTablero();
+    private void regenerarTablero(int pFilas, int pColumnas, int pMinas, String minasEspeciales){
+        this.tablero = new Tablero(pFilas, pColumnas, pMinas, minasEspeciales);
         tablero.imprimirChivato();
     }
 
@@ -77,18 +74,17 @@ public class Juego extends Observable {
 
     public void reiniciarVariables(){ this.tableroPrueba = null; }
 
-    public void guardarPartida(){
-        Puntuaciones.getMiPuntuaciones().anadirPuntuacion(usuario.getNombre(), getPuntuacion(), usuario.getNivel().getNumero());
-        Puntuaciones.getMiPuntuaciones().guardarPuntuaciones();
-    }
-
     public void marcardesmarcarCasilla(Casilla c){
         Coordenada coord = c.getCoordenada();
         int x = coord.getColumna();
         int y = coord.getFila();
         if (c.getEstado() instanceof NoClicada){
-            if (c instanceof CasillaMina) {
-                ((CasillaMina) c).terminarPartida(c);
+            if (c instanceof CasillaMinaNormal) {
+                ((CasillaMinaNormal) c).terminarPartida(c);
+            } else if (c instanceof CasillaMinaReset) {
+                ((CasillaMinaReset) c).reiniciarJuego(c);
+            } else if (c instanceof CasillaMina50) {
+                ((CasillaMina50) c).mostrarMinas(c);
             } else {
                 if (((CasillaNormal) c).getNumero() == 0) {
                     ((CasillaNormal) c).desplegarAdyacentes(x, y);
@@ -99,12 +95,12 @@ public class Juego extends Observable {
         }
     }
 
-    public Casilla tableroNuevo(Casilla c){
+    public Casilla tableroNuevo(Casilla c, int pFilas, int pColumnas, int pMinas, String minasEspeciales){
         Coordenada coord = c.getCoordenada();
         int x = coord.getColumna();
         int y = coord.getFila();
-        while ((c instanceof CasillaMina || (c instanceof CasillaNormal && ((CasillaNormal) c).getNumero() != 0)) && this.getTableroPrueba() == null){
-            this.regenerarTablero();
+        while ((c instanceof CasillaMinaNormal || c instanceof CasillaMinaReset || c instanceof CasillaMina50 || (c instanceof CasillaNormal && ((CasillaNormal) c).getNumero() != 0)) && this.getTableroPrueba() == null){
+            this.regenerarTablero(pFilas, pColumnas, pMinas, minasEspeciales);
             Casilla cNueva = this.getTablero().devolverCasilla(x, y);
             if (cNueva instanceof CasillaNormal && ((CasillaNormal) cNueva).getNumero() == 0){
                 this.asignarTablero(this.getTablero());
@@ -116,5 +112,17 @@ public class Juego extends Observable {
             this.asignarTablero(this.getTablero());
         }
         return c;
+    }
+    public void ponerPersonalizables(String pPathSonidosWin, String pPathSonidosGameOver, String pPathIconosTablero){
+        pathSonidosWin = pPathSonidosWin;
+        pathSonidosGameOver = pPathSonidosGameOver;
+        pathIconosTablero = pPathIconosTablero;
+    }
+    public JSONObject getPersonalizables(){
+        JSONObject resultado = new JSONObject();
+        resultado.put("pathSonidoWin",pathSonidosWin);
+        resultado.put("pathSonidoGameOver",pathSonidosGameOver);
+        resultado.put("pathIconosTablero",pathIconosTablero);
+        return resultado;
     }
 }
