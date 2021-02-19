@@ -45,7 +45,7 @@ Os presentamos el clásico juego del *Buscaminas* con mejoras añadidas:
 
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ventana_nivel1_jugada.png?token=AKRAPAFXK4SPQ2AKZMCE3ALAD7H2O">
+  <img src="https://raw.githubusercontent.com/NaiaraManeiro/Buscaminas/feature/readme/images/ventana_nivel1_jugada.png?token=AKRAPAFXK4SPQ2AKZMCE3ALAD7H2O">
 </p>
 
 ### Desarrollado con
@@ -60,8 +60,8 @@ Frameworks y programas usados para hacer esta aplicación:
 ## Configurando este Buscaminas
 
 Se necesita tener la versión de MySQL Server. Está testeado con MySQL 8.0. Una vez que se tenga instalado, 
-se debe ejecutar en la base de datos, el script que está en la carpeta _Resources_, llamado [Script-bd-buscaminas.sql](https://github.com/NaiaraManeiro/BuscaminasSimple/blob/master/src/main/resources/Script-bd-buscaminas.sql).
-Cuando se ejecute, se debe ir a la clase [GestorBD](https://github.com/NaiaraManeiro/BuscaminasSimple/blob/master/src/main/java/packControlador/GestorBD.java), y cambiar los atributos, _nombreBD_, _usuarioBD_, _contrasenaBD_, _host_ y _puerto_.
+se debe ejecutar en la base de datos, el script que está en la carpeta _Resources_, llamado [Script-bd-buscaminas.sql](https://github.com/NaiaraManeiro/Buscaminas/blob/master/src/main/resources/Script-bd-buscaminas.sql).
+Cuando se ejecute, se debe ir a la clase [GestorBD](https://github.com/NaiaraManeiro/Buscaminas/blob/master/src/main/java/packControlador/GestorBD.java), y cambiar los atributos, _nombreBD_, _usuarioBD_, _contrasenaBD_, _host_ y _puerto_.
 
 ### Prerequesitos
 Se necesita tener instalado IntelliJ IDEA y descargar del mismo programa el openJDK-15 que se usa para ejecutar esta aplicación.
@@ -73,7 +73,7 @@ Se necesita tener instalado IntelliJ IDEA y descargar del mismo programa el open
 Se pueden personalizar los **iconos del tablero** y los sonidos de **ganar** y de **perder**.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ventana_iconos.png?token=AKRAPAGICXCA5JY45ZP3JJ3AD7H2O">
+  <img src="https://raw.githubusercontent.com/NaiaraManeiro/Buscaminas/feature/readme/images/ventana_iconos.png?token=AKRAPAGICXCA5JY45ZP3JJ3AD7H2O">
 </p>
 
 #### Los iconos del tablero
@@ -81,23 +81,23 @@ Se puede elegir entre:
 - Emojis
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ventana_buscaminas_emoji.png?token=AKRAPAHSN2J2QYEJIN7ZWOLAD7H2W"/>
+  <img src="https://raw.githubusercontent.com/NaiaraManeiro/Buscaminas/feature/readme/images/ventana_buscaminas_emoji.png?token=AKRAPAHSN2J2QYEJIN7ZWOLAD7H2W"/>
 </p>
 - Los clásicos
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ventana_buscaminas_classic2.png?token=AKRAPACFG6GKMPXXRUKD2MTAD7H2Y"/>
+  <img src="https://raw.githubusercontent.com/NaiaraManeiro/Buscaminas/feature/readme/images/ventana_buscaminas_classic2.png?token=AKRAPACFG6GKMPXXRUKD2MTAD7H2Y"/>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ventana_nivel1_jugada.png?token=AKRAPAFXK4SPQ2AKZMCE3ALAD7H2O"/>
+  <img src="https://raw.githubusercontent.com/NaiaraManeiro/Buscaminas/feature/readme/images/ventana_nivel1_jugada.png?token=AKRAPAFXK4SPQ2AKZMCE3ALAD7H2O"/>
 </p>
 
 #### Los sonidos
 Se puede escuchar una preview para facilitar la elección.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ventana_sonidos.png?token=AKRAPAHUCJC55B5KE6ELYYDAD7H2G" />
+<img src="https://raw.githubusercontent.com/NaiaraManeiro/Buscaminas/feature/readme/images/ventana_sonidos.png?token=AKRAPAHUCJC55B5KE6ELYYDAD7H2G" />
 </p>
 
 
@@ -108,19 +108,19 @@ Se ofrecen tres niveles para jugar:
 - Nivel 1
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ventana_nivel1_jugada.png?token=AKRAPAFXK4SPQ2AKZMCE3ALAD7H2O" />
+<img src="https://raw.githubusercontent.com/NaiaraManeiro/Buscaminas/feature/readme/images/ventana_nivel1_jugada.png?token=AKRAPAFXK4SPQ2AKZMCE3ALAD7H2O" />
 </p>
 
 - Nivel 2
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ventana_nivel_2.png?token=AKRAPAF5TNORHEEFUYUJYADAD7H2K" />
+<img src="https://raw.githubusercontent.com/NaiaraManeiro/Buscaminas/feature/readme/images/ventana_nivel_2.png?token=AKRAPAF5TNORHEEFUYUJYADAD7H2K" />
 </p>
 
 - Nivel 3
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ventana_nivel_3.png?token=AKRAPACD7VQO34XF4M35G2DAD7H2I" />
+<img src="https://raw.githubusercontent.com/NaiaraManeiro/Buscaminas/feature/readme/images/ventana_nivel_3.png?token=AKRAPACD7VQO34XF4M35G2DAD7H2I" />
 </p>
 
 ### Ayuda sobre el juego
@@ -128,18 +128,18 @@ Se ofrecen tres niveles para jugar:
 Se ofrecen varias interfaces de ayuda para entender el funcionamiento del juego, así como las diferentes posibilidades que hay.
 - Una descripción del juego, así como un mensaje de bienvenida.
 <p align="center">
-<img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ayuda-info-juego.png?token=AKRAPADZU5RQPJD6LGW4FBLAD755S" />
+<img src="https://raw.githubusercontent.com/NaiaraManeiro/Buscaminas/feature/readme/images/ayuda-info-juego.png?token=AKRAPADZU5RQPJD6LGW4FBLAD755S" />
 </p>
 
 - Información sobre qué son las minas especiales.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ayuda-minas-especiales.png?token=AKRAPAEOOV5MI2I6YC77IP3AD755U" />
+<img src="https://raw.githubusercontent.com/NaiaraManeiro/Buscaminas/feature/readme/images/ayuda-minas-especiales.png?token=AKRAPAEOOV5MI2I6YC77IP3AD755U" />
 </p>
 
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/NaiaraManeiro/BuscaminasSimple/feature/readme/images/ayuda-como-jugar.png?token=AKRAPAACPP6G2SH2IC7DNA3AD755O" />
+<img src="https://raw.githubusercontent.com/NaiaraManeiro/Buscaminas/feature/readme/images/ayuda-como-jugar.png?token=AKRAPAACPP6G2SH2IC7DNA3AD755O" />
 </p>
 
 
