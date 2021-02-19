@@ -40,9 +40,6 @@ public class IU_Consultarinfojuego extends JDialog {
         for (int i = 0; i < niveles.length(); i++) {
             comboBoxNivel.addItem(niveles.get(i));
         }
-        /*for (int i = 1; i < 4; i++) {
-            comboBoxNivel.addItem(i);
-        }*/
 
         consultarInfoButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

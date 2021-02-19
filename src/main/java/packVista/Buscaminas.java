@@ -35,7 +35,7 @@ public class Buscaminas extends JFrame implements Observer {
     private String pathSonidoWin;
     private String pathSonidoGameOver;
 
-    public Buscaminas(String idJugador, int pNivel, String pMinas) {
+    public Buscaminas(String idJugador, int pNivel, int pFilas, int pCol, String pMinas) {
         idJug = idJugador;
         nivel = pNivel;
         minas = pMinas;
@@ -84,9 +84,8 @@ public class Buscaminas extends JFrame implements Observer {
                 GestorBuscaminas.getMiGB().resetCrono();
             }
         });
-
-        filas = GestorBuscaminas.getMiGB().obtenerfilasnivel(nivel);
-        columnas = GestorBuscaminas.getMiGB().obtenercolumnasnivel(nivel);
+        filas = pFilas;
+        columnas = pCol;
         minasSinDescubrir = columnas*nivel;
         jugar();
     }
@@ -116,7 +115,7 @@ public class Buscaminas extends JFrame implements Observer {
                 } else if (nivel == 2) {
                     this.setMinimumSize(new Dimension(800, 600));
                     this.setSize(800, 500);
-                    casilla.setBounds(i, j, 45, 45);
+                    casilla.setBounds(i, j, 50, 50);
                 } else {
                     this.setMinimumSize(new Dimension(1200, 600));
                     this.setSize(new Dimension(1200, 700));
